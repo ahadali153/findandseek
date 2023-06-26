@@ -1,4 +1,9 @@
-# Module3 Project Gamma
+# FindAndSeek
+
+Ahad Ali
+Artemis Jasmine Gilson
+Artemis Liu
+Eli Spicer
 
 ## Getting started
 

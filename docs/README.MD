@@ -9,8 +9,8 @@ Please put any and all documentation for your project in this folder. Other than
 
 - Request shape (form):
 
-  - username: string
-  - password: string
+- username: string
+- password: string
 
 - Response: Account information and a token
 - Response shape (JSON):
