@@ -6,4 +6,4 @@ I created user login and sign up issues.
 
 ## June 26, 2023
 
-Today, I worked on getting PostgreSQL set up in our Docker containers. Myself and my team did some research on FastAPI today and began working on our tables in our SQL db.
+Today, I worked on getting PostgreSQL set up in our Docker containers. Myself and my team did some research on FastAPI and Figma today and began working on our tables in our SQL db. We brainstormed and did our research on different data types to create tables and refer back to our models.
