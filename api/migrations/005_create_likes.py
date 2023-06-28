@@ -4,7 +4,7 @@ steps = [
         CREATE TABLE likes (
         id SERIAL PRIMARY KEY NOT NULL,
         counter INTEGER,
-        user_id INTEGER NOT NULL REFERENCES users(id),
+        account_id INTEGER NOT NULL REFERENCES accounts(id),
         adventure_id INTEGER NOT NULL REFERENCES adventures(id)
         );
         """,
