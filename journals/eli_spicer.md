@@ -37,3 +37,21 @@ with various aspects of it. I now understand the general concepts
 behind the language. It really helped me to understand how we are
 gonna get this project done and relieve some stress off of my
 shoulders.
+
+## June 27th, 2023
+
+Today, I worked on:
+
+Learning PostgreSQL, Authorization, and Figma
+
+My team and I worked on learning various concepts
+which will be vital to making our app. I learned
+how to design and create our front-end portion on
+figma, and my team worked on learning PostgreSQL
+and beginning our database.
+
+Today I realized how Figma works and the vitality
+it has to a project. It is extremely useful in
+designing and implementing a stellar looking
+front-end, as well as giving you the necessary
+code to easily transition it into your actual app.

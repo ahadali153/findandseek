@@ -25,3 +25,7 @@ Example:
 ## June 26th, 2023
 
 Created the account/comment issue in gitlab.
+
+## June 27th, 2023
+
+Defined models and their datafield to better organize and have clear visual on our objectives once we create the individual models/classes.
