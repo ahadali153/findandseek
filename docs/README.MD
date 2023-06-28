@@ -106,12 +106,20 @@ Please put any and all documentation for your project in this folder. Other than
   }
   ```
 
-- Response: An indication of success or failure
+- Response: Newly created resource
 - Response shape (JSON):
   ```json
   {
-  	"success": "boolean",
-  	"message": "string"
+  	"username": "username",
+  	"title": "string",
+  	"image_url": "string",
+  	"description": "string",
+  	"location": "string",
+  	"activity": "string",
+  	"intensity": "string",
+  	"price": "number",
+  	"date_posted": "string",
+  	"comment": "string"
   }
   ```
 

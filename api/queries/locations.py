@@ -12,5 +12,5 @@ class LocationQueries:
             cur.execute(
                 """
 
-                    """
+                """
             )

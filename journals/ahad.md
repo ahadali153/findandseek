@@ -24,10 +24,16 @@ in Visual Studio Code! It allows me to rename a
 variable without causing bugs. I am going to be
 using this a lot!
 
-## July 25, 2023
+## June 26, 2023
 
 Today, I worked on:
 
 Creating issues and assigning roles for each issue in my project team.
 
 Me and my team planned out what the necessary issues were for the project and assigned each of us a role.
+
+## June 27, 2023
+
+Today, I worked on:
+
+Creating database tables and making migrations
