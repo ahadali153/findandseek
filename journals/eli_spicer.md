@@ -55,3 +55,18 @@ it has to a project. It is extremely useful in
 designing and implementing a stellar looking
 front-end, as well as giving you the necessary
 code to easily transition it into your actual app.
+
+## June 28th, 2023
+
+Today, I worked on:
+
+Figma and the PostgreSQL database.
+
+I researched various Figma components we can
+use when we begin designing our frontend. Otherwise,
+my team and I worked on the PostgreSQL database and
+got it organized and working.
+
+Today I realized how useful PostgreSQL database is,
+as well as how to traverse it in a better manner.
+So happy to have got the database done, stress relieved.
