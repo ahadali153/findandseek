@@ -11,3 +11,7 @@ Today, I worked on getting PostgreSQL set up in our Docker containers. Myself an
 ## June 28, 2023
 
 Today, we fixed our tables and made separate files for our migrations. We were having some issues getting everything to run properly in Docker but then we managed to get everything to work and set up our databases in pgAdmin. Tomorrow we will be ready to start fetching API for Google Maps and working on Authentication.
+
+## June 29, 2023
+
+Today Ahad, Artemis, and I all worked together to start getting our backend authentication set up while Eli worked on APIs for Google Maps. We made some good progress then hit a roadblock trying to get a post request to pass through FastAPI that would get a username, email, and password. We are hoping we will have authentication resolved tomorrow. It seems a lot of other groups have been stuck on the same issue.
