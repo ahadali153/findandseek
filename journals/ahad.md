@@ -37,3 +37,15 @@ Me and my team planned out what the necessary issues were for the project and as
 Today, I worked on:
 
 Creating database tables and making migrations
+
+## June 28,2023
+
+Today I worked on:
+
+Modifying migrations folder so each unique create/drop table pair is in a unique file, then made migrations. I also changed some table attributes to better fit the object it describes. Since my team is implementing google maps api, I researched how to fetch this data.
+
+## June 29, 2023
+
+Today, I worked on:
+
+Backend authorization. Using the jwtdown-fastapi module, I worked on setting up the authentication in the backend. With a lot of obstacles, I am planning on continuing to work on it tomorrow and finishing it up.
