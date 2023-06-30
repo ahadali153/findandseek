@@ -29,3 +29,7 @@ Created the account/comment issue in gitlab.
 ## June 27th, 2023
 
 Defined models and their datafield to better organize and have clear visual on our objectives once we create the individual models/classes.
+
+## June 28th, 2023
+
+Updated database and rearranged the migrations files. Everything migrated and pg admin was created and running. 
