@@ -44,6 +44,7 @@ async def create_account(
     accounts: AccountQueries = Depends(),
 ):
     hashed_password = authenticator.hash_password(info.password)
+    print(hashed_password)
     try:
         account = accounts.create(info, hashed_password)
     except DuplicateAccountError:
@@ -51,6 +52,8 @@ async def create_account(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
-    form = AccountForm(email=info.email, password=info.password, username=info.email)
+    form = AccountForm(email=info.email, password=info.password, username=info.username)
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
+
+@router.get("/api/accounts/{email}", response_model=AccountToken | HttpError)
