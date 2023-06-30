@@ -51,6 +51,6 @@ async def create_account(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Cannot create an account with those credentials",
         )
-    form = AccountForm(email=info.email, password=info.password, username=info.username)
+    form = AccountForm(email=info.email, password=info.password, username=info.email)
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
