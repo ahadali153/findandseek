@@ -10,4 +10,4 @@ Today, I worked on getting PostgreSQL set up in our Docker containers. Myself an
 
 ## June 28, 2023
 
-Today, we fixed our tables and made separate files for our migrations. We were having some issues getting everything to run properly in Docker but then we managed to get everything to work and set up our databases in pgAdmin. Tomorrow we will be ready to start fetching API for Google Maps and working on Authentication.
+Today, we fixed our tables and made separate files for our migrations. We were having some issues getting everything to run properly in Docker but then we managed to get everything to work and set up our databases in pgAdmin. Tomorrow we will be ready to start fetching API for Google Maps and working on Authentication!
