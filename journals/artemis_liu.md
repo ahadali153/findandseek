@@ -29,3 +29,11 @@ Created the account/comment issue in gitlab.
 ## June 27th, 2023
 
 Defined models and their datafield to better organize and have clear visual on our objectives once we create the individual models/classes.
+
+## June 28th, 2023
+
+## June 29th, 2023
+
+## June 30th, 2023
+
+Creating the functionality of our backend in our accounts files within queries/routers directory and stumbled upon a few issues with the hash_password and missing data fields on specific classes within our get method.
