@@ -28,9 +28,11 @@ Created the account/comment issue in gitlab.
 
 ## June 27th, 2023
 
-Defined models and their datafield to better organize and have clear visual on our objectives once we create the individual models/classes.
+Defined models and their data-field to better organize and have clear visual on our objectives once we create the individual models/classes.
 
 ## June 28th, 2023
+
+Discussion on who are going to be working on what in our group. Eli will be working on API while the rest of us will be working on authentication as well as the queries/routers directory.
 
 ## June 29th, 2023
 
