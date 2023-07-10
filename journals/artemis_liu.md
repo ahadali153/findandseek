@@ -32,10 +32,11 @@ Defined models and their data-field to better organize and have clear visual on 
 
 ## June 28th, 2023
 
-Discussion on who are going to be working on what in our group. Eli will be working on API while the rest of us will be working on authentication as well as the queries/routers directory.
+Discussion on who are going to be working on what in our group. Eli will be working on API while the rest of us will be working on authentication as well as the queries/routers directory. Updated database and rearranged the migrations files. Everything migrated and pg admin was created and running.
 
 ## June 29th, 2023
 
 ## June 30th, 2023
 
 Creating the functionality of our backend in our accounts files within queries/routers directory and stumbled upon a few issues with the hash_password and missing data fields on specific classes within our get method.
+Defined models and their datafield to better organize and have clear visual on our objectives once we create the individual models/classes.
