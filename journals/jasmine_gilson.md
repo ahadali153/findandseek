@@ -20,6 +20,6 @@ Today Ahad, Artemis, and I all worked together to start getting our backend auth
 
 Today we finished up working on creating an account for a user and the login portion of the backend authentication. It was challenging, but we were abel to see through with results.
 
-## July 10, 2023.
+## July 10, 2023
 
 We started merging backend files and now have most of our backend complete including login/sign-up, locations, activities, and adventure files ready. We are working on getting a working API key for activities, but if that does not work we are going to manually create activities to put in the database that will be pre-registered. We just have to work on the set up for comments and likes and then the backend will be complete.
