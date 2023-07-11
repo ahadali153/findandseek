@@ -58,6 +58,7 @@ async def create_account(
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
 
+
 @router.get("/accounts", response_model=List[AccountOut])
 async def get_accounts(
     accounts: AccountQueries = Depends(),

@@ -77,7 +77,7 @@ class AccountQueries:
                 )
 
     def get_all_accounts(self) -> List[AccountOut]:
-        # connect to the database. 
+        # connect to the database.
         with pool.connection() as conn:
             # get a cursor (something to run SQL with)
             with conn.cursor() as db:
