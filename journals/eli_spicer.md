@@ -70,3 +70,54 @@ got it organized and working.
 Today I realized how useful PostgreSQL database is,
 as well as how to traverse it in a better manner.
 So happy to have got the database done, stress relieved.
+
+## June 29th, 2023
+
+Today, I worked on:
+
+Geocoding and adventures post.
+
+I researched how to implement the google geocoding for
+our project and started making the adventures post for it.
+
+Today I realized how to implement google's API systems into
+our application and how useful it can be in the data it
+provides.
+
+## June 30th, 2023
+
+Today, I worked on:
+
+Geocoding, adventures, and locations.
+
+I made the necessary files and code for the adventures and
+locations, and implemented geocoding into them.
+
+Today I realized how to divide up my files, making things
+more organized and easier to flow through and read.
+
+## June 31st, 2023
+
+Today, I worked on:
+
+Geocoding, adventures, and locations.
+
+I made the necessary files and code for the adventures and
+locations, and implemented geocoding into them.
+
+Today I realized how to divide up my files, making things
+more organized and easier to flow through and read.
+
+## July 10th, 2023
+
+Today, I worked on:
+
+Geocoding, adventures, and locations.
+
+I fixed files regarding the geocoding, adventures, and locations
+in all aspects of queries and routers.
+
+Today I realized how satisfying it is when you work on a feature
+for hours and it works when you hit submit!!! I learned how vital
+trial and error is, as well as how important it is to keep on
+chugging from bug to bug!
