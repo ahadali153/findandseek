@@ -18,7 +18,7 @@ Today Ahad, Artemis, and I all worked together to start getting our backend auth
 
 ## June 30, 2023
 
-Today we finished up working on creating an account for a user and the login portion of the backend authentication. It was challenging, but we were abel to see through with results.
+Today we finished up working on creating an account for a user and the login portion of the backend authentication. It was challenging, but we were able to see through with results.
 
 ## July 10, 2023
 
