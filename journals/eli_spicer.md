@@ -121,3 +121,28 @@ Today I realized how satisfying it is when you work on a feature
 for hours and it works when you hit submit!!! I learned how vital
 trial and error is, as well as how important it is to keep on
 chugging from bug to bug!
+
+## July 11th, 2023
+
+Today, I worked on:
+
+Comments and adventures.
+
+We worked on adventures, fixing the models and adding the backend
+for comments.
+
+Today I realized how important it is to have print statements while
+debugging and getting to the nitty gritty of the actual error.
+
+## July 12th, 2023
+
+Today, I worked on:
+
+Finishing the backend.
+
+We worked on comments, adventures, and activities.
+
+Today I realized how important it is to test and check
+your code before pushing to main. We found a bunch of
+small bugs that would have broken our code, but we
+tested it before we pushed so it was all good!

@@ -23,3 +23,13 @@ Today we finished up working on creating an account for a user and the login por
 ## July 10, 2023
 
 We started merging backend files and now have most of our backend complete including login/sign-up, locations, activities, and adventure files ready. We are working on getting a working API key for activities, but if that does not work we are going to manually create activities to put in the database that will be pre-registered. We just have to work on the set up for comments and likes and then the backend will be complete.
+
+## July 11, 2023
+
+Today we worked on fixing our models and adding comments as well as updating adventures to the backend. We hit a few roadblocks today trying to debug but we should complete the backend tomorrow.
+
+## July 12, 2023
+
+Today we completed the backend! We finished working on comments, activities, and adventures. We all collaborated to test out our code and worked on fixing some minor bugs. We also decided on manually creating SQL data to generate over 100 different activities that a user can input to create an adventure instead of using an API key because we couldn't find one that had exactly what we were looking for, but we are still using the Google Maps API key within our project. Tomorrow we will start on the frontend.
+
+## July 13, 2023

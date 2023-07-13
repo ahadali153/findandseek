@@ -1,3 +1,4 @@
+from authenticator import authenticator
 from dotenv import load_dotenv
 from fastapi import APIRouter, Depends, Response
 from typing import List, Optional, Union
@@ -23,11 +24,12 @@ router = APIRouter()
 
 
 @router.post("/adventures", response_model=Union[AdventureOut, Error])
-def create_adventure(
+async def create_adventure(
     adventure: AdventureIn,
     response: Response,
     repo: AdventureRepository = Depends(),
     location_repo: LocationRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     response.status_code = 200
 
@@ -37,6 +39,7 @@ def create_adventure(
         print("Adventure created:", created_adventure)
 
         if isinstance(created_adventure, Error):
+            print(created_adventure)
             return created_adventure
 
         geocode_result = fetch_geocode(adventure.address, GOOGLE_MAPS_API_KEY)
@@ -81,14 +84,27 @@ def get_all(
     return repo.get_all()
 
 
+# @router.get(
+#     "/accounts/{account_id}/adventures",
+#     response_model=Union[List[AdventureOut], Error],
+# )
+# async def get_all_for_account(
+#     repo: AdventureRepository = Depends(),
+#     account_data: dict = Depends(authenticator.get_current_account_data),
+# ):
+#     print(account_data)
+#     return repo.get_all()
+
+
 @router.put(
     "/adventures/{adventure_id}", response_model=Union[AdventureOut, Error]
 )
-def update_adventure(
+async def update_adventure(
     adventure_id: int,
     adventure: AdventureIn,
     repo: AdventureRepository = Depends(),
     location_repo: LocationRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> Union[Error, AdventureOut]:
     try:
         updated_adventure = repo.update(adventure_id, adventure)
@@ -114,16 +130,16 @@ def update_adventure(
 
         return updated_adventure
 
-    except Exception as e:
-        print(e)
+    except Exception:
         return Error(message="Could not update that adventure")
 
 
 @router.delete("/adventures/{adventure_id}", response_model=bool)
-def delete_adventure(
+async def delete_adventure(
     adventure_id: int,
     repo: AdventureRepository = Depends(),
     location_repo: LocationRepository = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     try:
         location_repo.delete(adventure_id)
