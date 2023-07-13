@@ -1,13 +1,13 @@
 steps = [
     [
         """
-        CREATE TABLE activitiesVO (
+        CREATE TABLE activities (
         id SERIAL PRIMARY KEY NOT NULL,
         name VARCHAR(100) NOT NULL
         );
         """,
         """
-        DROP TABLE activitiesVO;
+        DROP TABLE activities;
         """,
     ],
 ]

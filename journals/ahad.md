@@ -49,3 +49,15 @@ Modifying migrations folder so each unique create/drop table pair is in a unique
 Today, I worked on:
 
 Backend authorization. Using the jwtdown-fastapi module, I worked on setting up the authentication in the backend. With a lot of obstacles, I am planning on continuing to work on it tomorrow and finishing it up.
+
+## July 10th, 2023:
+
+Today, I setup the activities routers and queries to handle restful api requests on the backend. I also made my first merge request to merge these changes onto main.
+
+## July 11th, 2023:
+
+Today, I worked on the comments model and created routers and queries to handle restful api request on the backend.
+
+## July 12th, 2023:
+
+Today, I worked finishing up comments routers and queries and populating activities table in the database.

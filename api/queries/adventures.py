@@ -13,9 +13,10 @@ class AdventureIn(BaseModel):
     title: str
     description: str
     images: bytes
-    activity: str
+    activity_id: int
     intensity: int
     user_rating: int
+    likes: int
     price: int
     posted_at: date
     address: str
@@ -27,9 +28,10 @@ class AdventureOut(BaseModel):
     title: str
     description: str
     images: bytes
-    activity: str
+    activity_id: int
     intensity: int
     user_rating: int
+    likes: int
     price: int
     posted_at: date
     address: str
@@ -39,9 +41,10 @@ class AdventurePatch(BaseModel):
     title: Optional[str]
     description: Optional[str]
     images: Optional[bytes]
-    activity: Optional[str]
+    activity_id: Optional[int]
     intensity: Optional[int]
     user_rating: Optional[int]
+    likes: Optional[int]
     price: Optional[int]
 
 
@@ -53,16 +56,17 @@ class AdventureRepository:
                     result = db.execute(
                         """
                         SELECT id
-                             , account_id
-                             , title
-                             , description
-                             , images
-                             , activity
-                             , intensity
-                             , user_rating
-                             , price
-                             , posted_at
-                             , address
+                            , account_id
+                            , title
+                            , description
+                            , images
+                            , activity_id
+                            , intensity
+                            , user_rating
+                            , likes
+                            , price
+                            , posted_at
+                            , address
                         FROM adventures
                         WHERE id = %s
                         """,
@@ -104,9 +108,10 @@ class AdventureRepository:
                         SET title = %s
                           , description = %s
                           , images = %s
-                          , activity = %s
+                          , activity_id = %s
                           , intensity = %s
                           , user_rating = %s
+                          , likes = %s
                           , price = %s
                           , address = %s
                         WHERE id = %s
@@ -115,9 +120,10 @@ class AdventureRepository:
                             adventure.title,
                             adventure.description,
                             adventure.images,
-                            adventure.activity,
+                            adventure.activity_id,
                             adventure.intensity,
                             adventure.user_rating,
+                            adventure.likes,
                             adventure.price,
                             adventure.address,
                             adventure_id,
@@ -135,19 +141,20 @@ class AdventureRepository:
                     result = db.execute(
                         """
                         SELECT id
-                             , account_id
-                             , title
-                             , description
-                             , images
-                             , activity
-                             , intensity
-                             , user_rating
-                             , price
-                             , posted_at
-                             , address
+                            , account_id
+                            , title
+                            , description
+                            , images
+                            , activity_id
+                            , intensity
+                            , user_rating
+                            , likes
+                            , price
+                            , posted_at
+                            , address
                         FROM adventures
                         ORDER BY posted_at;
-                        """
+                        """,
                     )
 
                     return [
@@ -165,9 +172,9 @@ class AdventureRepository:
                     result = db.execute(
                         """
                         INSERT INTO adventures
-                            (account_id, title, description, images, activity, intensity, user_rating, price, posted_at, address)
+                            (account_id, title, description, images, activity_id, intensity, user_rating, likes, price, posted_at, address)
                         VALUES
-                            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                         [
@@ -175,9 +182,10 @@ class AdventureRepository:
                             adventure.title,
                             adventure.description,
                             adventure.images,
-                            adventure.activity,
+                            adventure.activity_id,
                             adventure.intensity,
                             adventure.user_rating,
+                            adventure.likes,
                             adventure.price,
                             adventure.posted_at,
                             adventure.address,
@@ -199,10 +207,11 @@ class AdventureRepository:
             title=record[2],
             description=record[3],
             images=record[4],
-            activity=record[5],
+            activity_id=record[5],
             intensity=record[6],
             user_rating=record[7],
-            price=record[8],
-            posted_at=record[9],
-            address=record[10],
+            likes=record[8],
+            price=record[9],
+            posted_at=record[10],
+            address=record[11],
         )

@@ -40,3 +40,15 @@ Discussion on who are going to be working on what in our group. Eli will be work
 
 Creating the functionality of our backend in our accounts files within queries/routers directory and stumbled upon a few issues with the hash_password and missing data fields on specific classes within our get method.
 Defined models and their datafield to better organize and have clear visual on our objectives once we create the individual models/classes.
+
+## July 10th, 2023
+
+Finished up activities and made an attempt on finding a website for our API key but realized we will need to just create the list on our own, but continued on finishing up all the methods within our function for the activities page and connecting the routes.10th
+
+## July 11th, 2023
+
+We worked on the adventures page to getting all the errors corrected and finishing up the connections between all the methods. There were a few errors that revolved around the models but got it corrected.
+
+## July 12th, 2023
+
+Finished activities/comments/likes/adventures files and completed the backend. We also created the separate list of outdoors activities instead of using an API to retrieve that information.
