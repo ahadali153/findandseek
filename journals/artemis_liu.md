@@ -52,3 +52,11 @@ We worked on the adventures page to getting all the errors corrected and finishi
 ## July 12th, 2023
 
 Finished activities/comments/likes/adventures files and completed the backend. We also created the separate list of outdoors activities instead of using an API to retrieve that information.
+
+## July 13th, 2023
+
+Worked a little bit on the front end with the login/log out as well as touched upon figma to get our website design going so we can have a base lair idea of what it will eventually look like once we have completed all the page designs for our front end.
+
+## July 14th, 2023
+
+Completed unit testing today with our activities data and have that ready to go and will be testing more data once we are further along with our project including front end. This was done all within a new branch, Unit_Tests.
