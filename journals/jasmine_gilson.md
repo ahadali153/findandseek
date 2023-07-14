@@ -33,3 +33,5 @@ Today we worked on fixing our models and adding comments as well as updating adv
 Today we completed the backend! We finished working on comments, activities, and adventures. We all collaborated to test out our code and worked on fixing some minor bugs. We also decided on manually creating SQL data to generate over 100 different activities that a user can input to create an adventure instead of using an API key because we couldn't find one that had exactly what we were looking for, but we are still using the Google Maps API key within our project. Tomorrow we will start on the frontend.
 
 ## July 13, 2023
+
+## July 14, 2023
