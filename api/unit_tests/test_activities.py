@@ -55,12 +55,12 @@ def test_delete_activity():
     expected = True
     activity_id = 10
     ## ACT
-    activity = client.post("/activities", json=json)
-    response = client.delete("/activities/10")
+    client.post("/activities", json=json)
+
     delete_response = client.delete(f"/activities/{activity_id}")
 
     ## Cleanup
     app.dependency_overrides = {}
 
-    assert response.status_code == 200
-    assert response.json() == expected
+    assert delete_response.status_code == 200
+    assert delete_response.json() == expected
