@@ -17,6 +17,7 @@ def create_activity(
     response: Response,
     repo: ActivitiesRepository = Depends(),
 ):
+    print(activity)
     response.status_code = 200
     return repo.create(activity)
 
