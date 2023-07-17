@@ -20,5 +20,3 @@ def test_geocoding():
     latitude, longitude = geocode_result
     assert isinstance(latitude, float)
     assert isinstance(longitude, float)
-
-    print("Geocode result:", geocode_result)
