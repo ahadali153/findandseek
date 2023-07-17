@@ -1,6 +1,6 @@
 from authenticator import authenticator
 from dotenv import load_dotenv
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, Response, File, UploadFile
 from typing import List, Optional, Union
 from geocoding import fetch_geocode
 import os
@@ -13,7 +13,6 @@ from queries.adventures import (
 from queries.locations import (
     LocationIn,
     LocationRepository,
-    LocationOut,
 )
 
 load_dotenv()
@@ -23,7 +22,7 @@ GOOGLE_MAPS_API_KEY = os.environ["GOOGLE_MAPS_API_KEY"]
 router = APIRouter()
 
 
-@router.post("/adventures", response_model=Union[AdventureOut, Error])
+@router.post("/adventures/", response_model=Union[AdventureOut, Error])
 async def create_adventure(
     adventure: AdventureIn,
     response: Response,
@@ -32,10 +31,10 @@ async def create_adventure(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     response.status_code = 200
-
+    account_id = account_data["id"]
     try:
         print("Creating adventure...")
-        created_adventure = repo.create(adventure)
+        created_adventure = repo.create(adventure, account_id)
         print("Adventure created:", created_adventure)
 
         if isinstance(created_adventure, Error):

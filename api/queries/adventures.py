@@ -1,7 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional, Union
 from datetime import date
 from queries.pool import pool
+from datetime import date
 
 
 class Error(BaseModel):
@@ -9,7 +10,6 @@ class Error(BaseModel):
 
 
 class AdventureIn(BaseModel):
-    account_id: int
     title: str
     description: str
     images: bytes
@@ -18,7 +18,7 @@ class AdventureIn(BaseModel):
     user_rating: int
     likes: int
     price: int
-    posted_at: date
+    posted_at: date = Field(default_factory=date.today)
     address: str
 
 
@@ -165,7 +165,11 @@ class AdventureRepository:
             print(e)
             return {"message": "Could not get all adventures"}
 
-    def create(self, adventure: AdventureIn) -> Union[AdventureOut, Error]:
+    def create(
+        self,
+        adventure: AdventureIn,
+        account_id: int,
+    ) -> Union[AdventureOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -178,7 +182,7 @@ class AdventureRepository:
                         RETURNING id;
                         """,
                         [
-                            adventure.account_id,
+                            account_id,
                             adventure.title,
                             adventure.description,
                             adventure.images,
