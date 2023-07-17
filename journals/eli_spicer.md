@@ -157,3 +157,9 @@ My team worked on the front-end authentication.
 
 Today I realized how useful of a tool Figma is, and
 how it can make the front-end design process seamless.
+
+## July 14th, 2023
+
+I was out sick, but I am all better now!
+
+My awesome team worked on unit tests!
