@@ -61,3 +61,7 @@ Today, I worked on the comments model and created routers and queries to handle 
 ## July 12th, 2023:
 
 Today, I worked finishing up comments routers and queries and populating activities table in the database.
+
+## July 13th, 2023:
+
+Today, I started setting up the front end using react. I was able to create login and signup forms.
