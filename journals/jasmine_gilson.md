@@ -33,3 +33,13 @@ Today we worked on fixing our models and adding comments as well as updating adv
 Today we completed the backend! We finished working on comments, activities, and adventures. We all collaborated to test out our code and worked on fixing some minor bugs. We also decided on manually creating SQL data to generate over 100 different activities that a user can input to create an adventure instead of using an API key because we couldn't find one that had exactly what we were looking for, but we are still using the Google Maps API key within our project. Tomorrow we will start on the frontend.
 
 ## July 13, 2023
+
+Today we started to set up frontend authentication by creating user login and sign-up forms. We also took the time to explore Figma.
+
+## July 14, 2023
+
+Today we worked on creating unit tests. We were able to get two unit tests to pass.
+
+## July 17,2023
+
+Today we created some more unit tests.
