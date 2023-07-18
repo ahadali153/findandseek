@@ -25,8 +25,9 @@ async def create_comment(
     repo: CommentsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
+    account_id = account_data["id"]
     response.status_code = 200
-    return repo.create(comment)
+    return repo.create(comment, account_id)
 
 
 @router.get(
@@ -50,7 +51,8 @@ async def update_comment(
     repo: CommentsRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> Union[Error, CommentsOut]:
-    return repo.update(comment_id, comment)
+    account_id = account_data["id"]
+    return repo.update(comment_id, comment, account_id)
 
 
 @router.delete(

@@ -11,7 +11,6 @@ class Error(BaseModel):
 class CommentsIn(BaseModel):
     content: str
     posted_at: date
-    account_id: int
     adventure_id: int
 
 
@@ -69,7 +68,7 @@ class CommentsRepository:
             return False
 
     def update(
-        self, comment_id: int, comment: CommentsIn
+        self, comment_id: int, comment: CommentsIn, account_id: int
     ) -> Union[CommentsOut, Error]:
         try:
             # connect the database
@@ -89,7 +88,9 @@ class CommentsRepository:
                     )
                     # old_data = vacation.dict()
                     # return VacationOut(id=vacation_id, **old_data)
-                    return self.comments_in_to_out(comment_id, comment)
+                    return self.comments_in_to_out(
+                        comment_id, comment, account_id
+                    )
         except Exception:
             return {"message": "Could not update that comment"}
 
@@ -120,7 +121,9 @@ class CommentsRepository:
         except Exception as e:
             return {"message": "Could not get all records"}
 
-    def create(self, comments: CommentsIn) -> Union[CommentsOut, Error]:
+    def create(
+        self, comments: CommentsIn, account_id: int
+    ) -> Union[CommentsOut, Error]:
         try:
             # connect the database
             with pool.connection() as conn:
@@ -138,17 +141,20 @@ class CommentsRepository:
                         [
                             comments.content,
                             comments.posted_at,
-                            comments.account_id,
+                            account_id,
                             comments.adventure_id,
                         ],
                     )
                     id = result.fetchone()[0]
-                    return self.comments_in_to_out(id, comments)
+                    return self.comments_in_to_out(id, comments, account_id)
         except Exception:
             return {"message": "Create did not work"}
 
-    def comments_in_to_out(self, id: int, comments: CommentsIn):
+    def comments_in_to_out(
+        self, id: int, comments: CommentsIn, account_id: int
+    ):
         old_data = comments.dict()
+        old_data["account_id"] = account_id
         return CommentsOut(id=id, **old_data)
 
     def record_to_comments_out(self, record):

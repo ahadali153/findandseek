@@ -6,6 +6,7 @@ import MainPage from "./MainPage";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import CreateAdventure from "./adventures/AdventureForm";
+import AdventureDetail from "./adventures/AdventureDetail";
 
 function App() {
 	return (
@@ -17,6 +18,8 @@ function App() {
 					<Route path="/login" element={<LoginForm />} />
 					<Route path="/signup" element={<SignupForm />} />
 					<Route path="/adventures/new" element={<CreateAdventure />} />
+
+					<Route path="/adventures/:id" element={<AdventureDetail />} />
 				</Routes>
 			</AuthProvider>
 		</BrowserRouter>

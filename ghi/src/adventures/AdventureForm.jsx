@@ -13,6 +13,12 @@ export default function CreateAdventure() {
 	});
 	const values = [1, 2, 3, 4, 5];
 	const [hasCreated, setHasCreated] = useState(false);
+	const [selectedImage, setSelectedImage] = useState(null);
+
+	const handleFileChange = (event) => {
+		const file = event.target.files[0];
+		setSelectedImage(file);
+	};
 
 	const fetchData = async () => {
 		const activitiesURL = "http://localhost:8000/activities";
@@ -46,6 +52,7 @@ export default function CreateAdventure() {
 			price: formData.price,
 			address: formData.address,
 			likes: 0,
+			images: selectedImage,
 		};
 
 		const adventuresURL = "http://localhost:8000/adventures/";
@@ -140,6 +147,15 @@ export default function CreateAdventure() {
 								value={formData.description}
 							/>
 							<label htmlFor="descriptin">Description</label>
+						</div>
+						<div className="mb-3">
+							<input
+								type="file"
+								name="image"
+								id="image"
+								accept="image/*"
+								onChange={handleFileChange}
+							/>
 						</div>
 						<div className="mb-3">
 							<select

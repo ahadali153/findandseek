@@ -69,6 +69,7 @@ class AdventureRepository:
                         [adventure_id],
                     )
                     record = result.fetchone()
+                    print(record)
                     if record is None:
                         return None
                     return self.record_to_adventure_out(record)
@@ -93,7 +94,7 @@ class AdventureRepository:
             return False
 
     def update(
-        self, adventure_id: int, adventure: AdventureIn
+        self, adventure_id: int, adventure: AdventureIn, account_id: int
     ) -> Union[AdventureOut, Error]:
         try:
             with pool.connection() as conn:
@@ -102,14 +103,14 @@ class AdventureRepository:
                         """
                         UPDATE adventures
                         SET title = %s
-                          , description = %s
-                          , activity_id = %s
-                          , intensity = %s
-                          , user_rating = %s
-                          , likes = %s
-                          , price = %s
-                          , address = %s
-                        WHERE id = %s
+                        , description = %s
+                        , activity_id = %s
+                        , intensity = %s
+                        , user_rating = %s
+                        , likes = %s
+                        , price = %s
+                        , address = %s
+                        WHERE (id, account_id) = (%s, %s)
                         """,
                         [
                             adventure.title,
@@ -121,9 +122,12 @@ class AdventureRepository:
                             adventure.price,
                             adventure.address,
                             adventure_id,
+                            account_id,
                         ],
                     )
-                    return self.adventure_in_to_out(adventure_id, adventure)
+                    return self.adventure_in_to_out(
+                        adventure_id, adventure, account_id
+                    )
         except Exception as e:
             print(e)
             return {"message": "Could not update that adventure"}
@@ -171,7 +175,7 @@ class AdventureRepository:
                         INSERT INTO adventures
                             (account_id, title, description, activity_id, intensity, user_rating, likes, price, posted_at, address)
                         VALUES
-                            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                         [
@@ -188,12 +192,16 @@ class AdventureRepository:
                         ],
                     )
                     id = result.fetchone()[0]
-                    return self.adventure_in_to_out(id, adventure)
-        except Exception:
-            return {"message": "Create did not work"}
+                    return self.adventure_in_to_out(id, adventure, account_id)
+        except Exception as e:
+            print(e)
+            return {"message": "Failed to create adventure"}
 
-    def adventure_in_to_out(self, id: int, adventure: AdventureIn):
+    def adventure_in_to_out(
+        self, id: int, adventure: AdventureIn, account_id: int
+    ):
         old_data = adventure.dict()
+        old_data["account_id"] = account_id
         return AdventureOut(id=id, **old_data)
 
     def record_to_adventure_out(self, record):
@@ -202,11 +210,11 @@ class AdventureRepository:
             account_id=record[1],
             title=record[2],
             description=record[3],
-            activity_id=record[5],
-            intensity=record[6],
-            user_rating=record[7],
-            likes=record[8],
-            price=record[9],
-            posted_at=record[10],
-            address=record[11],
+            activity_id=record[4],
+            intensity=record[5],
+            user_rating=record[6],
+            likes=record[7],
+            price=record[8],
+            posted_at=record[9],
+            address=record[10],
         )
