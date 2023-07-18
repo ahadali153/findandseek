@@ -60,3 +60,7 @@ Worked a little bit on the front end with the login/log out as well as touched u
 ## July 14th, 2023
 
 Completed unit testing today with our activities data and have that ready to go and will be testing more data once we are further along with our project including front end. This was done all within a new branch, Unit_Tests.
+
+## July 17th, 2023
+
+Worked on figma all day and designed our logo as well as fixed details for our webpage application. 
