@@ -6,7 +6,6 @@ steps = [
         account_id INTEGER NOT NULL REFERENCES accounts(id),
         title VARCHAR(50) NOT NULL,
         description TEXT NOT NULL,
-        images BYTEA NOT NULL,
         activity_id INTEGER NOT NULL REFERENCES activities(id),
         intensity INTEGER CHECK (intensity >= 1 AND intensity <= 5),
         user_rating INTEGER CHECK (user_rating >= 1 AND user_rating <= 5),

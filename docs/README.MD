@@ -64,7 +64,6 @@ Please put any and all documentation for your project in this folder. Other than
   		{
   			"username": "string",
   			"title": "string",
-  			"image_url": "string",
   			"description": "string",
   			"location": "string",
   			"activity": "string",
@@ -95,7 +94,6 @@ Please put any and all documentation for your project in this folder. Other than
   {
   	"username": "username",
   	"title": "string",
-  	"image_url": "string",
   	"description": "string",
   	"location": "string",
   	"activity": "string",
@@ -112,7 +110,6 @@ Please put any and all documentation for your project in this folder. Other than
   {
   	"username": "username",
   	"title": "string",
-  	"image_url": "string",
   	"description": "string",
   	"location": "string",
   	"activity": "string",
@@ -147,7 +144,6 @@ Please put any and all documentation for your project in this folder. Other than
   {
   	"username": "string",
   	"title": "string",
-  	"image_url": "string",
   	"description": "string",
   	"location": "string",
   	"activity": "string",
@@ -202,7 +198,6 @@ Please put any and all documentation for your project in this folder. Other than
   ```json
   {
   	"title": "string",
-  	"image_url": "string",
   	"description": "string",
   	"location": "string",
   	"activity": "string",
