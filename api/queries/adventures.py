@@ -12,7 +12,6 @@ class Error(BaseModel):
 class AdventureIn(BaseModel):
     title: str
     description: str
-    images: bytes
     activity_id: int
     intensity: int
     user_rating: int
@@ -27,7 +26,6 @@ class AdventureOut(BaseModel):
     account_id: int
     title: str
     description: str
-    images: bytes
     activity_id: int
     intensity: int
     user_rating: int
@@ -40,7 +38,6 @@ class AdventureOut(BaseModel):
 class AdventurePatch(BaseModel):
     title: Optional[str]
     description: Optional[str]
-    images: Optional[bytes]
     activity_id: Optional[int]
     intensity: Optional[int]
     user_rating: Optional[int]
@@ -59,7 +56,6 @@ class AdventureRepository:
                             , account_id
                             , title
                             , description
-                            , images
                             , activity_id
                             , intensity
                             , user_rating
@@ -107,7 +103,6 @@ class AdventureRepository:
                         UPDATE adventures
                         SET title = %s
                           , description = %s
-                          , images = %s
                           , activity_id = %s
                           , intensity = %s
                           , user_rating = %s
@@ -119,7 +114,6 @@ class AdventureRepository:
                         [
                             adventure.title,
                             adventure.description,
-                            adventure.images,
                             adventure.activity_id,
                             adventure.intensity,
                             adventure.user_rating,
@@ -144,7 +138,6 @@ class AdventureRepository:
                             , account_id
                             , title
                             , description
-                            , images
                             , activity_id
                             , intensity
                             , user_rating
@@ -176,7 +169,7 @@ class AdventureRepository:
                     result = db.execute(
                         """
                         INSERT INTO adventures
-                            (account_id, title, description, images, activity_id, intensity, user_rating, likes, price, posted_at, address)
+                            (account_id, title, description, activity_id, intensity, user_rating, likes, price, posted_at, address)
                         VALUES
                             (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING id;
@@ -185,7 +178,6 @@ class AdventureRepository:
                             account_id,
                             adventure.title,
                             adventure.description,
-                            adventure.images,
                             adventure.activity_id,
                             adventure.intensity,
                             adventure.user_rating,
@@ -210,7 +202,6 @@ class AdventureRepository:
             account_id=record[1],
             title=record[2],
             description=record[3],
-            images=record[4],
             activity_id=record[5],
             intensity=record[6],
             user_rating=record[7],

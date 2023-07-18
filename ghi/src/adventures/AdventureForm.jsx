@@ -10,7 +10,6 @@ export default function CreateAdventure() {
 		user_rating: "",
 		price: "",
 		address: "",
-		images: null,
 	});
 	const values = [1, 2, 3, 4, 5];
 	const [hasCreated, setHasCreated] = useState(false);
@@ -36,26 +35,11 @@ export default function CreateAdventure() {
 		}));
 	};
 
-	const handleImageChange = (event) => {
-		const file = event.target.files[0];
-
-		const reader = new FileReader();
-		reader.onloadend = () => {
-			const imageBytes = new Uint8Array(reader.result);
-			setFormData((prevFormData) => ({
-				...prevFormData,
-				images: Array.from(imageBytes),
-			}));
-		};
-		reader.readAsArrayBuffer(file);
-	};
-
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const data = {
 			title: formData.title,
 			description: formData.description,
-			images: formData.images,
 			activity_id: formData.activity,
 			intensity: formData.intensity,
 			user_rating: formData.user_rating,
@@ -85,7 +69,6 @@ export default function CreateAdventure() {
 					user_rating: "",
 					price: "",
 					address: "",
-					images: null,
 				});
 				setHasCreated(true);
 			} else {
@@ -157,16 +140,6 @@ export default function CreateAdventure() {
 								value={formData.description}
 							/>
 							<label htmlFor="descriptin">Description</label>
-						</div>
-						<div className="mb-3">
-							<label htmlFor="image">Image:</label>
-							<input
-								type="file"
-								id="image"
-								name="image"
-								accept="image/*"
-								onChange={handleImageChange}
-							/>
 						</div>
 						<div className="mb-3">
 							<select

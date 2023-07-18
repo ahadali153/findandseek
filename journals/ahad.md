@@ -65,3 +65,11 @@ Today, I worked finishing up comments routers and queries and populating activit
 ## July 13th, 2023:
 
 Today, I started setting up the front end using react. I was able to create login and signup forms.
+
+## July 14, 2023:
+
+Today, I worked on creating unit tests for some of the CRUD functions for activities
+
+## July 15th, 2023:
+
+Today, I started making frontend forms. I got stuck on the adventure form because we were having trouble finding a way to send images associated with adventures to the database.
