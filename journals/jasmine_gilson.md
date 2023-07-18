@@ -45,3 +45,5 @@ Today we worked on creating unit tests. We were able to get two unit tests to pa
 Today we created some more unit tests and managed to get them all to pass. We have 3 unit tests for activities and one for geocoding. We started working on the frontend more today and divided tasks to group members. Ahad and Eli worked on making more forms for the frontend while Artemis and I worked in Figma to start designing the web page layout. We worked on creating a logo for our application as well.
 
 ## July 18, 2023
+
+Today Artemis and I have been working on more webpage designs through Figma while Eli and Ahad continue to work on forms for the frontend.
