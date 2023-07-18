@@ -157,3 +157,22 @@ My team worked on the front-end authentication.
 
 Today I realized how useful of a tool Figma is, and
 how it can make the front-end design process seamless.
+
+## July 14th, 2023
+
+I was out sick, but my awesome team worked on
+getting unit tests done!
+
+## July 15th, 2023
+
+Today, I worked on:
+
+Unit tests and the adventure form.
+
+My team worked on figma, unit tests, and the adventure
+form. We figured out how to finish our required unit
+tests, and Jasmine & Artemis worked on figma, while Ahad
+and I worked on the adventure form!
+
+Today I realized how useful pair collaboration is while
+tackling problems, and how efficient it is as well!
