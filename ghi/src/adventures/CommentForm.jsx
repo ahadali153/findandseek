@@ -1,7 +1,6 @@
-import React, { useState, useParams } from "react";
+import React, { useState } from "react";
 
-export default function CreateComment() {
-  const { adventureid } = useParams();
+const CreateCommentForm = ({ adventureid }) => {
   const [formData, setFormData] = useState({
     content: "",
   });
@@ -19,6 +18,7 @@ export default function CreateComment() {
 
     const commentData = {
       ...formData,
+      adventure_id: adventureid, // Add the adventure_id field
     };
 
     const commentsURL = `http://localhost:8000/adventures/${adventureid}/comments`;
@@ -34,14 +34,15 @@ export default function CreateComment() {
     try {
       const response = await fetch(commentsURL, fetchConfig);
       if (response.ok) {
+        // Clear the form after successful comment submission
         setFormData({
-          comments: "",
+          content: "",
         });
       } else {
-        console.error("Failed to create adventure");
+        console.error("Failed to create comment");
       }
     } catch (error) {
-      console.error("Error creating adventure:", error);
+      console.error("Error creating comment:", error);
     }
   };
 
@@ -65,4 +66,6 @@ export default function CreateComment() {
       </button>
     </form>
   );
-}
+};
+
+export default CreateCommentForm;

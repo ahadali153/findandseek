@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional, Union
 from datetime import date
 from queries.pool import pool
@@ -10,7 +10,7 @@ class Error(BaseModel):
 
 class CommentsIn(BaseModel):
     content: str
-    posted_at: date
+    posted_at: date = Field(default_factory=date.today)
     adventure_id: int
 
 

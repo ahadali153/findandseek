@@ -3,7 +3,6 @@ from dotenv import load_dotenv
 from fastapi import APIRouter, Depends, Response
 from typing import List, Optional, Union
 from geocoding import fetch_geocode
-import boto3
 import os
 from queries.adventures import (
     Error,
@@ -20,8 +19,6 @@ load_dotenv()
 
 GOOGLE_MAPS_API_KEY = os.environ["GOOGLE_MAPS_API_KEY"]
 BUCKET_NAME = "findandseek"
-
-s3 = boto3.client("s3")
 
 router = APIRouter()
 
