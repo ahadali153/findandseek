@@ -1,10 +1,9 @@
 from authenticator import authenticator
 from dotenv import load_dotenv
-from fastapi import APIRouter, Depends, Response, File, UploadFile
+from fastapi import APIRouter, Depends, Response
 from typing import List, Optional, Union
 from geocoding import fetch_geocode
 import boto3
-import uuid
 import os
 from queries.adventures import (
     Error,
@@ -33,7 +32,6 @@ async def create_adventure(
     response: Response,
     repo: AdventureRepository = Depends(),
     location_repo: LocationRepository = Depends(),
-    file: UploadFile = File(...),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     print("data:", account_data)
@@ -76,9 +74,6 @@ async def create_adventure(
 
         location_result.adventure_id = assigned_adventure_id
         location_repo.update(location_result.id, location_result)
-
-        file_name = f"{str(uuid.uuid4())}_{file.filename}"
-        s3.upload_fileobj(file.file, BUCKET_NAME, file_name)
 
         return created_adventure
 
