@@ -117,7 +117,7 @@ export default function CreateAdventure() {
                 type="text"
                 name="title"
                 id="title"
-                className="form-control"
+                className="title"
                 value={formData.title}
               />
               <label htmlFor="title">Title</label>

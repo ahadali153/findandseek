@@ -31,16 +31,66 @@ const AdventureDetail = () => {
   }
 
   return (
-    <div>
-      <h2>{adventure.title}</h2>
-      <h2>{adventure.description}</h2>
-      <h2>{adventure.activity}</h2>
-      <h2>{adventure.intensity}</h2>
-      <h2>{adventure.user_rating}</h2>
-      <h2>{adventure.price}</h2>
-      <h2>{adventure.address}</h2>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col">
+          <div className="title">
+            <h1>{adventure.title}</h1>
+          </div>
+        </div>
+      </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="section1">
+              <h2>{adventure.activity_id}</h2>
+            </div>
+          </div>
+          <div className="col-md-6">
+            <div className="section1">
+              <h2>Column 1</h2>
+            </div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <div className="section">
+              <h2>{adventure.address}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2>{adventure.description}</h2>
+        <h2>{adventure.intensity}</h2>
+        <h2>{adventure.user_rating}</h2>
+        <h2>{adventure.price}</h2>
+      </div>
     </div>
   );
 };
-
 export default AdventureDetail;
+
+//     <div className="container-fluid">
+//       <div className="row">
+//         <div className="col">
+//           <div className="title">
+//             <h2>{adventure.title}</h2>
+//           </div>
+//         </div>
+//       </div>
+//       <div className="container">
+//         <div className="section1">
+//           <h2>{adventure.activity_id}</h2>
+//         </div>
+//         <div className="section">
+//           <h2>{adventure.address}</h2>
+//         </div>
+//       </div>
+//       <h2>{adventure.description}</h2>
+//       <h2>{adventure.intensity}</h2>
+//       <h2>{adventure.user_rating}</h2>
+//       <h2>{adventure.price}</h2>
+//     </div>
+//   );
+// };
