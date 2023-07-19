@@ -46,4 +46,8 @@ Today we created some more unit tests and managed to get them all to pass. We ha
 
 ## July 18, 2023
 
-Today Artemis and I have been working on more webpage designs through Figma while Eli and Ahad continue to work on forms for the frontend.
+Today Artemis and I have been working on more webpage designs through Figma while Eli and Ahad continue to work on forms for the frontend. We should be done with the design portion of it by tomorrow and then we will finish completing the rest of the frontend with the rest of the team. 
+
+## July 19, 2023
+
+Today we finished up designs in Figma and started helping out with more frontend coding with the rest fo the team. 
