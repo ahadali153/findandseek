@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ImageUploader, uploadToS3 } from "./ImageUploader";
+import { useImageUploader } from "./ImageUploader";
 
 export default function CreateAdventure() {
   const [activities, setActivities] = useState([]);
@@ -14,11 +14,11 @@ export default function CreateAdventure() {
   });
   const values = [1, 2, 3, 4, 5];
   const [hasCreated, setHasCreated] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const { imageUrl, uploadImage } = useImageUploader();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    setSelectedImage(file);
+    uploadImage(file);
   };
 
   const fetchData = async () => {
@@ -57,8 +57,7 @@ export default function CreateAdventure() {
     };
 
     try {
-      if (selectedImage) {
-        const imageUrl = await uploadToS3(selectedImage);
+      if (imageUrl) {
         data.images = imageUrl;
       }
 
@@ -153,10 +152,10 @@ export default function CreateAdventure() {
                 className="form-control"
                 value={formData.description}
               />
-              <label htmlFor="descriptin">Description</label>
+              <label htmlFor="description">Description</label>
             </div>
             <div className="mb-3">
-              <ImageUploader handleFileChange={handleFileChange} />
+              <input onChange={handleFileChange} type="file" />
             </div>
             <div className="mb-3">
               <select

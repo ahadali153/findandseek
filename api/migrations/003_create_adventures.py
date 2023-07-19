@@ -12,7 +12,8 @@ steps = [
         likes INTEGER NULL,
         price INTEGER CHECK (price >= 1 AND price <= 5),
         posted_at DATE NOT NULL,
-        address VARCHAR(350) NOT NULL
+        address VARCHAR(350) NOT NULL,
+        image_url VARCHAR(500) NULL
         );
         """,
         """

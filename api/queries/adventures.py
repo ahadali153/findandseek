@@ -19,6 +19,7 @@ class AdventureIn(BaseModel):
     price: int
     posted_at: date = Field(default_factory=date.today)
     address: str
+    image_url: Optional[str] = None
 
 
 class AdventureOut(BaseModel):
@@ -33,6 +34,7 @@ class AdventureOut(BaseModel):
     price: int
     posted_at: date
     address: str
+    image_url: Optional[str] = None
 
 
 class AdventurePatch(BaseModel):
@@ -63,6 +65,7 @@ class AdventureRepository:
                             , price
                             , posted_at
                             , address
+                            , image_url
                         FROM adventures
                         WHERE id = %s
                         """,
@@ -149,6 +152,7 @@ class AdventureRepository:
                             , price
                             , posted_at
                             , address
+                            , image_url
                         FROM adventures
                         ORDER BY posted_at;
                         """,
@@ -173,9 +177,9 @@ class AdventureRepository:
                     result = db.execute(
                         """
                         INSERT INTO adventures
-                            (account_id, title, description, activity_id, intensity, user_rating, likes, price, posted_at, address)
+                            (account_id, title, description, activity_id, intensity, user_rating, likes, price, posted_at, address, image_url)
                         VALUES
-                            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                         [
@@ -189,6 +193,7 @@ class AdventureRepository:
                             adventure.price,
                             adventure.posted_at,
                             adventure.address,
+                            adventure.image_url,
                         ],
                     )
                     id = result.fetchone()[0]
@@ -217,4 +222,5 @@ class AdventureRepository:
             price=record[8],
             posted_at=record[9],
             address=record[10],
+            image_url=record[11],
         )
