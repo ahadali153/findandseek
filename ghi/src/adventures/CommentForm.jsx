@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useParams } from "react";
 
 export default function CreateComment() {
+	const { adventureid } = useParams();
 	const [formData, setFormData] = useState({
 		content: "",
 	});
@@ -20,7 +21,7 @@ export default function CreateComment() {
 			...formData,
 		};
 
-		const commentsURL = `http://localhost:8000/adventures/${adventureId}/comments`;
+		const commentsURL = `http://localhost:8000/adventures/${adventureid}/comments`;
 		const fetchConfig = {
 			credentials: "include",
 			method: "post",
@@ -31,7 +32,7 @@ export default function CreateComment() {
 		};
 
 		try {
-			const response = await fetch(adventuresURL, fetchConfig);
+			const response = await fetch(commentsURL, fetchConfig);
 			if (response.ok) {
 				setFormData({
 					comments: "",
