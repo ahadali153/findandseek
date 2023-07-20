@@ -193,7 +193,9 @@ class AdventureRepository:
                             adventure.price,
                             adventure.posted_at,
                             adventure.address,
-                            adventure.image_url,
+                            adventure.image_url
+                            if adventure.image_url
+                            else None,
                         ],
                     )
                     id = result.fetchone()[0]

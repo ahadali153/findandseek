@@ -31,6 +31,7 @@ const AdventureDetail = () => {
   }
 
   return (
+<<<<<<< HEAD
     <div className="container-fluid">
       <div className="row">
         <div className="col">
@@ -66,6 +67,17 @@ const AdventureDetail = () => {
         <h2>{adventure.user_rating}</h2>
         <h2>{adventure.price}</h2>
       </div>
+=======
+    <div>
+      <h2>{adventure.title}</h2>
+      <h2>{adventure.description}</h2>
+      <h2>{adventure.activity}</h2>
+      <h2>{adventure.intensity}</h2>
+      <h2>{adventure.user_rating}</h2>
+      <h2>{adventure.price}</h2>
+      <h2>{adventure.address}</h2>
+      <img src={adventure.image_url} alt="Adventure Image" />
+>>>>>>> cbfba4bd7bde10624ed5f274adaba1cb4977e3a2
     </div>
   );
 };

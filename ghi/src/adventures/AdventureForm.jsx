@@ -14,11 +14,12 @@ export default function CreateAdventure() {
   });
   const values = [1, 2, 3, 4, 5];
   const [hasCreated, setHasCreated] = useState(false);
-  const { imageUrl, uploadImage } = useImageUploader();
+  const { imageUrl, uploadImage, setImageUrl } = useImageUploader();
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    uploadImage(file);
+    setSelectedImage(file);
   };
 
   const fetchData = async () => {
@@ -44,50 +45,56 @@ export default function CreateAdventure() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = {
-      title: formData.title,
-      description: formData.description,
-      activity_id: formData.activity,
-      intensity: formData.intensity,
-      user_rating: formData.user_rating,
-      price: formData.price,
-      address: formData.address,
-      likes: 0,
-      images: null,
-    };
 
-    try {
-      if (imageUrl) {
-        data.images = imageUrl;
+    if (selectedImage) {
+      const uploadedImageUrl = await uploadImage(selectedImage);
+      if (uploadedImageUrl) {
+        const data = {
+          title: formData.title,
+          description: formData.description,
+          activity_id: formData.activity,
+          intensity: formData.intensity,
+          user_rating: formData.user_rating,
+          price: formData.price,
+          address: formData.address,
+          likes: 0,
+          image_url: uploadedImageUrl,
+        };
+
+        console.log("Data to be sent:", data);
+
+        try {
+          const adventuresURL = "http://localhost:8000/adventures/";
+          const fetchConfig = {
+            credentials: "include",
+            method: "post",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+
+          const response = await fetch(adventuresURL, fetchConfig);
+          if (response.ok) {
+            const createdAdventure = await response.json();
+            console.log("Created Adventure:", createdAdventure);
+            setFormData({
+              title: "",
+              description: "",
+              activity: "",
+              intensity: "",
+              user_rating: "",
+              price: "",
+              address: "",
+            });
+            setHasCreated(true);
+          } else {
+            console.error("Failed to create adventure");
+          }
+        } catch (error) {
+          console.error("Error creating adventure:", error);
+        }
       }
-
-      const adventuresURL = "http://localhost:8000/adventures/";
-      const fetchConfig = {
-        credentials: "include",
-        method: "post",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const response = await fetch(adventuresURL, fetchConfig);
-      if (response.ok) {
-        setFormData({
-          title: "",
-          description: "",
-          activity: "",
-          intensity: "",
-          user_rating: "",
-          price: "",
-          address: "",
-        });
-        setHasCreated(true);
-      } else {
-        console.error("Failed to create adventure");
-      }
-    } catch (error) {
-      console.error("Error creating adventure:", error);
     }
   };
 
