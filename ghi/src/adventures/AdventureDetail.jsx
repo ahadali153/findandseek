@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { container, row, col } from "react-bootstrap"
 
 const AdventureDetail = () => {
   const [adventure, setAdventure] = useState(null);
@@ -31,15 +32,12 @@ const AdventureDetail = () => {
   }
 
   return (
-<<<<<<< HEAD
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col">
-          <div className="title">
-            <h1>{adventure.title}</h1>
-          </div>
-        </div>
-      </div>
+    <container>
+      <row className="mt-4">
+          <col md={{ span:4, offset:4 }}>
+            <h1 className="text-center bg-grey rounded p-3">{adventure.title}</h1>
+          </col>
+      </row>
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -67,18 +65,7 @@ const AdventureDetail = () => {
         <h2>{adventure.user_rating}</h2>
         <h2>{adventure.price}</h2>
       </div>
-=======
-    <div>
-      <h2>{adventure.title}</h2>
-      <h2>{adventure.description}</h2>
-      <h2>{adventure.activity}</h2>
-      <h2>{adventure.intensity}</h2>
-      <h2>{adventure.user_rating}</h2>
-      <h2>{adventure.price}</h2>
-      <h2>{adventure.address}</h2>
-      <img src={adventure.image_url} alt="Adventure Image" />
->>>>>>> cbfba4bd7bde10624ed5f274adaba1cb4977e3a2
-    </div>
+    </container>
   );
 };
 export default AdventureDetail;
