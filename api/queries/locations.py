@@ -3,6 +3,8 @@ from typing import List, Optional, Union, Tuple
 from datetime import date
 from queries.pool import pool
 
+# from adventures import AdventureOut
+
 
 class Error(BaseModel):
     message: str
@@ -51,6 +53,31 @@ class LocationRepository:
         except Exception as e:
             print(e)
             return {"message": "Could not get that location"}
+
+    # def get_adventures_by_location(
+    #     self, latitude: float, longitude: float
+    # ) -> List[AdventureOut]:
+    #     try:
+    #         with pool.connection() as conn:
+    #             with conn.cursor() as db:
+    #                 result = db.execute(
+    #                     """
+    #                     SELECT a.id, a.account_id, a.title, a.description, a.activity_id,
+    #                     a.intensity, a.user_rating, a.likes, a.price, a.posted_at,
+    #                     a.address, a.image_url
+    #                     FROM adventures a
+    #                     JOIN locations l ON a.id = l.adventure_id
+    #                     WHERE l.latitude = %s AND l.longitude = %s
+    #                     """,
+    #                     [latitude, longitude],
+    #                 )
+    #                 return [
+    #                     self.record_to_adventure_out(record)
+    #                     for record in result
+    #                 ]
+    #     except Exception as e:
+    #         print(e)
+    #         return []
 
     def delete(self, adventure_id: int) -> bool:
         try:
