@@ -1,36 +1,32 @@
-import { useEffect, useState } from "react";
-import Construct from "./Construct.js";
-import ErrorNotification from "./ErrorNotification";
+// import { useEffect, useState } from "react";
 import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+import MainPage from "./MainPage";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
+import CreateAdventure from "./adventures/AdventureForm";
+import AdventureDetail from "./adventures/AdventureDetail";
+import CommentForm from "./adventures/CommentForm";
+import AdventureDetailPage from "./adventures/AdventureDetailPage";
 
 function App() {
-  const [launchInfo, setLaunchInfo] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function getData() {
-      let url = `${process.env.REACT_APP_API_HOST}/api/launch-details`;
-      console.log("fastapi url: ", url);
-      let response = await fetch(url);
-      console.log("------- hello? -------");
-      let data = await response.json();
-
-      if (response.ok) {
-        console.log("got launch data!");
-        setLaunchInfo(data.launch_details);
-      } else {
-        console.log("drat! something happened");
-        setError(data.message);
-      }
-    }
-    getData();
-  }, []);
-
   return (
-    <div>
-      <ErrorNotification error={error} />
-      <Construct info={launchInfo} />
-    </div>
+    <BrowserRouter>
+      {/* <Nav className="Navbar" /> */}
+      <AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/signup" element={<SignupForm />} />
+          <Route path="/adventures/new" element={<CreateAdventure />} />
+          <Route
+            path="/adventures/:adventureid"
+            element={<AdventureDetailPage />}
+          />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

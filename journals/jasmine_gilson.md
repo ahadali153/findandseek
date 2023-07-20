@@ -40,6 +40,14 @@ Today we started to set up frontend authentication by creating user login and si
 
 Today we worked on creating unit tests. We were able to get two unit tests to pass.
 
-## July 17,2023
+## July 17, 2023
 
-Today we created some more unit tests.
+Today we created some more unit tests and managed to get them all to pass. We have 3 unit tests for activities and one for geocoding. We started working on the frontend more today and divided tasks to group members. Ahad and Eli worked on making more forms for the frontend while Artemis and I worked in Figma to start designing the web page layout. We worked on creating a logo for our application as well.
+
+## July 18, 2023
+
+Today Artemis and I have been working on more webpage designs through Figma while Eli and Ahad continue to work on forms for the frontend. We should be done with the design portion of it by tomorrow and then we will finish completing the rest of the frontend with the rest of the team. 
+
+## July 19, 2023
+
+Today we finished up designs in Figma and started helping out with more frontend coding with the rest fo the team. 

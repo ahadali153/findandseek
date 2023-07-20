@@ -23,6 +23,7 @@ services:
       WAIT_TIMEOUT: 60
       CORS_HOST: http://localhost:3000
       DATABASE_URL: postgresql://safari:safari@postgres/safari_db
+
     build:
       context: api
       dockerfile: Dockerfile.dev
@@ -44,7 +45,7 @@ services:
       NODE_ENV: development
       HOST: "0.0.0.0"
       PUBLIC_URL: http://localhost:3000
-      REACT_APP_API_HOST: ${REACT_APP_API_HOST}
+      REACT_APP_API_HOST: http://localhost:8000
 
   pg-admin:
     image: dpage/pgadmin4

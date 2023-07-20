@@ -80,4 +80,4 @@ Today, I continued to work on adventure form. We got stuck on uploading an image
 
 ## July 19th, 2023:
 
-Today, I created the comment form and the adventure detail page.
+Today, I created comment form and adventure detail page. Will start working on CSS.
