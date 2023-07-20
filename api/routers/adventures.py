@@ -13,12 +13,12 @@ from queries.adventures import (
 from queries.locations import (
     LocationIn,
     LocationRepository,
-    LocationOut,
 )
 
 load_dotenv()
 
 GOOGLE_MAPS_API_KEY = os.environ["GOOGLE_MAPS_API_KEY"]
+BUCKET_NAME = "findandseek"
 
 router = APIRouter()
 
@@ -31,11 +31,13 @@ async def create_adventure(
     location_repo: LocationRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
+    print("data:", account_data)
     response.status_code = 200
-
+    account_id = account_data["id"]
+    print("id:", account_id)
     try:
         print("Creating adventure...")
-        created_adventure = repo.create(adventure)
+        created_adventure = repo.create(adventure, account_id)
         print("Adventure created:", created_adventure)
 
         if isinstance(created_adventure, Error):
@@ -84,18 +86,6 @@ def get_all(
     return repo.get_all()
 
 
-# @router.get(
-#     "/accounts/{account_id}/adventures",
-#     response_model=Union[List[AdventureOut], Error],
-# )
-# async def get_all_for_account(
-#     repo: AdventureRepository = Depends(),
-#     account_data: dict = Depends(authenticator.get_current_account_data),
-# ):
-#     print(account_data)
-#     return repo.get_all()
-
-
 @router.put(
     "/adventures/{adventure_id}", response_model=Union[AdventureOut, Error]
 )
@@ -106,8 +96,9 @@ async def update_adventure(
     location_repo: LocationRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> Union[Error, AdventureOut]:
+    account_id = account_data["id"]
     try:
-        updated_adventure = repo.update(adventure_id, adventure)
+        updated_adventure = repo.update(adventure_id, adventure, account_id)
 
         if isinstance(updated_adventure, Error):
             return updated_adventure
@@ -157,7 +148,7 @@ def get_one_adventure(
     adventure_id: int,
     response: Response,
     repo: AdventureRepository = Depends(),
-) -> AdventureOut:
+) -> Optional[AdventureOut]:
     adventure = repo.get_one(adventure_id)
     if adventure is None:
         response.status_code = 404

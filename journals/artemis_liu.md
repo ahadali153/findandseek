@@ -52,3 +52,23 @@ We worked on the adventures page to getting all the errors corrected and finishi
 ## July 12th, 2023
 
 Finished activities/comments/likes/adventures files and completed the backend. We also created the separate list of outdoors activities instead of using an API to retrieve that information.
+
+## July 13th, 2023
+
+Worked on front end authentication as well as worked a bit on the designing in figma for our web application outter shell design.
+
+## July 14th, 2023
+
+We worked on unit testing and was wrapping up all the work for the four tests.
+
+## July 16th, 2023
+
+Our group split up with some of us making forms while the other two designed figma for all our pages on our web application.
+
+## July 17th, 2023
+
+Continued on making the logo and web design on figma
+
+## July 18th, 2023
+
+Continued on making the logo and web design on figma

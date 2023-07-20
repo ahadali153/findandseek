@@ -1,7 +1,8 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional, Union
 from datetime import date
 from queries.pool import pool
+from datetime import date
 
 
 class Error(BaseModel):
@@ -9,17 +10,16 @@ class Error(BaseModel):
 
 
 class AdventureIn(BaseModel):
-    account_id: int
     title: str
     description: str
-    images: bytes
     activity_id: int
     intensity: int
     user_rating: int
     likes: int
     price: int
-    posted_at: date
+    posted_at: date = Field(default_factory=date.today)
     address: str
+    image_url: Optional[str] = None
 
 
 class AdventureOut(BaseModel):
@@ -27,7 +27,6 @@ class AdventureOut(BaseModel):
     account_id: int
     title: str
     description: str
-    images: bytes
     activity_id: int
     intensity: int
     user_rating: int
@@ -35,12 +34,12 @@ class AdventureOut(BaseModel):
     price: int
     posted_at: date
     address: str
+    image_url: Optional[str] = None
 
 
 class AdventurePatch(BaseModel):
     title: Optional[str]
     description: Optional[str]
-    images: Optional[bytes]
     activity_id: Optional[int]
     intensity: Optional[int]
     user_rating: Optional[int]
@@ -59,7 +58,6 @@ class AdventureRepository:
                             , account_id
                             , title
                             , description
-                            , images
                             , activity_id
                             , intensity
                             , user_rating
@@ -67,12 +65,14 @@ class AdventureRepository:
                             , price
                             , posted_at
                             , address
+                            , image_url
                         FROM adventures
                         WHERE id = %s
                         """,
                         [adventure_id],
                     )
                     record = result.fetchone()
+                    print(record)
                     if record is None:
                         return None
                     return self.record_to_adventure_out(record)
@@ -97,7 +97,7 @@ class AdventureRepository:
             return False
 
     def update(
-        self, adventure_id: int, adventure: AdventureIn
+        self, adventure_id: int, adventure: AdventureIn, account_id: int
     ) -> Union[AdventureOut, Error]:
         try:
             with pool.connection() as conn:
@@ -106,20 +106,18 @@ class AdventureRepository:
                         """
                         UPDATE adventures
                         SET title = %s
-                          , description = %s
-                          , images = %s
-                          , activity_id = %s
-                          , intensity = %s
-                          , user_rating = %s
-                          , likes = %s
-                          , price = %s
-                          , address = %s
-                        WHERE id = %s
+                        , description = %s
+                        , activity_id = %s
+                        , intensity = %s
+                        , user_rating = %s
+                        , likes = %s
+                        , price = %s
+                        , address = %s
+                        WHERE (id, account_id) = (%s, %s)
                         """,
                         [
                             adventure.title,
                             adventure.description,
-                            adventure.images,
                             adventure.activity_id,
                             adventure.intensity,
                             adventure.user_rating,
@@ -127,9 +125,12 @@ class AdventureRepository:
                             adventure.price,
                             adventure.address,
                             adventure_id,
+                            account_id,
                         ],
                     )
-                    return self.adventure_in_to_out(adventure_id, adventure)
+                    return self.adventure_in_to_out(
+                        adventure_id, adventure, account_id
+                    )
         except Exception as e:
             print(e)
             return {"message": "Could not update that adventure"}
@@ -144,7 +145,6 @@ class AdventureRepository:
                             , account_id
                             , title
                             , description
-                            , images
                             , activity_id
                             , intensity
                             , user_rating
@@ -152,6 +152,7 @@ class AdventureRepository:
                             , price
                             , posted_at
                             , address
+                            , image_url
                         FROM adventures
                         ORDER BY posted_at;
                         """,
@@ -165,23 +166,26 @@ class AdventureRepository:
             print(e)
             return {"message": "Could not get all adventures"}
 
-    def create(self, adventure: AdventureIn) -> Union[AdventureOut, Error]:
+    def create(
+        self,
+        adventure: AdventureIn,
+        account_id: int,
+    ) -> Union[AdventureOut, Error]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
                         INSERT INTO adventures
-                            (account_id, title, description, images, activity_id, intensity, user_rating, likes, price, posted_at, address)
+                            (account_id, title, description, activity_id, intensity, user_rating, likes, price, posted_at, address, image_url)
                         VALUES
                             (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                         [
-                            adventure.account_id,
+                            account_id,
                             adventure.title,
                             adventure.description,
-                            adventure.images,
                             adventure.activity_id,
                             adventure.intensity,
                             adventure.user_rating,
@@ -189,15 +193,22 @@ class AdventureRepository:
                             adventure.price,
                             adventure.posted_at,
                             adventure.address,
+                            adventure.image_url
+                            if adventure.image_url
+                            else None,
                         ],
                     )
                     id = result.fetchone()[0]
-                    return self.adventure_in_to_out(id, adventure)
-        except Exception:
-            return {"message": "Create did not work"}
+                    return self.adventure_in_to_out(id, adventure, account_id)
+        except Exception as e:
+            print(e)
+            return {"message": "Failed to create adventure"}
 
-    def adventure_in_to_out(self, id: int, adventure: AdventureIn):
+    def adventure_in_to_out(
+        self, id: int, adventure: AdventureIn, account_id: int
+    ):
         old_data = adventure.dict()
+        old_data["account_id"] = account_id
         return AdventureOut(id=id, **old_data)
 
     def record_to_adventure_out(self, record):
@@ -206,12 +217,12 @@ class AdventureRepository:
             account_id=record[1],
             title=record[2],
             description=record[3],
-            images=record[4],
-            activity_id=record[5],
-            intensity=record[6],
-            user_rating=record[7],
-            likes=record[8],
-            price=record[9],
-            posted_at=record[10],
-            address=record[11],
+            activity_id=record[4],
+            intensity=record[5],
+            user_rating=record[6],
+            likes=record[7],
+            price=record[8],
+            posted_at=record[9],
+            address=record[10],
+            image_url=record[11],
         )
