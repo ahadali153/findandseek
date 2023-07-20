@@ -9,6 +9,7 @@ import CreateAdventure from "./adventures/AdventureForm";
 import AdventureDetail from "./adventures/AdventureDetail";
 import CommentForm from "./adventures/CommentForm";
 import AdventureDetailPage from "./adventures/AdventureDetailPage";
+import Map from "./GoogleMap";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             path="/adventures/:adventureid"
             element={<AdventureDetailPage />}
           />
+          <Route path="/map" element={<Map />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
