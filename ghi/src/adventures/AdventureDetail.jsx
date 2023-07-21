@@ -1,95 +1,86 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { container, row, col } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap";
+import { CloudDirectory } from "aws-sdk";
 
 const AdventureDetail = () => {
-  const [adventure, setAdventure] = useState(null);
-  const { adventureid } = useParams();
+	const [adventure, setAdventure] = useState(null);
+	const { adventureid } = useParams();
 
-  useEffect(() => {
-    const fetchAdventureDetails = async () => {
-      try {
-        const response = await fetch(
-          `http://localhost:8000/adventures/${adventureid}`
-        );
-        console.log("response:", response);
-        if (!response.ok) {
-          throw new Error("Failed to fetch adventure details.");
-        }
-        const adventureData = await response.json();
-        console.log(adventureData);
-        setAdventure(adventureData);
-      } catch (error) {
-        console.error("Error fetching adventure details:", error);
-      }
-    };
+	useEffect(() => {
+		const fetchAdventureDetails = async () => {
+			try {
+				const response = await fetch(
+					`http://localhost:8000/adventures/${adventureid}`
+				);
+				console.log("response:", response);
+				if (!response.ok) {
+					throw new Error("Failed to fetch adventure details.");
+				}
+				const adventureData = await response.json();
+				console.log(adventureData);
+				setAdventure(adventureData);
+			} catch (error) {
+				console.error("Error fetching adventure details:", error);
+			}
+		};
 
-    fetchAdventureDetails();
-  }, [adventureid]);
+		fetchAdventureDetails();
+	}, [adventureid]);
 
-  if (!adventure) {
-    return <div>Loading...</div>;
-  }
+	if (!adventure) {
+		return <div>Loading...</div>;
+	}
 
-  return (
-    <container>
-      <row className="mt-4">
-          <col md={{ span:4, offset:4 }}>
-            <h1 className="text-center bg-grey rounded p-3">{adventure.title}</h1>
-          </col>
-      </row>
-      <div className="container">
-        <div className="row">
-          <div className="col-md-6">
-            <div className="section1">
-              <h2>{adventure.activity_id}</h2>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="section1">
-              <h2>Column 1</h2>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <div className="section">
-              <h2>{adventure.address}</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <h2>{adventure.description}</h2>
-        <h2>{adventure.intensity}</h2>
-        <h2>{adventure.user_rating}</h2>
-        <h2>{adventure.price}</h2>
-      </div>
-    </container>
-  );
+	return (
+		<Container className="body-background">
+			<Row className="mt-4">
+				<Col md={4}>
+					<h1 className="text-center h1-background">{adventure.title}</h1>
+				</Col>
+			</Row>
+			<Row className="mt-4">
+				<Col md={{ offset: 6 }} className="mx-auto">
+					<h3 className="text-center h1-background">{adventure.user_rating}</h3>
+				</Col>
+				<Col md={{ span: 2 }} className="mx-auto">
+					<h3 className="text-center h1-background">{adventure.price}</h3>
+				</Col>
+				<Col md={{ offset: 6 }} className="mx-auto">
+					<h3 className="text-center h1-background">{adventure.intensity}</h3>
+				</Col>
+			</Row>
+			<Row className="mt-4">
+				<Col md={{ offset: 4 }} className="mx-auto">
+					<img
+						src={adventure.image_url}
+						alt="Italian Trulli"
+						style={{
+							width: "100%",
+							height: "50vh",
+							objectFit: "cover",
+						}}
+					></img>
+				</Col>
+			</Row>
+			<Row className="mt-4">
+				<Col md={{ offset: 4 }} className="mx-auto">
+					<h3 className="text-center custom-background">{adventure.address}</h3>
+				</Col>
+				<Col md={{ offset: 4 }} className="mx-auto">
+					<h3 className="text-center custom-background">
+						{adventure.activity_id}
+					</h3>
+				</Col>
+			</Row>
+			<Row className="mt-4">
+				<Col md={{ offset: 4 }} className="mx-auto">
+					<h3 className="text-center custom-background">
+						{adventure.description}
+					</h3>
+				</Col>
+			</Row>
+		</Container>
+	);
 };
 export default AdventureDetail;
-
-//     <div className="container-fluid">
-//       <div className="row">
-//         <div className="col">
-//           <div className="title">
-//             <h2>{adventure.title}</h2>
-//           </div>
-//         </div>
-//       </div>
-//       <div className="container">
-//         <div className="section1">
-//           <h2>{adventure.activity_id}</h2>
-//         </div>
-//         <div className="section">
-//           <h2>{adventure.address}</h2>
-//         </div>
-//       </div>
-//       <h2>{adventure.description}</h2>
-//       <h2>{adventure.intensity}</h2>
-//       <h2>{adventure.user_rating}</h2>
-//       <h2>{adventure.price}</h2>
-//     </div>
-//   );
-// };
