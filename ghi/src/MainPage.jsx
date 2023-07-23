@@ -38,9 +38,9 @@ export default function MainPage() {
 	return (
 		<div className="custom-background">
 			<Container>
-        <Div>
+        <Row>
           <MapComponent adventures={adventures} />
-        </Div>
+        </Row>
 				<Row>
 					{adventures.map((adventure) => (
 						<Col key={adventure.id} md={3} style={{ marginBottom: "20px" }}>
