@@ -4,7 +4,6 @@ import MapComponent from "./GoogleMap";
 
 export default function MainPage() {
   const [adventures, setAdventures] = useState([]);
-  const [locations, setLocations] = useState([]);
   useEffect(() => {
     const fetchAdventures = async () => {
       try {
@@ -23,18 +22,6 @@ export default function MainPage() {
       }
     };
 
-    const fetchLocations = async () => {
-      try {
-        const response = await fetch("http://localhost:8000/locations");
-        const locationsData = await response.json();
-
-        setLocations(locationsData);
-      } catch (error) {
-        console.log("Error fetching Locations:", error);
-      }
-    };
-
-    fetchLocations();
     fetchAdventures();
   }, []);
 
@@ -50,7 +37,7 @@ export default function MainPage() {
   return (
     <div>
       <div>
-        <MapComponent locations={locations} />
+        <MapComponent adventures={adventures} />
       </div>
       <h1>Adventure List</h1>
       <ul>

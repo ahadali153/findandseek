@@ -13,6 +13,8 @@ steps = [
         price INTEGER CHECK (price >= 1 AND price <= 5),
         posted_at DATE NOT NULL,
         address VARCHAR(350) NOT NULL,
+        latitude DECIMAL NOT NULL,
+        longitude DECIMAL NOT NULL,
         image_url VARCHAR(500) NULL
         );
         """,
