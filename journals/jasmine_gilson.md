@@ -46,8 +46,18 @@ Today we created some more unit tests and managed to get them all to pass. We ha
 
 ## July 18, 2023
 
-Today Artemis and I have been working on more webpage designs through Figma while Eli and Ahad continue to work on forms for the frontend. We should be done with the design portion of it by tomorrow and then we will finish completing the rest of the frontend with the rest of the team. 
+Today Artemis and I have been working on more webpage designs through Figma while Eli and Ahad continue to work on forms for the frontend. We should be done with the design portion of it by tomorrow and then we will finish completing the rest of the frontend with the rest of the team.
 
 ## July 19, 2023
 
-Today we finished up designs in Figma and started helping out with more frontend coding with the rest fo the team. 
+Today we finished up designs in Figma and started helping out with more frontend coding with the rest fo the team. We worked on the Adventure Detail page to get out information to register from the backend to the frontend while starting to play around with some CSS.
+
+## July 20, 2023
+
+We spent the day working on navigating CSS to try out different page layouts and get the hang of doing more CSS work on the Adventure Detail page. We will do some work separately over the weekend to get more functionality and proper layout of the webpage.
+
+## July 23, 2023
+
+Ahad and Artemis met up to work on the Nav bar layout over the weekend and I worked on getting the search bar to work and register query information. We just need to merge pages and combine the logic that Eli is writing for locations information to populate a search result.
+
+## July 24, 2023
