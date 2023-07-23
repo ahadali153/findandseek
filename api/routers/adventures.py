@@ -10,10 +10,6 @@ from queries.adventures import (
     AdventureRepository,
     AdventureOut,
 )
-from queries.locations import (
-    LocationIn,
-    LocationRepository,
-)
 
 load_dotenv()
 
@@ -28,7 +24,6 @@ async def create_adventure(
     adventure: AdventureIn,
     response: Response,
     repo: AdventureRepository = Depends(),
-    location_repo: LocationRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     print("data:", account_data)
@@ -36,6 +31,15 @@ async def create_adventure(
     account_id = account_data["id"]
     print("id:", account_id)
     try:
+        geocode_result = fetch_geocode(adventure.address, GOOGLE_MAPS_API_KEY)
+
+        if geocode_result is None:
+            return Error(message="Geocoding failed")
+
+        latitude, longitude = geocode_result
+
+        adventure.latitude = latitude
+        adventure.longitude = longitude
         print("Creating adventure...")
         created_adventure = repo.create(adventure, account_id)
         print("Adventure created:", created_adventure)
@@ -44,33 +48,8 @@ async def create_adventure(
             print(created_adventure)
             return created_adventure
 
-        geocode_result = fetch_geocode(adventure.address, GOOGLE_MAPS_API_KEY)
-        print("Geocode result:", geocode_result)
-
-        if geocode_result is None:
-            return Error(message="Geocoding failed")
-
-        latitude = geocode_result[0]
-        longitude = geocode_result[1]
-
         assigned_adventure_id = created_adventure.id
         print("Assigned adventure ID:", assigned_adventure_id)
-
-        location = LocationIn(
-            adventure_id=assigned_adventure_id,
-            address=adventure.address,
-            latitude=latitude,
-            longitude=longitude,
-        )
-        print("Creating location...")
-        location_result = location_repo.create(location)
-        print("Location created:", location_result)
-
-        if location_result is None:
-            return Error(message="Failed to create location")
-
-        location_result.adventure_id = assigned_adventure_id
-        location_repo.update(location_result.id, location_result)
 
         return created_adventure
 
@@ -93,31 +72,25 @@ async def update_adventure(
     adventure_id: int,
     adventure: AdventureIn,
     repo: AdventureRepository = Depends(),
-    location_repo: LocationRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> Union[Error, AdventureOut]:
     account_id = account_data["id"]
     try:
-        updated_adventure = repo.update(adventure_id, adventure, account_id)
-
-        if isinstance(updated_adventure, Error):
-            return updated_adventure
-
         geocode_result = fetch_geocode(adventure.address, GOOGLE_MAPS_API_KEY)
 
         if geocode_result is None:
             return Error(message="Geocoding failed")
 
-        latitude = geocode_result[0]
-        longitude = geocode_result[1]
+        latitude, longitude = geocode_result
 
-        updated_location = LocationIn(
-            adventure_id=adventure_id,
-            address=adventure.address,
-            latitude=latitude,
-            longitude=longitude,
-        )
-        location_repo.update(adventure_id, updated_location)
+        # Update the adventure with the new latitude and longitude
+        adventure.latitude = latitude
+        adventure.longitude = longitude
+
+        updated_adventure = repo.update(adventure_id, adventure, account_id)
+
+        if isinstance(updated_adventure, Error):
+            return updated_adventure
 
         return updated_adventure
 
@@ -129,12 +102,9 @@ async def update_adventure(
 async def delete_adventure(
     adventure_id: int,
     repo: AdventureRepository = Depends(),
-    location_repo: LocationRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> bool:
     try:
-        location_repo.delete(adventure_id)
-
         return repo.delete(adventure_id)
     except Exception as e:
         print(e)

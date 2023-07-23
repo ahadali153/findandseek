@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+import MapComponent from "./GoogleMap";
 
 export default function MainPage() {
 	const [adventures, setAdventures] = useState([]);
@@ -37,6 +38,9 @@ export default function MainPage() {
 	return (
 		<div className="custom-background">
 			<Container>
+        <Div>
+          <MapComponent adventures={adventures} />
+        </Div>
 				<Row>
 					{adventures.map((adventure) => (
 						<Col key={adventure.id} md={3} style={{ marginBottom: "20px" }}>
