@@ -96,6 +96,7 @@ export default function MapComponent({ adventures }) {
     const mapOptions = {
       center: { lat: defaultLat, lng: defaultLng },
       zoom: 8,
+      gestureHandling: "greedy",
     };
     const newMap = new window.google.maps.Map(
       document.getElementById("map"),
