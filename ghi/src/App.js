@@ -15,8 +15,6 @@ import NavComponent from "./Nav";
 function App() {
 	return (
 		<BrowserRouter>
-			<NavComponent />
-			{/* <Nav className="Navbar" /> */}
 			<AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
 				<Routes>
 					<Route path="/" element={<MainPage />} />

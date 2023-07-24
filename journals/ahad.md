@@ -76,4 +76,16 @@ Today, I started making frontend forms. I got stuck on the adventure form becaus
 
 ## July 18th, 2023:
 
-Today, I continued to work on adventure form. We got stuck on uploading an image from frontend to databse so we decided to remove image from adventures model and store the images separately.
+Today, I continued to work on adventure form. We got stuck on uploading an image from frontend to database so we decided to remove image from adventures model and store the images separately.
+
+## July 19th, 2023:
+
+Today, I worked on adventure form on the frontend. I got the form to work and the images to be sent to the backend as urls to be saved in the database.
+
+## July 20th, 2023:
+
+Today, I started working on the navbar for our app. Getting the CSS to stand out was difficult and a challenge and we had to find alternatives to figma to implement our desired layout
+
+## July 21st, 2022:
+
+Today, I worked on styling the navbar with react bootstrap. I also was able to get the background color for the pages to work.

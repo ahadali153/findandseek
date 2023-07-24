@@ -1,10 +1,45 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, useNavigate  } from "react-router-dom";
 import { Navbar, Container, NavDropdown, Nav, Col, Row } from "react-bootstrap";
 import logo from "./find&seek.png";
 import "./NavComponent.css"; // Import custom CSS file
 
-function NavComponent() {
+function NavComponent({fetchFilteredAdventures}) {
+
+	const [priceRating, setPriceRating] = useState("");
+	const [intensityRating, setIntensityRating] = useState("");
+	const [activities, setActivities] = useState([]);
+	const [activityValue, setActivityValue] = useState("")
+	// const searchQuery = document.getElementById("searchInput").value.trim();
+
+	const handlePriceRating = (rating) => {
+		setPriceRating(rating);
+	};
+
+	const handleIntensityRating = (rating) => {
+		setIntensityRating(rating);
+	};
+	const fetchActivities = async () => {
+		try {
+			const response = await fetch("http://localhost:8000/activities");
+			const data = await response.json();
+			console.log(data)
+			const fetchedActivities = data.map((activity) => activity.name);
+			console.log(fetchedActivities)
+			setActivities(fetchedActivities);
+		} catch (error) {
+			console.log("Error fetching activities:", error);
+		}
+	};
+
+	useEffect(() => {
+		fetchActivities();
+	}, []);
+
+	const handleSearchClick = () => {
+		console.log(activityValue, intensityRating, priceRating)
+    fetchFilteredAdventures(activityValue, intensityRating, priceRating);
+ 	};
 	const handleLogout = () => {
 		// Perform the delete request when the button is clicked
 		fetch("http://localhost:8000/token", {
@@ -24,15 +59,7 @@ function NavComponent() {
 			});
 	};
 
-	const [priceRating, setPriceRating] = useState(0);
-	const [intensityRating, setIntensityRating] = useState(0);
-	const handlePriceRating = (rating) => {
-		setPriceRating(rating);
-	};
 
-	const handleIntensityRating = (rating) => {
-		setIntensityRating(rating);
-	};
 
 	return (
 		<Navbar bg="light" expand="lg">
@@ -48,11 +75,26 @@ function NavComponent() {
 								{/* Add custom classes for columns */}
 								<Col md={3} className="location-col text-center">
 									<h3 style={{ fontSize: "1em" }}>Location</h3>
-									<input type="text" placeholder="Where are you going?" />
+									<input
+										type="text"
+										placeholder="Where are you going?"
+									/>
 								</Col>
 								<Col md={3} className="activities-col text-center">
 									<h3 style={{ fontSize: "1em" }}>Activities</h3>
-									<input type="text" placeholder="What are you doing?" />
+									<div className="activities">
+										<select
+											value={activityValue}
+											onChange={(e) => setActivityValue(e.target.value)}
+										>
+											<option value="">Activity</option>
+											{activities.map((activity, index) => (
+												<option key={index + 1} value={index + 1}>
+												{activity}
+												</option>
+											))}
+										</select>
+									</div>
 								</Col>
 								<Col md={3} className="intensity-col text-center">
 									<h3 style={{ fontSize: "1em" }}>Intensity</h3>
@@ -84,6 +126,7 @@ function NavComponent() {
 										))}
 									</div>
 								</Col>
+								<button onClick={handleSearchClick}>Search</button>
 							</Row>
 						</Col>
 					</Row>

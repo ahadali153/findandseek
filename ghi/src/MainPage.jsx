@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import MapComponent from "./GoogleMap";
+import NavComponent from "./Nav"
 
 export default function MainPage() {
 	const [adventures, setAdventures] = useState([]);
+
+	const fetchAdventures = async () => {
+		try {
+			const response = await fetch("http://localhost:8000/adventures");
+			const data = await response.json();
+
+			// Shuffle the data to get random items
+			const shuffledData = shuffleArray(data);
+
+			// Slice the first 10 items
+			const randomAdventures = shuffledData.slice(0, 10);
+
+			setAdventures(randomAdventures);
+		} catch (error) {
+			console.log("Error fetching adventures:", error);
+		}
+	};
 	useEffect(() => {
-		const fetchAdventures = async () => {
-			try {
-				const response = await fetch("http://localhost:8000/adventures");
-				const data = await response.json();
-
-				// Shuffle the data to get random items
-				const shuffledData = shuffleArray(data);
-
-				// Slice the first 10 items
-				const randomAdventures = shuffledData.slice(0, 10);
-
-				setAdventures(randomAdventures);
-			} catch (error) {
-				console.log("Error fetching adventures:", error);
-			}
-		};
-
 		fetchAdventures();
 	}, []);
 
@@ -35,12 +36,35 @@ export default function MainPage() {
 		return shuffled;
 	};
 
+	const fetchFilteredAdventures = async (activity = null, intensity = null, price = null) => {
+		try {
+			const response = await fetch("http://localhost:8000/adventures");
+			const data = await response.json();
+			console.log(data)
+			const filteredAdventures = data.filter((adventure) => {
+				const activityFilter = activity === null || adventure.activity_id === activity;
+				const intensityFilter = intensity === null || adventure.intensity === intensity;
+				const priceFilter = price === null || adventure.price === price;
+
+      			return activityFilter && intensityFilter && priceFilter;
+    	});
+		console.log(filteredAdventures)
+		setAdventures(filteredAdventures);
+		} catch (error) {
+		console.error("Error fetching filtered adventures:", error);
+		}
+	};
+
 	return (
+		<>s
+		<Row>
+			<NavComponent fetchFilteredAdventures={fetchFilteredAdventures} />
+		</Row>
 		<div className="custom-background">
 			<Container>
-        <Row>
-          <MapComponent adventures={adventures} />
-        </Row>
+        		<Row>
+          			<MapComponent adventures={adventures} />
+        		</Row>
 				<Row>
 					{adventures.map((adventure) => (
 						<Col key={adventure.id} md={3} style={{ marginBottom: "20px" }}>
@@ -92,5 +116,6 @@ export default function MainPage() {
 				</Row>
 			</Container>
 		</div>
+		</>
 	);
 }
