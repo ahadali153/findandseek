@@ -61,3 +61,7 @@ We spent the day working on navigating CSS to try out different page layouts and
 Ahad and Artemis met up to work on the Nav bar layout over the weekend and I worked on getting the search bar to work and register query information. We just need to merge pages and combine the logic that Eli is writing for locations information to populate a search result.
 
 ## July 24, 2023
+
+Today we tried to get the search results to populate within the nav bar but have been stuck on trying to get the adventure to fully populate. We made some progress with filtering results to show up in our devTools console but we still have some work to do. Hopefully tomorrow we will be able to resolve it after taking a step away from running into some bugs all day.
+
+## July 25, 2023
