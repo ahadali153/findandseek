@@ -72,3 +72,7 @@ Continued on making the logo and web design on figma
 ## July 18th, 2023
 
 Continued on making the logo and web design on figma
+
+## July 19th, 2023
+
+We worked on the front end and tried to approach it with what we had in our figma. We tried problem solving from image not showing up and figuring out the structure of the home page.
