@@ -98,6 +98,28 @@ const UserAccountPage = () => {
                 onChange={handleProfilePictureChange} />
             <button onClick={handleProfilePictureUpload}>Upload</button>
             <h2>Your Posts:</h2>
+
+            <Link
+                to={`/adventures/${adventure.id}`}
+                style={{ textDecoration: "none" }}
+            >
+                <img
+                    src={adventure.image_url}
+                    alt="Adventure Thumbnail"
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        transition: "transform 0.2s ease-in-out",
+                    }}
+                    onMouseOver={(e) =>
+                        (e.currentTarget.style.transform = "scale(1.1)")
+                    }
+                    onMouseOut={(e) =>
+                        (e.currentTarget.style.transform = "scale(1)")
+                    }
+                />
+            </Link>
 {/* 
             <div className="mb-3">
                 <label className="form-label">Image:</label>
