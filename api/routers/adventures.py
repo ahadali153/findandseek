@@ -123,3 +123,19 @@ def get_one_adventure(
     if adventure is None:
         response.status_code = 404
     return adventure
+
+
+@router.get(
+    "/adventures/accounts/{account_id}", response_model=Optional[AdventureOut]
+)
+def get_all_adventures_for_account(
+    account_id: int,
+    response: Response,
+    repo: AdventureRepository = Depends(),
+) -> Optional[AdventureOut]:
+    print('hello')
+    adventures = repo.get_all_for_account(account_id)
+    print("adventures:", adventures)
+    if adventures is None:
+        response.status_code = 404
+    return adventures

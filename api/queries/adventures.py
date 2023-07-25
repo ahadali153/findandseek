@@ -172,7 +172,7 @@ class AdventureRepository:
                         ORDER BY posted_at;
                         """,
                     )
-
+                    
                     return [
                         self.record_to_adventure_out(record)
                         for record in result
@@ -180,6 +180,42 @@ class AdventureRepository:
         except Exception as e:
             print(e)
             return {"message": "Could not get all adventures"}
+        
+    def get_all_for_account(self, account_id) -> Union[Error, List[AdventureOut]]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id
+                            , account_id
+                            , title
+                            , description
+                            , activity_id
+                            , intensity
+                            , user_rating
+                            , likes
+                            , price
+                            , posted_at
+                            , address
+                            , latitude
+                            , longitude
+                            , image_url
+                        FROM adventures
+                        WHERE account_id = %s
+                        ORDER BY posted_at;
+                        """,
+                        [account_id],
+                    )
+                    # result = db.fetchall() 
+                    print("result:", result)
+                    return [
+                        self.record_to_adventure_out(record)
+                        for record in result
+                    ]
+        except Exception as e:
+            print("e:", e)
+            return {"message": "Could not get all adventures for account"}
 
     def create(
         self,
