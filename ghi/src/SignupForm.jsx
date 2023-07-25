@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
+import "./LoginSignup.css";
 
 const SignupForm = () => {
 	const [username, setUsername] = useState("");
@@ -27,7 +28,7 @@ const SignupForm = () => {
 			<div className="card-body">
 				<form onSubmit={(e) => handleRegistration(e)}>
 					<div className="mb-3">
-						<label className="form-label">email</label>
+						<label className="form-label">Email:</label>
 						<input
 							name="email"
 							type="text"
@@ -38,7 +39,7 @@ const SignupForm = () => {
 						/>
 					</div>
 					<div className="mb-3">
-						<label className="form-label">username</label>
+						<label className="form-label">Username:</label>
 						<input
 							name="username"
 							type="text"
@@ -49,7 +50,7 @@ const SignupForm = () => {
 						/>
 					</div>
 					<div className="mb-3">
-						<label className="form-label">password</label>
+						<label className="form-label">Password:</label>
 						<input
 							name="password"
 							type="password"

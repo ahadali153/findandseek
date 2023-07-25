@@ -72,3 +72,19 @@ Continued on making the logo and web design on figma
 ## July 18th, 2023
 
 Continued on making the logo and web design on figma
+
+## July 19th, 2023
+
+We worked on the front end and tried to approach it with what we had in our figma. We tried problem solving from image not showing up and figuring out the structure of the home page.
+
+## July 20th, 2023
+
+Continued on working on the front end and decided to use react bootstrap and realized we cant use figma code and paste it onto our css file so we sort of had to start from scratch.
+
+## July 21st, 2023
+
+We Continued continued on the front end main page to set up the google map as well as having top 10 post to be shown on the main page.
+
+## July 24th, 2023
+
+We split off each doing our own specific front end. I handled the account page of the users account. Created the front end of user/users pfp/ their posts. Didnt finish as i was having trouble making the post appear but will continue tomorrow when i am back in class.

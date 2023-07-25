@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
+import { CloudDirectory } from "aws-sdk";
 
 const AdventureDetail = () => {
   const [adventure, setAdventure] = useState(null);
@@ -31,17 +33,54 @@ const AdventureDetail = () => {
   }
 
   return (
-    <div>
-      <h2>{adventure.title}</h2>
-      <h2>{adventure.description}</h2>
-      <h2>{adventure.activity}</h2>
-      <h2>{adventure.intensity}</h2>
-      <h2>{adventure.user_rating}</h2>
-      <h2>{adventure.price}</h2>
-      <h2>{adventure.address}</h2>
-      <img src={adventure.image_url} alt="Adventure Image" />
-    </div>
+    <Container className="body-background">
+      <Row className="mt-4">
+        <Col md={4}>
+          <h1 className="text-center h1-background">{adventure.title}</h1>
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col md={{ offset: 6 }} className="mx-auto">
+          <h3 className="text-center h1-background">{adventure.user_rating}</h3>
+        </Col>
+        <Col md={{ span: 2 }} className="mx-auto">
+          <h3 className="text-center h1-background">{adventure.price}</h3>
+        </Col>
+        <Col md={{ offset: 6 }} className="mx-auto">
+          <h3 className="text-center h1-background">{adventure.intensity}</h3>
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col md={{ offset: 4 }} className="mx-auto">
+          <img
+            src={adventure.image_url}
+            alt="Italian Trulli"
+            style={{
+              width: "100%",
+              height: "50vh",
+              objectFit: "cover",
+            }}
+          ></img>
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col md={{ offset: 4 }} className="mx-auto">
+          <h3 className="text-center custom-background">{adventure.address}</h3>
+        </Col>
+        <Col md={{ offset: 4 }} className="mx-auto">
+          <h3 className="text-center custom-background">
+            {adventure.activity_id}
+          </h3>
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col md={{ offset: 4 }} className="mx-auto">
+          <h3 className="text-center custom-background">
+            {adventure.description}
+          </h3>
+        </Col>
+      </Row>
+    </Container>
   );
 };
-
 export default AdventureDetail;

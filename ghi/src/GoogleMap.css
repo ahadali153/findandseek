@@ -1,0 +1,7 @@
+.adventure-image {
+  width: 50px; /* Set your desired width here */
+  height: 50px; /* Set your desired height here */
+  object-fit: cover; /* This ensures the image covers the entire space while maintaining aspect ratio */
+  display: inline-block; /* Display the images as inline-block elements */
+  margin: 0 10px 0 0; /* Set the margin around the images (top right bottom left) */
+}

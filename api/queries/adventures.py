@@ -19,6 +19,8 @@ class AdventureIn(BaseModel):
     price: int
     posted_at: date = Field(default_factory=date.today)
     address: str
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
     image_url: Optional[str] = None
 
 
@@ -34,6 +36,8 @@ class AdventureOut(BaseModel):
     price: int
     posted_at: date
     address: str
+    latitude: float
+    longitude: float
     image_url: Optional[str] = None
 
 
@@ -45,6 +49,9 @@ class AdventurePatch(BaseModel):
     user_rating: Optional[int]
     likes: Optional[int]
     price: Optional[int]
+    address: Optional[str]
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
 
 class AdventureRepository:
@@ -65,6 +72,8 @@ class AdventureRepository:
                             , price
                             , posted_at
                             , address
+                            , latitude
+                            , longitude
                             , image_url
                         FROM adventures
                         WHERE id = %s
@@ -113,6 +122,8 @@ class AdventureRepository:
                         , likes = %s
                         , price = %s
                         , address = %s
+                        , latitude = %s
+                        , longitude = %s
                         WHERE (id, account_id) = (%s, %s)
                         """,
                         [
@@ -124,6 +135,8 @@ class AdventureRepository:
                             adventure.likes,
                             adventure.price,
                             adventure.address,
+                            adventure.latitude,
+                            adventure.longitude,
                             adventure_id,
                             account_id,
                         ],
@@ -152,12 +165,14 @@ class AdventureRepository:
                             , price
                             , posted_at
                             , address
+                            , latitude
+                            , longitude
                             , image_url
                         FROM adventures
                         ORDER BY posted_at;
                         """,
                     )
-
+                    
                     return [
                         self.record_to_adventure_out(record)
                         for record in result
@@ -165,6 +180,42 @@ class AdventureRepository:
         except Exception as e:
             print(e)
             return {"message": "Could not get all adventures"}
+        
+    def get_all_for_account(self, account_id) -> Union[Error, List[AdventureOut]]:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    result = db.execute(
+                        """
+                        SELECT id
+                            , account_id
+                            , title
+                            , description
+                            , activity_id
+                            , intensity
+                            , user_rating
+                            , likes
+                            , price
+                            , posted_at
+                            , address
+                            , latitude
+                            , longitude
+                            , image_url
+                        FROM adventures
+                        WHERE account_id = %s
+                        ORDER BY posted_at;
+                        """,
+                        [account_id],
+                    )
+                    # result = db.fetchall() 
+                    print("result:", result)
+                    return [
+                        self.record_to_adventure_out(record)
+                        for record in result
+                    ]
+        except Exception as e:
+            print("e:", e)
+            return {"message": "Could not get all adventures for account"}
 
     def create(
         self,
@@ -177,9 +228,9 @@ class AdventureRepository:
                     result = db.execute(
                         """
                         INSERT INTO adventures
-                            (account_id, title, description, activity_id, intensity, user_rating, likes, price, posted_at, address, image_url)
+                            (account_id, title, description, activity_id, intensity, user_rating, likes, price, posted_at, address, latitude, longitude, image_url)
                         VALUES
-                            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                         [
@@ -193,6 +244,8 @@ class AdventureRepository:
                             adventure.price,
                             adventure.posted_at,
                             adventure.address,
+                            adventure.latitude,
+                            adventure.longitude,
                             adventure.image_url
                             if adventure.image_url
                             else None,
@@ -224,5 +277,7 @@ class AdventureRepository:
             price=record[8],
             posted_at=record[9],
             address=record[10],
-            image_url=record[11],
+            latitude=record[11],
+            longitude=record[12],
+            image_url=record[13],
         )
