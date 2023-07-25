@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate  } from "react-router-dom";
 import { Navbar, Container, NavDropdown, Nav, Col, Row } from "react-bootstrap";
 import logo from "./find&seek.png";
+import searchIcon from "./searchIcon.png";
 import "./NavComponent.css"; // Import custom CSS file
 
 function NavComponent({fetchFilteredAdventures}) {
@@ -126,7 +127,12 @@ function NavComponent({fetchFilteredAdventures}) {
 										))}
 									</div>
 								</Col>
-								<button onClick={handleSearchClick}>Search</button>
+								<Col md={3} className="search-col text-center">
+									{/* Replace the input with the search button */}
+									<button className="search-button" onClick={handleSearchClick}>
+									<img src={searchIcon} alt="Search" />
+									</button>
+								</Col>
 							</Row>
 						</Col>
 					</Row>

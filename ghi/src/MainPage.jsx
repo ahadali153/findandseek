@@ -42,12 +42,12 @@ export default function MainPage() {
 			const data = await response.json();
 			console.log(data)
 			const filteredAdventures = data.filter((adventure) => {
-				console.log(activity, adventure.activity_id)
+				console.log(typeof(activity), typeof(adventure.activity_id))
 				console.log(intensity, adventure.intensity)
 				console.log(price, adventure.price)
-				const activityFilter = activity === null || adventure.activity_id === activity;
-				const intensityFilter = intensity === null || adventure.intensity === intensity;
-				const priceFilter = price === null || adventure.price === price;
+				const activityFilter = activity === null || adventure.activity_id == activity;
+				const intensityFilter = intensity === null || adventure.intensity == intensity;
+				const priceFilter = price === null || adventure.price == price;
 
       			return activityFilter && intensityFilter && priceFilter;
     	});
@@ -59,7 +59,7 @@ export default function MainPage() {
 	};
 
 	return (
-		<>s
+		<>
 		<Row>
 			<NavComponent fetchFilteredAdventures={fetchFilteredAdventures} />
 		</Row>
