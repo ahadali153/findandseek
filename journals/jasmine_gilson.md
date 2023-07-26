@@ -65,3 +65,7 @@ Ahad and Artemis met up to work on the Nav bar layout over the weekend and I wor
 Today we tried to get the search results to populate within the nav bar but have been stuck on trying to get the adventure to fully populate. We made some progress with filtering results to show up in our devTools console but we still have some work to do. Hopefully tomorrow we will be able to resolve it after taking a step away from running into some bugs all day.
 
 ## July 25, 2023
+
+Today we continued to work on filtering the search query results to populate when a user is looking for a specific adventure with additional information on price and intensity. It was challenging, but we were able to figure it out. We also merged branches with everyone else who was working on CSS for the webpage and minor tweaks to functionality.
+
+## July 26, 2023
