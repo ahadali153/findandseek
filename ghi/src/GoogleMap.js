@@ -1,12 +1,31 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import Rating1 from "./images/Rating1.png";
+import Rating2 from "./images/Rating2.png";
+import Rating3 from "./images/Rating3.png";
+import Rating4 from "./images/Rating4.png";
+import Rating5 from "./images/Rating5.png";
+import Price1 from "./images/Price1.png";
+import Price2 from "./images/Price2.png";
+import Price3 from "./images/Price3.png";
+import Price4 from "./images/Price4.png";
+import Price5 from "./images/Price5.png";
+import Intensity1 from "./images/Intensity1.png";
+import Intensity2 from "./images/Intensity2.png";
+import Intensity3 from "./images/Intensity3.png";
+import Intensity4 from "./images/Intensity4.png";
+import Intensity5 from "./images/Intensity5.png";
+import "./MainPage.css"
 
 export default function MapComponent({ adventures }) {
   const [map, setMap] = useState(null);
-  const navigate = useNavigate(); // Use useNavigate to get the navigation function
+  // Use useNavigate to get the navigation function
+  const navigate = useNavigate();
   const [infoWindow, setInfoWindow] = useState(null);
   const [markers, setMarkers] = useState([]);
-  const latestAdventures = useRef(adventures); // Use useRef to store the latest adventures
+  // Use useRef to store the latest adventures
+  const latestAdventures = useRef(adventures);
+  const [activityMap, setActivityMap] = useState({});
 
   useEffect(() => {
     // Store the latest adventures in the ref
@@ -22,13 +41,75 @@ export default function MapComponent({ adventures }) {
   }, []);
 
   useEffect(() => {
+    // Fetch all activities and map them to their IDs
+    fetchAllActivities().then((activities) => {
+      const mappedActivities = activities.reduce((acc, activity) => {
+        acc[activity.id] = activity.name;
+        return acc;
+      }, {});
+      setActivityMap(mappedActivities);
+    });
+  }, []);
+
+  const getRatingIcon = (rating) => {
+    switch (rating) {
+      case 1:
+        return Rating1;
+      case 2:
+        return Rating2;
+      case 3:
+        return Rating3;
+      case 4:
+        return Rating4;
+      case 5:
+        return Rating5;
+      default:
+        return null;
+    }
+  };
+
+  const getPriceIcon = (price) => {
+    switch (price) {
+      case 1:
+        return Price1;
+      case 2:
+        return Price2;
+      case 3:
+        return Price3;
+      case 4:
+        return Price4;
+      case 5:
+        return Price5;
+      default:
+        return null;
+    }
+  };
+
+  const getIntensityIcon = (intensity) => {
+    switch (intensity) {
+      case 1:
+        return Intensity1;
+      case 2:
+        return Intensity2;
+      case 3:
+        return Intensity3;
+      case 4:
+        return Intensity4;
+      case 5:
+        return Intensity5;
+      default:
+        return null;
+    }
+  };
+
+  useEffect(() => {
     // Add markers for each adventure to the map
     if (map && adventures.length > 0) {
       const newMarkers = adventures.map((adventure) => {
         const marker = new window.google.maps.Marker({
           position: { lat: adventure.latitude, lng: adventure.longitude },
           map,
-          title: adventure.title,
+          title: getActivityName(adventure.activity_id)
         });
 
         // Add click event listener to the marker
@@ -60,10 +141,10 @@ export default function MapComponent({ adventures }) {
                     (adventure) => `
                       <li>
                         <strong><a href="/adventures/${adventure.id}">${adventure.title}</a></strong><br />
-                        Activity: ${adventure.activity_id}<br />
-                        User Rating: ${adventure.user_rating}<br />
-                        Price: ${adventure.price}<br />
-                        Intensity: ${adventure.intensity}
+                        Activity: ${getActivityName(adventure.activity_id)}<br />
+                        User Rating: <img class="adventure-image" src="${getRatingIcon(adventure.user_rating)}" alt="Rating" /><br />
+                        Price: <img src="${getPriceIcon(adventure.price)}" alt="Price" /><br />
+                        Intensity: <img src="${getIntensityIcon(adventure.intensity)}" alt="Intensity" /><br />
                       </li>
                     `
                   )
@@ -85,6 +166,23 @@ export default function MapComponent({ adventures }) {
     }
   }, [map, adventures, infoWindow]);
 
+  // Helper function to fetch all activities from the backend
+  const fetchAllActivities = async () => {
+    try {
+      const response = await fetch("http://localhost:8000/activities");
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log("Error fetching activities:", error);
+      return [];
+    }
+  };
+
+  // Helper function to fetch activity name based on activity ID
+  const getActivityName = (activityId) => {
+    return activityMap[activityId] || "Unknown Activity";
+  };
+
   const initMap = () => {
     console.log("Initializing the map...");
     // Get the coordinates of the first adventure (if available)
@@ -100,11 +198,14 @@ export default function MapComponent({ adventures }) {
     };
     const newMap = new window.google.maps.Map(
       document.getElementById("map"),
-      mapOptions
+      mapOptions,
     );
 
     // Set the map to state
     setMap(newMap);
+
+    const mapElement = document.getElementById("map");
+    mapElement.style.borderRadius = "12px"; // Adjust the value as per your preference
   };
 
   return <div id="map" style={{ width: "100%", height: "400px" }}></div>;

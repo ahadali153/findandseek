@@ -91,7 +91,7 @@ We split off each doing our own specific front end. I handled the account page o
 
 ## July 25th, 2023
 
-Worked on front end on account page to have user's be able to see their account page with their posts as well as their username. 
+Worked on front end on account page to have user's be able to see their account page with their posts as well as their username.
 
 ## July 26th, 2023
 

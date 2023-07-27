@@ -76,4 +76,32 @@ Today, I started making frontend forms. I got stuck on the adventure form becaus
 
 ## July 18th, 2023:
 
-Today, I continued to work on adventure form. We got stuck on uploading an image from frontend to databse so we decided to remove image from adventures model and store the images separately.
+Today, I continued to work on adventure form. We got stuck on uploading an image from frontend to database so we decided to remove image from adventures model and store the images separately.
+
+## July 19th, 2023:
+
+Today, I worked on adventure form on the frontend. I got the form to work and the images to be sent to the backend as urls to be saved in the database.
+
+## July 20th, 2023:
+
+Today, I started working on the navbar for our app. Getting the CSS to stand out was difficult and a challenge and we had to find alternatives to figma to implement our desired layout
+
+## July 21st, 2023:
+
+Today, I worked on styling the navbar with react bootstrap. I also was able to get the background color for the pages to work.
+
+## July 22nd, 2023:
+
+Today, I worked with Artemis on getting the navbar setup. We were able to create the search bar and custom css styling via bootstrap
+
+## July 24th, 2023:
+
+Today, I worked on getting the search queries on the navbar to produce filtered results on the main page. We encountered numerous bugs in the our app and had to fix them along the way
+
+## July 25th, 2023:
+
+Today I got the account page to render adventures pertaining that individual account and also got the navbar search queries to work.
+
+## July 26th, 2023:
+
+Today I worked with Jasmine on continuous integration and continuous deployment.

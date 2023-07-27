@@ -63,7 +63,7 @@ const UserAccountPage = () => {
             console.error("No image uploaded.");
             return;
     }
-    
+
     const formData = new FormData();
 
     formData.append('profilePicture', selectedImage);

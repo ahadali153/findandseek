@@ -46,8 +46,32 @@ Today we created some more unit tests and managed to get them all to pass. We ha
 
 ## July 18, 2023
 
-Today Artemis and I have been working on more webpage designs through Figma while Eli and Ahad continue to work on forms for the frontend. We should be done with the design portion of it by tomorrow and then we will finish completing the rest of the frontend with the rest of the team. 
+Today Artemis and I have been working on more webpage designs through Figma while Eli and Ahad continue to work on forms for the frontend. We should be done with the design portion of it by tomorrow and then we will finish completing the rest of the frontend with the rest of the team.
 
 ## July 19, 2023
 
-Today we finished up designs in Figma and started helping out with more frontend coding with the rest fo the team. 
+Today we finished up designs in Figma and started helping out with more frontend coding with the rest fo the team. We worked on the Adventure Detail page to get out information to register from the backend to the frontend while starting to play around with some CSS.
+
+## July 20, 2023
+
+We spent the day working on navigating CSS to try out different page layouts and get the hang of doing more CSS work on the Adventure Detail page. We will do some work separately over the weekend to get more functionality and proper layout of the webpage.
+
+## July 23, 2023
+
+Ahad and Artemis met up to work on the Nav bar layout over the weekend and I worked on getting the search bar to work and register query information. We just need to merge pages and combine the logic that Eli is writing for locations information to populate a search result.
+
+## July 24, 2023
+
+Today we tried to get the search results to populate within the nav bar but have been stuck on trying to get the adventure to fully populate. We made some progress with filtering results to show up in our devTools console but we still have some work to do. Hopefully tomorrow we will be able to resolve it after taking a step away from running into some bugs all day.
+
+## July 25, 2023
+
+Today we continued to work on filtering the search query results to populate when a user is looking for a specific adventure with additional information on price and intensity. It was challenging, but we were able to figure it out. We also merged branches with everyone else who was working on CSS for the webpage and minor tweaks to functionality.
+
+## July 26, 2023
+
+Today we worked on trying to get the CI/CD pipeline to work. We struggled with getting it started but we will continue tomorrow with it. I was able to start the deployment process on my computer for the group. Artemis worked on fixing the account page and Eli did some more CSS work.
+
+## July 27, 2023
+
+Today we continued with CI/CD deployment.

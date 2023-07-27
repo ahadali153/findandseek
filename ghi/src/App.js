@@ -14,10 +14,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavComponent from "./Nav";
 
 function App() {
+	const domain = /https:\/\/[^/]+/;
+  	const basename = process.env.PUBLIC_URL.replace(domain, '');
 	return (
-		<BrowserRouter>
-			<NavComponent />
-			{/* <Nav className="Navbar" /> */}
+		<BrowserRouter basename={basename}>
 			<AuthProvider baseUrl={process.env.REACT_APP_API_HOST}>
 				<Routes>
 					<Route path="/" element={<MainPage />} />

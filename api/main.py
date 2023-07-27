@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from authenticator import authenticator
 from routers import adventures, accounts, activities, comments
@@ -18,6 +18,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+origins = [
+    os.environ.get("CORS_HOST", None)
+
+]
 
 
 @app.get("/api/launch-details")
