@@ -101,3 +101,7 @@ Today, I worked on getting the search queries on the navbar to produce filtered 
 ## July 25th, 2023:
 
 Today I got the account page to render adventures pertaining that individual account and also got the navbar search queries to work.
+
+## July 26th, 2023:
+
+Today I worked with Jasmine on continuous integration and continuous deployment.
