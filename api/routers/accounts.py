@@ -17,6 +17,7 @@ from queries.accounts import (
     AccountOut,
     AccountQueries,
     DuplicateAccountError,
+    AccountUpdate
 )
 
 
@@ -32,6 +33,7 @@ class AccountToken(Token):
 
 class HttpError(BaseModel):
     detail: str
+
 
 
 router = APIRouter()
@@ -81,3 +83,22 @@ async def get_token(
             "type": "Bearer",
             "account": account,
         }
+
+@router.post("/accountinfo", response_model=AccountUpdate | HttpError)
+async def add_info(
+    account: AccountUpdate,
+    request: Request,
+    response: Response,
+    accounts: AccountQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    account_id = account_data["id"]
+    print(account_id)
+    try:
+        account = accounts.add_info(account, account_id)
+        return account
+    except DuplicateAccountError:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot add biography or profile picture",
+        )
