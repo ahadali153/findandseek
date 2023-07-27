@@ -118,7 +118,7 @@ class CommentsRepository:
                         self.record_to_comments_out(record)
                         for record in result
                     ]
-        except Exception as e:
+        except Exception:
             return {"message": "Could not get all records"}
 
     def create(

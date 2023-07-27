@@ -1,15 +1,12 @@
 from fastapi import APIRouter, Depends, Response
-from datetime import datetime
 from authenticator import authenticator
 from typing import List, Optional, Union
-from authenticator import authenticator
 from queries.comments import (
     Error,
     CommentsIn,
     CommentsOut,
     CommentsRepository,
 )
-from datetime import datetime
 
 
 router = APIRouter()

@@ -29,15 +29,6 @@ def get_all(
     return repo.get_all()
 
 
-# @router.put("/activities/{activity_id}", response_model=Union[ActivitiesOut, Error])
-# def update_activity(
-#     activity_id: int,
-#     activity: ActivitiesIn,
-#     repo: ActivitiesRepository = Depends(),
-# ) -> Union[Error, ActivitiesOut]:
-#     return repo.update(activity_id, activity)
-
-
 @router.delete("/activities/{activity_id}", response_model=bool)
 def delete_one_activity(
     activity_id: int,
