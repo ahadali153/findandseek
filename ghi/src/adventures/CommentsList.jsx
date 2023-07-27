@@ -23,9 +23,9 @@ const CommentList = ({ adventure }) => {
     }
   };
 
-  const handleNextPage = () => {
-    setCurrentPage((prevPage) => prevPage + 1);
-  };
+	const handleNextPage = () => {
+		setCurrentPage((prevPage) => prevPage + 1);
+	};
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
