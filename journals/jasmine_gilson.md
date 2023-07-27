@@ -68,4 +68,4 @@ Today we tried to get the search results to populate within the nav bar but have
 
 Today we continued to work on filtering the search query results to populate when a user is looking for a specific adventure with additional information on price and intensity. It was challenging, but we were able to figure it out. We also merged branches with everyone else who was working on CSS for the webpage and minor tweaks to functionality.
 
-## July 26, 2023
+## July 26
