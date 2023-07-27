@@ -17,7 +17,8 @@ from queries.accounts import (
     AccountOut,
     AccountQueries,
     DuplicateAccountError,
-    AccountUpdate
+    AccountUpdate,
+    AccountAllInfo
 )
 
 
@@ -86,7 +87,7 @@ async def get_token(
 
 @router.post("/accountinfo", response_model=AccountUpdate | HttpError)
 async def add_info(
-    account: AccountUpdate,
+    account: AccountAllInfo,
     request: Request,
     response: Response,
     accounts: AccountQueries = Depends(),
