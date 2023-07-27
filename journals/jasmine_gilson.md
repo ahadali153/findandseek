@@ -68,4 +68,10 @@ Today we tried to get the search results to populate within the nav bar but have
 
 Today we continued to work on filtering the search query results to populate when a user is looking for a specific adventure with additional information on price and intensity. It was challenging, but we were able to figure it out. We also merged branches with everyone else who was working on CSS for the webpage and minor tweaks to functionality.
 
-## July 26
+## July 26, 2023
+
+Today we worked on trying to get the CI/CD pipeline to work. We struggled with getting it started but we will continue tomorrow with it. I was able to start the deployment process on my computer for the group. Artemis worked on fixing the account page and Eli did some more CSS work.
+
+## July 27, 2023
+
+Today we continued with CI/CD deployment.
