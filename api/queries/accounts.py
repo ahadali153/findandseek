@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from typing import List
+from typing import List, Optional
 
 
 class DuplicateAccountError(ValueError):
@@ -22,6 +22,17 @@ class AccountOut(BaseModel):
 
 class AccountOutWithPassword(AccountOut):
     hashed_password: str
+
+
+class AccountUpdate(BaseModel):
+    account_id: int
+    profile_picture: str
+    biography: str
+
+
+class AccountAllInfo(AccountOut):
+    profile_picture: str
+    biography: str
 
 
 class AccountQueries:
@@ -99,5 +110,24 @@ class AccountQueries:
                     )
                     for record in records
                 ]
-
         return account_list
+
+    def add_info(self, account: AccountUpdate, account_id) -> AccountUpdate:
+        with pool.connection() as conn:
+            # get a cursor (something to run SQL with)
+            with conn.cursor() as db:
+                # Run our SELECT statement
+                db.execute(
+                    """
+                    UPDATE accounts
+                    SET biography = %s, profile_picture = %s
+                    WHERE id = %s;
+                    """,
+                    [account.biography, account.profile_picture, account_id],
+                )
+                conn.commit()
+                return AccountUpdate(
+                    account_id=account_id,
+                    biography=account.biography,
+                    profile_picture=account.profile_picture
+                )
