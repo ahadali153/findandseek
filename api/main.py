@@ -1,4 +1,3 @@
-from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from authenticator import authenticator
 from routers import adventures, accounts, activities, comments
