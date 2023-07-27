@@ -146,3 +146,20 @@ Today I realized how important it is to test and check
 your code before pushing to main. We found a bunch of
 small bugs that would have broken our code, but we
 tested it before we pushed so it was all good!
+
+## July 13th, 2023
+
+Today, I worked on:
+
+Designing the front-end with Figma.
+
+My team worked on the front-end authentication.
+
+Today I realized how useful of a tool Figma is, and
+how it can make the front-end design process seamless.
+
+## July 14th, 2023
+
+I was out sick, but I am all better now!
+
+My awesome team worked on unit tests!
