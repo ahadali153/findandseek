@@ -1,0 +1,20 @@
+.fixed-image-container img {
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.fixed-image-container img {
+  transition: transform 0.3s ease;
+}
+
+.fixed-image-container img:hover {
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+.body-background {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

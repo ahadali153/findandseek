@@ -163,7 +163,7 @@ how it can make the front-end design process seamless.
 I was out sick, but my awesome team worked on
 getting unit tests done!
 
-## July 15th, 2023
+## July 17th, 2023
 
 Today, I worked on:
 
@@ -176,3 +176,87 @@ and I worked on the adventure form!
 
 Today I realized how useful pair collaboration is while
 tackling problems, and how efficient it is as well!
+
+## July 18th, 2023
+
+Today, I worked on:
+
+Frontend forms with Ahad.
+
+Jasmine and Artemis worked on Figma, while Ahad and I
+worked on the frontend adventure and comment forms.
+
+Today I realized how useful talking out your problems
+is and hearing/trying each others solutions.
+
+## July 19th, 2023
+
+Today, I worked on:
+
+Frontend forms and S3.
+
+The others worked on frontend CSS and transferring
+Figma while I worked on the adventure form and getting
+S3 to work to store the images.
+
+Today I realized how important it is to collaborate with
+others in the Cohort and how knowledgeable everyone is!
+
+## July 20th, 2023 - July 23rd, 2023
+
+Today, I worked on:
+
+S3 and Google Maps Blips.
+
+I finished up S3 and worked on getting my blips to appear
+on google maps. It took most of the day to research and
+figure out how to go about doing it. My team worked on the
+Nav bar and search query.
+
+Over the weekend I worked on getting the blips to appear
+and work. I got it working!
+
+This weekend I realized how important it was to not give up,
+take some time to think, and attack the problem again at a
+different angle.
+
+## July 24th, 2023
+
+Today, I worked on:
+
+Frontend CSS.
+
+I worked on modals and pages for the login and sign-up forms,
+as well as getting started on other little parts of CSS.
+
+Today I realized how useful modals are for pop-up pages and
+just how neat they are as well!
+
+## July 25th, 2023
+
+Today, I worked on:
+
+Frontend CSS.
+
+I worked on the main page CSS with the Google Map Javascript
+API and made cards for the posts.
+
+Today I realized how complicated but also cool the Google Map
+Javascript API is, as I messed around with styling and trying
+to get it to look how I wanted it to.
+
+## July 26th, 2023
+
+Today, I worked on:
+
+Frontend CSS.
+
+I worked on the detail page CSS for the adventure posts as well
+as the modal form in the nav bar for creating a post.
+
+Today I realized how cool the cards were for Bootstrap and how
+well put-together and neat it makes everything look!
+
+## July 27th, 2023
+
+Today, I worked on:

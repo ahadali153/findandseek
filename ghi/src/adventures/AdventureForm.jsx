@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useImageUploader } from "./ImageUploader";
+import "./AdventureForm.css";
 
 export default function CreateAdventure() {
 	const [activities, setActivities] = useState([]);
@@ -108,9 +109,9 @@ export default function CreateAdventure() {
 
 	return (
 		<div className="row">
-			<div className="offset-3 col-6">
-				<div className="shadow p-4 mt-4">
-					<h1>Add an adventure!</h1>
+			<div className="col-12">
+				<div className="card shadow p-4 mt-4">
+					<h5 className="card-header">Add an adventure!</h5>
 					<form
 						className={formClasses}
 						onSubmit={handleSubmit}
@@ -119,12 +120,12 @@ export default function CreateAdventure() {
 						<div className="form-floating mb-3">
 							<input
 								onChange={handleFormDataChange}
-								placeholder="title..."
+								placeholder="title"
 								required
 								type="text"
 								name="title"
 								id="title"
-								className="title"
+								className="form-control"
 								value={formData.title}
 							/>
 							<label htmlFor="title">Title</label>

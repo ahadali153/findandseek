@@ -19,7 +19,7 @@ const SignupForm = () => {
 		};
 		register(accountData, `${process.env.REACT_APP_API_HOST}/accounts`);
 		e.target.reset();
-		navigate("/signup");
+		navigate("/");
 	};
 
 	return (
