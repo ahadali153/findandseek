@@ -2,7 +2,6 @@ from pydantic import BaseModel, Field
 from typing import List, Optional, Union
 from datetime import date
 from queries.pool import pool
-from datetime import date
 
 
 class Error(BaseModel):
