@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container, Button, Card } from "react-bootstrap";
+import "./CommentList.css";
 
 const COMMENTS_PER_PAGE = 5;
 const POLL_INTERVAL = 5000;
@@ -32,18 +33,15 @@ const CommentList = ({ adventure }) => {
   };
 
   useEffect(() => {
-    // Fetch comments when the component mounts or when the currentPage changes
     fetchComments(currentPage);
   }, [adventure.id, currentPage]);
 
   useEffect(() => {
-    // Start polling for new comments every POLL_INTERVAL
     const intervalId = setInterval(() => {
       console.log("Polling for new comments...");
       fetchComments(currentPage);
     }, POLL_INTERVAL);
 
-    // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, [adventure.id, currentPage]);
 
@@ -53,37 +51,28 @@ const CommentList = ({ adventure }) => {
 
   return (
     <Container>
-      <h2 className="text-center">Comments</h2>
+      <Card className="comments-title-card">
+        <Card.Body>
+          <h2 className="text-center">Comments</h2>
+        </Card.Body>
+      </Card>
       {comments.length === 0 ? (
         <p>No comments yet.</p>
       ) : (
         <>
-          <ul style={{ listStyleType: "none", padding: 0 }}>
+          <ul className="comment-list">
             {comments.map((comment) => (
-              <li
-                key={comment.id}
-                style={{
-                  backgroundColor: "#fff",
-                  padding: "10px",
-                  margin: "10px 0",
-                  borderRadius: "5px",
-                }}
-              >
+              <li key={comment.id} className="comment-item">
                 {comment.content}
               </li>
             ))}
           </ul>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
+          <div className="pagination-container">
             <Button
               variant="primary"
               onClick={handlePrevPage}
               disabled={currentPage === 1}
+              className="pagination-button"
             >
               Previous
             </Button>
@@ -91,6 +80,7 @@ const CommentList = ({ adventure }) => {
               variant="primary"
               onClick={handleNextPage}
               disabled={comments.length < COMMENTS_PER_PAGE}
+              className="pagination-button"
             >
               Next
             </Button>
