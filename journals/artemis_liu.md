@@ -96,3 +96,8 @@ Worked on front end on account page to have user's be able to see their account 
 ## July 26th, 2023
 
 Continued working on the account page as i had some trouble debugging and figuring out why my image wasnt rendering when a data was updated when loading the image on the aws s3 bucket for amazon api.
+
+
+## July 26th, 2023
+
+Created endpoint for user info on the backend to be able to access the image URL for users account and be able to render the page once the change has been made. Fixed and pushed the changes for account, no css done.
