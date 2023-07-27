@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from fastapi import APIRouter, Depends, Response
 from typing import List, Optional, Union
 from geocoding import fetch_geocode
-import os
+# import os
 from queries.adventures import (
     Error,
     AdventureIn,
@@ -13,7 +13,7 @@ from queries.adventures import (
 
 load_dotenv()
 
-GOOGLE_MAPS_API_KEY = os.environ["GOOGLE_MAPS_API_KEY"]
+GOOGLE_MAPS_API_KEY = "AIzaSyBiybVZpfaHagEcgBsXOUoJ1EQsu8KnNXQ"
 BUCKET_NAME = "findandseek"
 
 router = APIRouter()
