@@ -103,7 +103,6 @@ export default function MainPage() {
 			<Row className="card-container">
 			{adventures.map((adventure) => (
 				<Col key={adventure.id} md={3} style={{ marginBottom: "20px" }}>
-				{/* Use the Link component to make the entire card clickable */}
 				<Link to={`/adventures/${adventure.id}`} style={{ textDecoration: "none" }}>
 					<div className="card" style={{ width: "18rem" }}>
 					<img

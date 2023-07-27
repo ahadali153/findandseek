@@ -260,3 +260,12 @@ well put-together and neat it makes everything look!
 ## July 27th, 2023
 
 Today, I worked on:
+
+Unit tests, navbar, readme file, cleaning up code.
+
+I worked on getting one more unit tests done, adding the functionality
+for logged-in/logged-out users in the navbar, adding the readme files
+as well as working on them, and cleaned up unneeded pseudo-code.
+
+Today I realized how important patience is when handling issues and also
+how much can get done when you time manage appropriately.

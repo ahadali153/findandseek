@@ -19,7 +19,7 @@ const CreateCommentForm = ({ adventureid }) => {
 
 		const commentData = {
 			...formData,
-			adventure_id: adventureid, // Add the adventure_id field
+			adventure_id: adventureid,
 		};
 
 		const commentsURL = `http://localhost:8000/adventures/${adventureid}/comments`;
@@ -35,7 +35,6 @@ const CreateCommentForm = ({ adventureid }) => {
 		try {
 			const response = await fetch(commentsURL, fetchConfig);
 			if (response.ok) {
-				// Clear the form after successful comment submission
 				setFormData({
 					content: "",
 				});
@@ -53,7 +52,7 @@ const CreateCommentForm = ({ adventureid }) => {
 				backgroundColor: "#f8f9fa",
 				padding: "20px",
 				borderRadius: "5px",
-				marginTop: "20px", // Add margin at the top
+				marginTop: "20px",
 			}}
 		>
 			<form onSubmit={handleSubmit}>

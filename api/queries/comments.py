@@ -86,8 +86,6 @@ class CommentsRepository:
                             comment_id,
                         ],
                     )
-                    # old_data = vacation.dict()
-                    # return VacationOut(id=vacation_id, **old_data)
                     return self.comments_in_to_out(
                         comment_id, comment, account_id
                     )

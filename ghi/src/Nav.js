@@ -12,6 +12,7 @@ function NavComponent({fetchFilteredAdventures}) {
 	const [showLoginModal, setShowLoginModal] = useState(false);
 	const [showSignupModal, setShowSignupModal] = useState(false);
 	const [showCreateAdventureModal, setShowCreateAdventureModal] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
 
 	const handleShowLoginModal = () => {
 		setShowLoginModal(true);
@@ -37,7 +38,6 @@ function NavComponent({fetchFilteredAdventures}) {
 	const handleCloseCreateAdventureModal = () => {
 		setShowCreateAdventureModal(false);
 	};
-
 
 	const [priceRating, setPriceRating] = useState("");
 	const [intensityRating, setIntensityRating] = useState("");
@@ -73,6 +73,13 @@ function NavComponent({fetchFilteredAdventures}) {
 		console.log(activityValue, intensityRating, priceRating)
     fetchFilteredAdventures(activityValue, intensityRating, priceRating);
  	};
+
+	const handleLogin = () => {
+		setLoggedIn(true);
+		handleCloseLoginModal();
+		localStorage.setItem("loggedIn", "true");
+	};
+
 	const handleLogout = () => {
 		fetch("http://localhost:8000/token", {
 			method: "DELETE",
@@ -80,6 +87,8 @@ function NavComponent({fetchFilteredAdventures}) {
 			.then((response) => {
 				if (response.ok) {
 					window.location.href = "/";
+					setLoggedIn(false);
+					localStorage.removeItem("loggedIn");
 				} else {
 					console.log("Failed to logout.");
 				}
@@ -88,6 +97,13 @@ function NavComponent({fetchFilteredAdventures}) {
 				console.error("Error occurred during logout:", error);
 			});
 	};
+
+	useEffect(() => {
+		const storedLoggedInStatus = localStorage.getItem("loggedIn");
+		if (storedLoggedInStatus === "true") {
+		setLoggedIn(true);
+		}
+	}, []);
 
 
 
@@ -164,27 +180,32 @@ function NavComponent({fetchFilteredAdventures}) {
 							</Row>
 							</Col>
 						</Row>
-					</Container>
-					<Nav className="ms-auto">
-						<NavDropdown title="Account" id="dropdownMenuButton1">
-							<NavDropdown.Item as={NavLink} to="/account">
-								Account
-							</NavDropdown.Item>
-							<NavDropdown.Item onClick={handleShowLoginModal}>Login</NavDropdown.Item>
-							<NavDropdown.Item onClick={handleShowSignupModal}>Signup</NavDropdown.Item>
-							<NavDropdown.Item onClick={handleShowCreateAdventureModal}>
-        						Create an Adventure
-            				</NavDropdown.Item>
-							<button className="dropdown-item" onClick={handleLogout}>
-								Logout
-							</button>
-						</NavDropdown>
-					</Nav>
+						</Container>
+						<Nav className="ms-auto">
+							{loggedIn ? (
+								<>
+								<NavDropdown title="Account" id="dropdownMenuButton1">
+									<NavDropdown.Item as={NavLink} to="/account">
+									Account
+									</NavDropdown.Item>
+									<NavDropdown.Item onClick={handleShowCreateAdventureModal}>
+										Create an Adventure
+									</NavDropdown.Item>
+									<NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+								</NavDropdown>
+								</>
+							) : (
+								<>
+								<Nav.Link onClick={handleShowLoginModal}>Login</Nav.Link>
+								<Nav.Link onClick={handleShowSignupModal}>Signup</Nav.Link>
+								</>
+							)}
+						</Nav>
 				</Navbar.Collapse>
 			</Navbar>
 			<Modal show={showLoginModal} onHide={handleCloseLoginModal} centered>
 				<Modal.Body>
-					<LoginForm />
+				<LoginForm handleLogin={handleLogin} handleCloseLoginModal={handleCloseLoginModal} />
 				</Modal.Body>
 			</Modal>
 			<Modal show={showSignupModal} onHide={handleCloseSignupModal} centered>
