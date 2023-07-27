@@ -19,6 +19,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+origins = [
+    os.environ.get("CORS_HOST", None)
+
+]
+
 
 @app.get("/api/launch-details")
 def launch_details():
