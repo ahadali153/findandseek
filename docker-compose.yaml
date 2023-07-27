@@ -23,7 +23,6 @@ services:
       WAIT_TIMEOUT: 60
       CORS_HOST: http://localhost:3000
       DATABASE_URL: postgresql://safari:safari@postgres/safari_db
-      GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY}
 
     build:
       context: api
