@@ -88,3 +88,11 @@ We Continued continued on the front end main page to set up the google map as we
 ## July 24th, 2023
 
 We split off each doing our own specific front end. I handled the account page of the users account. Created the front end of user/users pfp/ their posts. Didnt finish as i was having trouble making the post appear but will continue tomorrow when i am back in class.
+
+## July 25th, 2023
+
+Worked on front end on account page to have user's be able to see their account page with their posts as well as their username. 
+
+## July 26th, 2023
+
+Continued working on the account page as i had some trouble debugging and figuring out why my image wasnt rendering when a data was updated when loading the image on the aws s3 bucket for amazon api.

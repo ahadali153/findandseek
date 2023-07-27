@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 import { useImageUploader } from './AccountImageUploader';
 const UserAccountPage = () => {
+
+
     const [userData, setUserData] = useState(null);
     const [userAdventures, setUserAdventures] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
     const { imageUrl, uploadImage } = useImageUploader();
     const fetchUserData = async () => {
+
+
     try {
         const response = await axios.get('http://localhost:8000/token', {
             withCredentials: true,
@@ -19,6 +23,7 @@ const UserAccountPage = () => {
     console.error('Error fetching user data:', error);
     }
 };
+
     const fetchUserAdventures = async () => {
         try {
             const response = await axios.get('http://localhost:8000/adventures', {
@@ -36,26 +41,33 @@ const UserAccountPage = () => {
         console.error('Error fetching adventures:', error);
         }
     };
+
     useEffect(() => {
         // Fetch user data and user adventures concurrently
         Promise.all([fetchUserData()]);
     }, []);
+
     const handleProfilePictureChange = (event) => {
         const file = event.target.files[0];
         setSelectedImage(file);
     };
+
     useEffect(() => {
         if (userData) {
             fetchUserAdventures()
         }
     }, [userData]);
+
     const handleProfilePictureUpload = async () => {
         if (!selectedImage) {
             console.error("No image uploaded.");
             return;
     }
+    
     const formData = new FormData();
+
     formData.append('profilePicture', selectedImage);
+
         try {
             const response = await axios.post('http://localhost:8000/account/upload-profile-picture', formData, {
                 headers: {
@@ -76,6 +88,7 @@ const UserAccountPage = () => {
             console.error('Error uploading profile picture:', error);
             }
         };
+
     return (
             <div>
             {userData && (
@@ -103,4 +116,5 @@ const UserAccountPage = () => {
         </div>
     );
 };
+
 export default UserAccountPage;
