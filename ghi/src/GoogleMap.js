@@ -15,7 +15,58 @@ import Intensity2 from "./images/Intensity2.png";
 import Intensity3 from "./images/Intensity3.png";
 import Intensity4 from "./images/Intensity4.png";
 import Intensity5 from "./images/Intensity5.png";
-import "./MainPage.css"
+import "./GoogleMap.css";
+
+  const getRatingIcon = (rating) => {
+    switch (rating) {
+      case 1:
+        return Rating1;
+      case 2:
+        return Rating2;
+      case 3:
+        return Rating3;
+      case 4:
+        return Rating4;
+      case 5:
+        return Rating5;
+      default:
+        return null;
+    }
+  };
+
+const getPriceIcon = (price) => {
+  switch (price) {
+    case 1:
+      return Price1;
+    case 2:
+      return Price2;
+    case 3:
+      return Price3;
+    case 4:
+      return Price4;
+    case 5:
+      return Price5;
+    default:
+      return null;
+  }
+};
+
+const getIntensityIcon = (intensity) => {
+  switch (intensity) {
+    case 1:
+      return Intensity1;
+    case 2:
+      return Intensity2;
+    case 3:
+      return Intensity3;
+    case 4:
+      return Intensity4;
+    case 5:
+      return Intensity5;
+    default:
+      return null;
+  }
+};
 
 export default function MapComponent({ adventures }) {
   const [map, setMap] = useState(null);
@@ -50,57 +101,6 @@ export default function MapComponent({ adventures }) {
       setActivityMap(mappedActivities);
     });
   }, []);
-
-  const getRatingIcon = (rating) => {
-    switch (rating) {
-      case 1:
-        return Rating1;
-      case 2:
-        return Rating2;
-      case 3:
-        return Rating3;
-      case 4:
-        return Rating4;
-      case 5:
-        return Rating5;
-      default:
-        return null;
-    }
-  };
-
-  const getPriceIcon = (price) => {
-    switch (price) {
-      case 1:
-        return Price1;
-      case 2:
-        return Price2;
-      case 3:
-        return Price3;
-      case 4:
-        return Price4;
-      case 5:
-        return Price5;
-      default:
-        return null;
-    }
-  };
-
-  const getIntensityIcon = (intensity) => {
-    switch (intensity) {
-      case 1:
-        return Intensity1;
-      case 2:
-        return Intensity2;
-      case 3:
-        return Intensity3;
-      case 4:
-        return Intensity4;
-      case 5:
-        return Intensity5;
-      default:
-        return null;
-    }
-  };
 
   useEffect(() => {
     // Add markers for each adventure to the map
@@ -205,8 +205,11 @@ export default function MapComponent({ adventures }) {
     setMap(newMap);
 
     const mapElement = document.getElementById("map");
-    mapElement.style.borderRadius = "12px"; // Adjust the value as per your preference
+    mapElement.style.borderRadius = "12px";
+    mapElement.style.boxShadow = "rgba(149, 157, 165, 0.2) 0px 8px 24px;";
   };
 
-  return <div id="map" style={{ width: "100%", height: "400px" }}></div>;
+  return <div className="google-map-container" id="map" style={{ width: "100%", height: "400px" }}></div>;
 }
+
+export { getRatingIcon, getPriceIcon, getIntensityIcon };

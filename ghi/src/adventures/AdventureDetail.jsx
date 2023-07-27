@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
-import { CloudDirectory } from "aws-sdk";
+import { Container, Row, Col, Card } from "react-bootstrap";
+import { getRatingIcon, getPriceIcon, getIntensityIcon } from "../GoogleMap";
+import "./AdventureDetail.css";
 
 const AdventureDetail = () => {
   const [adventure, setAdventure] = useState(null);
@@ -35,52 +36,102 @@ const AdventureDetail = () => {
   return (
     <Container className="body-background">
       <Row className="mt-4">
-        <Col md={4}>
-          <h1 className="text-center h1-background">{adventure.title}</h1>
+        <Col md={{ span: 12 }}>
+          <Card className="card-background">
+            <Card.Body>
+              <h1 className="text-center h1-background">{adventure.title}</h1>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
+
       <Row className="mt-4">
-        <Col md={{ offset: 6 }} className="mx-auto">
-          <h3 className="text-center h1-background">{adventure.user_rating}</h3>
-        </Col>
-        <Col md={{ span: 2 }} className="mx-auto">
-          <h3 className="text-center h1-background">{adventure.price}</h3>
-        </Col>
-        <Col md={{ offset: 6 }} className="mx-auto">
-          <h3 className="text-center h1-background">{adventure.intensity}</h3>
+        <Col md={{ span: 12 }} className="text-center">
+          <div className="img-container fixed-image-container">
+            <img
+              src={adventure.image_url}
+              alt="Adventure Thumbnail"
+              className="img-fluid rounded"
+            />
+          </div>
         </Col>
       </Row>
+
       <Row className="mt-4">
-        <Col md={{ offset: 4 }} className="mx-auto">
-          <img
-            src={adventure.image_url}
-            alt="Italian Trulli"
-            style={{
-              width: "100%",
-              height: "50vh",
-              objectFit: "cover",
-            }}
-          ></img>
+        <Col md={{ span: 6 }}>
+          <Card className="card-background">
+            <Card.Body>
+              <Card.Title className="text-center">Activity</Card.Title>
+              <Card.Text className="text-center">
+                {adventure.activity_id}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={{ span: 6 }}>
+          <Card className="card-background">
+            <Card.Body>
+              <Card.Title className="text-center">Address</Card.Title>
+              <Card.Text className="text-center">{adventure.address}</Card.Text>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
+
       <Row className="mt-4">
-        <Col md={{ offset: 4 }} className="mx-auto">
-          <h3 className="text-center custom-background">{adventure.address}</h3>
+        <Col md={{ span: 4 }}>
+          <Card className="card-background">
+            <Card.Body>
+              <Card.Title className="text-center">Rating</Card.Title>
+              <Card.Text className="text-center">
+                <img
+                  src={getRatingIcon(adventure.user_rating)}
+                  alt={`Rating ${adventure.user_rating}`}
+                />
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </Col>
-        <Col md={{ offset: 4 }} className="mx-auto">
-          <h3 className="text-center custom-background">
-            {adventure.activity_id}
-          </h3>
+        <Col md={{ span: 4 }}>
+          <Card className="card-background">
+            <Card.Body>
+              <Card.Title className="text-center">Price</Card.Title>
+              <Card.Text className="text-center">
+                <img
+                  src={getPriceIcon(adventure.price)}
+                  alt={`Price ${adventure.price}`}
+                />
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={{ span: 4 }}>
+          <Card className="card-background">
+            <Card.Body>
+              <Card.Title className="text-center">Intensity</Card.Title>
+              <Card.Text className="text-center">
+                <img
+                  src={getIntensityIcon(adventure.intensity)}
+                  alt={`Intensity ${adventure.intensity}`}
+                />
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
+
       <Row className="mt-4">
-        <Col md={{ offset: 4 }} className="mx-auto">
-          <h3 className="text-center custom-background">
-            {adventure.description}
-          </h3>
+        <Col md={{ span: 12 }}>
+          <Card className="card-background">
+            <Card.Body>
+              <Card.Title className="text-center">Description</Card.Title>
+              <Card.Text className="text-center">{adventure.description}</Card.Text>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>
   );
 };
+
 export default AdventureDetail;
