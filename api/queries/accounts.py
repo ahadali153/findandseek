@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from typing import List
+from typing import List, Optional
 
 
 class DuplicateAccountError(ValueError):
@@ -33,6 +33,7 @@ class AccountUpdate(BaseModel):
 class AccountAllInfo(AccountOut):
     profile_picture: str
     biography: str
+
 
 class AccountQueries:
     def get_account(self, username) -> AccountOut:
