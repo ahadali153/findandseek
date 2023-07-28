@@ -10,7 +10,7 @@ const UserAccountPage = () => {
 	const [userData, setUserData] = useState(null);
 	const [userAdventures, setUserAdventures] = useState([]);
 	const [activityMap, setActivityMap] = useState({});
-    console.log(userData)
+
 	const fetchUserData = async () => {
 		try {
 			const response = await axios.get("http://localhost:8000/userinfo", {
@@ -27,13 +27,10 @@ const UserAccountPage = () => {
 			const response = await axios.get("http://localhost:8000/adventures", {
 				withCredentials: true,
 			});
-			console.log(response.data);
-			console.log(userData, "cheese");
 			// Filter the adventures based on userData.id
 			const filteredAdventures = response.data.filter(
 				(item) => item.account_id == userData.id
 			);
-			console.log("filtered:", filteredAdventures);
 			setUserAdventures(filteredAdventures);
 		} catch (error) {
 			console.error("Error fetching adventures:", error);
@@ -50,8 +47,6 @@ const UserAccountPage = () => {
 			return [];
 		}
 	};
-
-    
 
 	// Helper function to fetch activity name based on activity ID
 	const getActivityName = (activityId) => {
@@ -106,6 +101,12 @@ const UserAccountPage = () => {
 										<Card.Title className="text-center">
 											User PFP:{" "}
 											<img
+												style={{
+													objectFit: "cover",
+													height: "150px",
+													borderTopLeftRadius: "12px",
+													borderTopRightRadius: "12px",
+												}}
 												src={userData.profile_picture}
 												alt="Profile Picture"
 											/>
@@ -123,7 +124,18 @@ const UserAccountPage = () => {
 											Upload Profile Picture
 										</Card.Title>
 										<div className="text-center">
-											<UploadBioPic updateUrl={} />
+											<UploadBioPic
+												update={(
+													url = userData.profile_picture,
+													bio = userData.biography
+												) =>
+													setUserData({
+														...userData,
+														profile_picture: url,
+														biography: bio,
+													})
+												}
+											/>
 										</div>
 									</Card.Body>
 								</Card>

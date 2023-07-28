@@ -81,12 +81,8 @@ async def add_info(
     accounts: AccountQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    print(account_data)
     username = account_data["username"]
     account_id = account_data["id"]
-    print(username)
-
-    print(account_id)
     try:
         # Check if the profile_picture field is provided and update it if available
         if account.profile_picture:
@@ -109,10 +105,9 @@ async def add_info(
 @router.get("/userinfo", response_model=UserInfo)
 def get_user_info(
     request: Request,
-    account: AccountQueries = Depends(),    
+    account: AccountQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> UserInfo:
     account_info = account.get_info(account_data["id"])
-    
+
     return account_info
-    

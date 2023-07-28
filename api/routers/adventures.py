@@ -26,10 +26,8 @@ async def create_adventure(
     repo: AdventureRepository = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    print("data:", account_data)
     response.status_code = 200
     account_id = account_data["id"]
-    print("id:", account_id)
     try:
         geocode_result = fetch_geocode(adventure.address, GOOGLE_MAPS_API_KEY)
 
@@ -42,10 +40,8 @@ async def create_adventure(
         adventure.longitude = longitude
         print("Creating adventure...")
         created_adventure = repo.create(adventure, account_id)
-        print("Adventure created:", created_adventure)
 
         if isinstance(created_adventure, Error):
-            print(created_adventure)
             return created_adventure
 
         assigned_adventure_id = created_adventure.id
@@ -133,7 +129,6 @@ def get_all_adventures_for_account(
     response: Response,
     repo: AdventureRepository = Depends(),
 ) -> Optional[AdventureOut]:
-    print('hello')
     adventures = repo.get_all_for_account(account_id)
     print("adventures:", adventures)
     if adventures is None:

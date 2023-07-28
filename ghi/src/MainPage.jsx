@@ -5,7 +5,6 @@ import MapComponent from "./GoogleMap";
 import "./MainPage.css";
 import NavComponent from "./SearchNav";
 import { getRatingIcon, getPriceIcon, getIntensityIcon } from "./GoogleMap";
-import Testimonials from "./Testimonials";
 
 export default function MainPage() {
 	const [adventures, setAdventures] = useState([]);
@@ -48,11 +47,7 @@ export default function MainPage() {
 		try {
 			const response = await fetch("http://localhost:8000/adventures");
 			const data = await response.json();
-			console.log(data);
 			const filteredAdventures = data.filter((adventure) => {
-				console.log(typeof activity, typeof adventure.activity_id);
-				console.log(intensity, adventure.intensity);
-				console.log(price, adventure.price);
 				const activityFilter =
 					activity === null || adventure.activity_id == activity;
 				const intensityFilter =
@@ -61,7 +56,6 @@ export default function MainPage() {
 
 				return activityFilter && intensityFilter && priceFilter;
 			});
-			console.log(filteredAdventures);
 			setAdventures(filteredAdventures);
 		} catch (error) {
 			console.error("Error fetching filtered adventures:", error);
@@ -168,9 +162,6 @@ export default function MainPage() {
 					</Row>
 				</Container>
 			</div>
-			<Row>
-				<Testimonials />
-			</Row>
 		</>
 	);
 }

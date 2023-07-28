@@ -129,6 +129,7 @@ class AccountQueries:
                     [profile_picture, account_id],
                 )
                 conn.commit()
+                return profile_picture
 
     def update_biography(self, biography: str, account_id: int) -> None:
         with pool.connection() as conn:
@@ -171,4 +172,3 @@ class AccountQueries:
         except Exception as e:
             print(e)
             return {"message": "Could not get that activity"}
-
