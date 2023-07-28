@@ -17,7 +17,7 @@ services:
 
   fastapi:
     environment:
-      SIGNING_KEY: JPd7fGaWMK7FoZG9fpKrzFB8BubS8KpP2yd10SFf++k=
+      SIGNING_KEY: ${SIGNING_KEY}
       WAIT_BEFORE: 5
       WAIT_TIMEOUT: 60
       CORS_HOST: http://localhost:3000
