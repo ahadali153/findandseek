@@ -11,12 +11,12 @@ const LoginForm = ({ handleLogin }) => {
 		e.preventDefault();
 		console.log({ username }, { password });
 		login(username, password)
-		.then(() => {
-			handleLogin();
-		})
-		.catch((error) => {
-			console.error("Error occurred during login:", error);
-		});
+			.then(() => {
+				handleLogin();
+			})
+			.catch((error) => {
+				console.error("Error occurred during login:", error);
+			});
 		e.target.reset();
 	};
 

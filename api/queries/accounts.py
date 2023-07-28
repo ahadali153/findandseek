@@ -14,10 +14,9 @@ class AccountIn(BaseModel):
 
 
 class AccountOut(BaseModel):
-    id: str
+    id: int
     email: str
     username: str
-    hashed_password: str
 
 
 class AccountOutWithPassword(AccountOut):
@@ -30,13 +29,19 @@ class AccountUpdate(BaseModel):
     biography: str
 
 
-class AccountAllInfo(BaseModel):
-    profile_picture: str
+class AccountAddBioPic(BaseModel):
+    profile_picture: Optional[str] = None
+    biography: Optional[str] = None
+
+
+class UserInfo(BaseModel):
+    email: str
     biography: str
+    profile_picture: str
 
 
 class AccountQueries:
-    def get_account(self, username) -> AccountOut:
+    def get_account(self, username) -> AccountOutWithPassword:
         # connect the database
         with pool.connection() as conn:
             # get a cursor (something to run SQL with)
@@ -56,11 +61,11 @@ class AccountQueries:
                 record = result.fetchone()
                 if record is None:
                     return None
-                return AccountOut(
-                    id=record[0],
+                return AccountOutWithPassword(
+                    id=int(record[0]),
                     email=record[1],
                     username=record[2],
-                    hashed_password=record[3],
+                    hashed_password=record[3]
                 )
 
     def create(
@@ -112,22 +117,58 @@ class AccountQueries:
                 ]
         return account_list
 
-    def add_info(self, account: AccountUpdate, account_id) -> AccountUpdate:
+    def update_profile_picture(self, profile_picture: str, account_id: int) -> None:
         with pool.connection() as conn:
-            # get a cursor (something to run SQL with)
             with conn.cursor() as db:
-                # Run our SELECT statement
                 db.execute(
                     """
                     UPDATE accounts
-                    SET biography = %s, profile_picture = %s
+                    SET profile_picture = %s
                     WHERE id = %s;
                     """,
-                    [account.biography, account.profile_picture, account_id],
+                    [profile_picture, account_id],
                 )
                 conn.commit()
-                return AccountUpdate(
-                    account_id=account_id,
-                    biography=account.biography,
-                    profile_picture=account.profile_picture
+                return profile_picture
+
+    def update_biography(self, biography: str, account_id: int) -> None:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    UPDATE accounts
+                    SET biography = %s
+                    WHERE id = %s;
+                    """,
+                    [biography, account_id],
                 )
+                conn.commit()
+
+    def get_info(self, account_id: int) -> UserInfo:
+        try:
+            # connect the database
+            with pool.connection() as conn:
+                # get a cursor (something to run SQL with)
+                with conn.cursor() as db:
+                    # Run our SELECT statement
+                    result = db.execute(
+                        """
+                        SELECT email
+                            , profile_picture
+                            , biography
+                        FROM accounts
+                        WHERE id = %s
+                        """,
+                        [account_id],
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return UserInfo(
+                        email=record[0],
+                        profile_picture=record[1],
+                        biography=record[2]
+                    )
+        except Exception as e:
+            print(e)
+            return {"message": "Could not get that activity"}
