@@ -18,7 +18,7 @@ from queries.accounts import (
     AccountQueries,
     DuplicateAccountError,
     AccountUpdate,
-    AccountAllInfo
+    AccountAddBioPic
 )
 
 
@@ -62,17 +62,6 @@ async def create_account(
     return AccountToken(account=account, **token.dict())
 
 
-# @router.get("/accounts", response_model=List[AccountOut])
-# async def get_accounts(
-#     accounts: AccountQueries = Depends(),
-# ):
-#     # Retrieve the list of accounts using the AccountQueries instance
-#     account_list = accounts.get_all_accounts()
-
-#     # Return the list of accounts as the response
-#     return account_list
-
-
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
@@ -85,9 +74,10 @@ async def get_token(
             "account": account,
         }
 
+
 @router.post("/accountinfo", response_model=AccountUpdate | HttpError)
 async def add_info(
-    account: AccountAllInfo,
+    account: AccountAddBioPic,
     request: Request,
     response: Response,
     accounts: AccountQueries = Depends(),

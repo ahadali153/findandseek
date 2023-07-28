@@ -30,9 +30,9 @@ class AccountUpdate(BaseModel):
     biography: str
 
 
-class AccountAllInfo(AccountOut):
-    profile_picture: str
-    biography: str
+class AccountAddBioPic(BaseModel):
+    profile_picture: Optional[str] = None
+    biography: Optional[str] = None
 
 
 class AccountQueries:

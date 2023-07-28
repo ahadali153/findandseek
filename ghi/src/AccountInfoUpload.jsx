@@ -14,28 +14,6 @@ export default function UploadBioPic() {
     const [ picture, setPicture] = useState(null)
     const { uploadImage } = useImageUploader();
 
-    // const uploadImage = async (selectedImage) => {
-    //     if (!selectedImage) {
-    //     return;
-    //     }
-
-    //     const s3 = new AWS.S3();
-    //     const params = {
-    //     Bucket: "findandseek",
-    //     Key: `${Date.now()}.${selectedImage.name}`,
-    //     Body: selectedImage,
-    //     };
-
-    //     try {
-    //         const { Location } = await s3.upload(params).promise();
-    //         console.log("image:", Location)
-    //         return Location
-    //     } catch (error) {
-    //         console.error("Error uploading image:", error);
-    //         return null;
-    //     }
-    // };
-
     const handleProfilePictureChange = (event) => {
             const file = event.target.files[0];
             console.log(file)
@@ -56,7 +34,6 @@ export default function UploadBioPic() {
                             body: JSON.stringify(
                                 {
                                     profile_picture: uploadedImageUrl,
-                                    biography:"abcde"
                                 }
                             ),
                             headers: {
