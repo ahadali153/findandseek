@@ -92,6 +92,7 @@ input[type="text"] {
   border: none;
   cursor: pointer;
   outline: none;
+  align-items: center;
   padding: 5px;
 }
 

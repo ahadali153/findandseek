@@ -114,12 +114,12 @@ function NavComponent({fetchFilteredAdventures}) {
 				<Navbar.Brand as={NavLink} to="/" className="me-auto">
 					<img className="logo" src={logo} alt="Logo" />
 				</Navbar.Brand>
-				<Row className="align-items-center">
+				<Row className="align-items-center w-100">
 					<Col md={3} className="location-col text-center">
 					<h3 style={{ fontSize: "1em" }}>Location</h3>
 					<input type="text" placeholder="Where are you going?" />
 					</Col>
-					<Col md={3} className="activities-col text-center">
+					<Col md={2} className="activities-col text-center">
 						<h3 style={{ fontSize: "1em" }}>Activities</h3>
 						<div className="activities">
 						<select
@@ -135,7 +135,7 @@ function NavComponent({fetchFilteredAdventures}) {
 						</select>
 					</div>
 					</Col>
-					<Col md={3} className="intensity-col text-center">
+					<Col md={2} className="intensity-col text-center">
 						<h3 style={{ fontSize: "1em" }}>Intensity</h3>
 						<div className="intensity-ratings">
 							{[1, 2, 3, 4, 5].map((n) => (
@@ -151,7 +151,7 @@ function NavComponent({fetchFilteredAdventures}) {
 							))}
 						</div>
 					</Col>
-					<Col md={3} className="price-col text-center">
+					<Col md={2} className="price-col text-center">
 						<h3 style={{ fontSize: "1em" }}>Price</h3>
 						<div className="dollar-signs">
 							{[1, 2, 3, 4, 5].map((n) => (
@@ -165,7 +165,7 @@ function NavComponent({fetchFilteredAdventures}) {
 							))}
 						</div>
 					</Col>
-					<Col md={3} className="search-col text-center">
+					<Col md={2} className="search-col text-center ml-auto">
 						<button className="search-button" onClick={handleSearchClick}>
 						<img src={searchIcon} alt="Search" />
 						</button>
