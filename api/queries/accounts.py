@@ -112,22 +112,28 @@ class AccountQueries:
                 ]
         return account_list
 
-    def add_info(self, account: AccountUpdate, account_id) -> AccountUpdate:
+    def update_profile_picture(self, profile_picture: str, account_id: int) -> None:
         with pool.connection() as conn:
-            # get a cursor (something to run SQL with)
             with conn.cursor() as db:
-                # Run our SELECT statement
                 db.execute(
                     """
                     UPDATE accounts
-                    SET biography = %s, profile_picture = %s
+                    SET profile_picture = %s
                     WHERE id = %s;
                     """,
-                    [account.biography, account.profile_picture, account_id],
+                    [profile_picture, account_id],
                 )
                 conn.commit()
-                return AccountUpdate(
-                    account_id=account_id,
-                    biography=account.biography,
-                    profile_picture=account.profile_picture
+
+    def update_biography(self, biography: str, account_id: int) -> None:
+        with pool.connection() as conn:
+            with conn.cursor() as db:
+                db.execute(
+                    """
+                    UPDATE accounts
+                    SET biography = %s
+                    WHERE id = %s;
+                    """,
+                    [biography, account_id],
                 )
+                conn.commit()

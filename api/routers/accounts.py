@@ -86,8 +86,15 @@ async def add_info(
     account_id = account_data["id"]
     print(account_id)
     try:
-        account = accounts.add_info(account, account_id)
-        return account
+        # Check if the profile_picture field is provided and update it if available
+        if account.profile_picture:
+            accounts.update_profile_picture(account.profile_picture, account_id)
+
+        # Check if the biography field is provided and update it if available
+        if account.biography:
+            accounts.update_biography(account.biography, account_id)
+
+        return accounts.get_account(account_id)
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

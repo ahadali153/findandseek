@@ -13,53 +13,99 @@ export default function UploadBioPic() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [ picture, setPicture] = useState(null)
     const { uploadImage } = useImageUploader();
+    const [ biography, SetBiography] = useState("")
+    const [ showForm, SetShowForm ] = useState(true)
 
     const handleProfilePictureChange = (event) => {
-            const file = event.target.files[0];
-            console.log(file)
-            setSelectedImage(file);
-        };
-    const handleProfilePictureUpload = async (event) => {
-            event.preventDefault();
-            console.log('hello')
-            if (selectedImage) {
-                const uploadedImageUrl = await uploadImage(selectedImage);
-                if (uploadedImageUrl) {
-                    console.log(uploadedImageUrl)
-                    try {
-                        const updateBioPicURL = "http://localhost:8000/accountinfo";
-                        const fetchConfig = {
-                            credentials: "include",
-                            method: "post",
-                            body: JSON.stringify(
-                                {
-                                    profile_picture: uploadedImageUrl,
-                                }
-                            ),
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                        };
+        const file = event.target.files[0];
+        console.log(file);
+        setSelectedImage(file);
+    };
 
-                        const response = await fetch(updateBioPicURL, fetchConfig);
-                        if (response.ok) {
-                            const profilePic = await response.json();
-                            console.log("profile picture url:", profilePic);
-                            setPicture(profilePic.profile_picture)
-                        } else {
-                            console.error("Failed to add profile pic");
-                        }
-                    } catch (error) {
-                        console.error("Error creating profile pic:", error);
-                    }
-                }
+    const handleProfilePictureUpload = async (event) => {
+        event.preventDefault();
+        console.log("hello");
+        if (selectedImage) {
+        const uploadedImageUrl = await uploadImage(selectedImage);
+        if (uploadedImageUrl) {
+            console.log(uploadedImageUrl);
+            try {
+            const updateBioPicURL = "http://localhost:8000/accountinfo";
+            const fetchConfig = {
+                credentials: "include",
+                method: "post",
+                body: JSON.stringify({
+                profile_picture: uploadedImageUrl,
+                }),
+                headers: {
+                "Content-Type": "application/json",
+                },
+            };
+
+            const response = await fetch(updateBioPicURL, fetchConfig);
+            if (response.ok) {
+                const profilePic = await response.json();
+                console.log("profile picture url:", profilePic);
+                setPicture(profilePic.profile_picture);
+            } else {
+                console.error("Failed to add profile pic");
+            }
+            } catch (error) {
+            console.error("Error creating profile pic:", error);
             }
         }
+        }
+    };
+
+    const handleBiographyUpload = async (event) => {
+        event.preventDefault();
+        console.log("hello");
+        if (biography) {
+            try {
+                const updateBioPicURL = "http://localhost:8000/accountinfo";
+                const fetchConfig = {
+                credentials: "include",
+                method: "post",
+                body: JSON.stringify({
+                    biography: biography,
+            }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+    };
+
+    const response = await fetch(updateBioPicURL, fetchConfig);
+        if (response.ok) {
+            const profilePic = await response.json();
+            console.log("profile picture url:", profilePic);
+            SetBiography(''); // Clear the biography field after successful update
+        } else {
+            console.error("Failed to add biography");
+        }
+    } catch (error) {
+        console.error("Error creating biography:", error);
+    }
+    }
+};
+
     return (
-    <div>
-        <input type="file" onChange={handleProfilePictureChange} />
-        <button onClick={handleProfilePictureUpload}>Upload</button>
-        {picture && <img src={picture} alt="Upload Profile Picture" />}
-    </div>
+        <>
+            {showForm && (
+                <div>
+                <input type="file" onChange={handleProfilePictureChange} />
+                <button onClick={handleProfilePictureUpload}>Upload Picture</button>
+
+                <input
+                    type="text"
+                    placeholder="Add biography..."
+                    value={biography}
+                    onChange={(e) => SetBiography(e.target.value)}
+                />
+                <button onClick={handleBiographyUpload}>Upload Biography</button>
+
+                {picture && <img src={picture} alt="Upload Profile Picture" />}
+                </div>
+            )}
+        </>
     );
 }
