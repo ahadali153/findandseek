@@ -35,7 +35,7 @@ class AccountAddBioPic(BaseModel):
 
 
 class AccountQueries:
-    def get_account(self, username) -> AccountOut:
+    def get_account(self, username) -> AccountOutWithPassword:
         # connect the database
         with pool.connection() as conn:
             # get a cursor (something to run SQL with)
@@ -45,7 +45,8 @@ class AccountQueries:
                     """
                     SELECT id
                         , username
-                        , email                      
+                        , email
+                        , hashed_password
                     FROM accounts
                     WHERE username = %s;
                     """,
@@ -54,10 +55,11 @@ class AccountQueries:
                 record = result.fetchone()
                 if record is None:
                     return None
-                return AccountOut(
+                return AccountOutWithPassword(
                     id=int(record[0]),
                     email=record[1],
-                    username=record[2],               
+                    username=record[2],
+                    hashed_password=record[3]
                 )
 
     def create(

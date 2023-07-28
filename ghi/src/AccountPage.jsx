@@ -107,6 +107,7 @@ const UserAccountPage = () => {
 												src={userData.profile_picture}
 												alt="Profile Picture"
 											/>
+											<h6>{userData.biography || "hi"}</h6>
 										</Card.Title>
 									</Card.Body>
 								</Card>

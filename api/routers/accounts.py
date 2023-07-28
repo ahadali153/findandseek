@@ -72,7 +72,7 @@ async def get_token(
         }
 
 
-@router.put("/accountinfo", response_model=AccountOut | str)
+@router.put("/accountinfo", response_model=str | str)
 async def add_info(
     account: AccountAddBioPic,
     request: Request,
@@ -80,8 +80,10 @@ async def add_info(
     accounts: AccountQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
+    print(account_data)
     username = account_data["username"]
     account_id = account_data["id"]
+    print(username)
 
     print(account_id)
     try:
@@ -91,7 +93,8 @@ async def add_info(
         # Check if the biography field is provided and update it if available
         if account.biography:
             accounts.update_biography(account.biography, account_id)
-        return accounts.get_account(username)
+        # return accounts.get_account(username)
+        return "string"
     except DuplicateAccountError:
         # raise HTTPException(
         #     status_code=status.HTTP_400_BAD_REQUEST,
