@@ -1,6 +1,5 @@
 from pydantic import BaseModel
 from typing import List, Optional, Union
-from datetime import date
 from queries.pool import pool
 
 
@@ -101,9 +100,6 @@ class ActivitiesRepository:
                         [activities.name],
                     )
                     id = result.fetchone()[0]
-                    # Return new data
-                    # old_data = vacation.dict()
-                    # return VacationOut(id=id, **old_data)
                     return self.activities_in_to_out(id, activities)
         except Exception:
             return {"message": "Create did not work"}

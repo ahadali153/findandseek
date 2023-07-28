@@ -86,8 +86,6 @@ class CommentsRepository:
                             comment_id,
                         ],
                     )
-                    # old_data = vacation.dict()
-                    # return VacationOut(id=vacation_id, **old_data)
                     return self.comments_in_to_out(
                         comment_id, comment, account_id
                     )
@@ -118,7 +116,7 @@ class CommentsRepository:
                         self.record_to_comments_out(record)
                         for record in result
                     ]
-        except Exception as e:
+        except Exception:
             return {"message": "Could not get all records"}
 
     def create(

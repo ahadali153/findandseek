@@ -6,7 +6,7 @@ steps = [
         username VARCHAR(100) NOT NULL UNIQUE,
         email VARCHAR(100) NOT NULL UNIQUE,
         hashed_password VARCHAR(300) NOT NULL,
-        profile_image_url VARCHAR(500),
+        profile_picture VARCHAR(300),
         biography TEXT,
         date_joined DATE
         );

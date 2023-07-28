@@ -4,6 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import MapComponent from "./GoogleMap";
 import "./MainPage.css";
 import NavComponent from "./Nav"
+import { getRatingIcon, getPriceIcon, getIntensityIcon } from "./GoogleMap";
 
 export default function MainPage() {
 	const [adventures, setAdventures] = useState([]);
@@ -99,10 +100,9 @@ export default function MainPage() {
 				<MapComponent adventures={adventures} />
 			</div>
 			</Row>
-			<Row>
+			<Row className="card-container">
 			{adventures.map((adventure) => (
 				<Col key={adventure.id} md={3} style={{ marginBottom: "20px" }}>
-				{/* Use the Link component to make the entire card clickable */}
 				<Link to={`/adventures/${adventure.id}`} style={{ textDecoration: "none" }}>
 					<div className="card" style={{ width: "18rem" }}>
 					<img
@@ -117,12 +117,18 @@ export default function MainPage() {
 						}}
 					/>
 					<div className="card-body">
-						<h5 className="card-title">{adventure.title}</h5>
-						<p className="card-text">Activity: {getActivityName(adventure.activity_id)}</p>
-						<p className="card-text">Address: {adventure.address}</p>
-						<p className="card-text">User Rating: {adventure.user_rating}</p>
-						<p className="card-text">Price: {adventure.price}</p>
-						<p className="card-text">Intensity: {adventure.intensity}</p>
+						<h5 className="card-title card-center">{adventure.title}</h5>
+						<p className="card-text card-center">{getActivityName(adventure.activity_id)}</p>
+						<p className="card-text card-center">{adventure.address}</p>
+                        <p className="card-text">
+                            User Rating: <img className="icon" src={getRatingIcon(adventure.user_rating)} alt="Rating" />
+                        </p>
+                        <p className="card-text">
+                            Price: <img className="icon" src={getPriceIcon(adventure.price)} alt="Price" />
+                        </p>
+                        <p className="card-text">
+                            Intensity: <img className="icon" src={getIntensityIcon(adventure.intensity)} alt="Intensity" />
+                        </p>
 					</div>
 					</div>
 				</Link>

@@ -3,39 +3,46 @@ import { NavLink, useNavigate  } from "react-router-dom";
 import { Navbar, Container, NavDropdown, Nav, Col, Row, Modal } from "react-bootstrap";
 import logo from "./find&seek.png";
 import searchIcon from "./searchIcon.png";
-import "./NavComponent.css"; // Import custom CSS file
+import "./NavComponent.css";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import CreateAdventure from "./adventures/AdventureForm";
 
 function NavComponent({fetchFilteredAdventures}) {
 	const [showLoginModal, setShowLoginModal] = useState(false);
 	const [showSignupModal, setShowSignupModal] = useState(false);
-	// Function to handle opening the login modal
+	const [showCreateAdventureModal, setShowCreateAdventureModal] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
+
 	const handleShowLoginModal = () => {
 		setShowLoginModal(true);
 	};
 
-	// Function to handle closing the login modal
 	const handleCloseLoginModal = () => {
 		setShowLoginModal(false);
 	};
 
-	// Function to handle opening the signup modal
 	const handleShowSignupModal = () => {
 		setShowSignupModal(true);
 	};
 
-	// Function to handle closing the signup modal
 	const handleCloseSignupModal = () => {
 		setShowSignupModal(false);
 	};
 
+	const handleShowCreateAdventureModal = () => {
+		setShowCreateAdventureModal(true);
+	};
+
+
+	const handleCloseCreateAdventureModal = () => {
+		setShowCreateAdventureModal(false);
+	};
 
 	const [priceRating, setPriceRating] = useState("");
 	const [intensityRating, setIntensityRating] = useState("");
 	const [activities, setActivities] = useState([]);
 	const [activityValue, setActivityValue] = useState("")
-	// const searchQuery = document.getElementById("searchInput").value.trim();
 
 	const handlePriceRating = (rating) => {
 		setPriceRating(rating);
@@ -44,6 +51,7 @@ function NavComponent({fetchFilteredAdventures}) {
 	const handleIntensityRating = (rating) => {
 		setIntensityRating(rating);
 	};
+
 	const fetchActivities = async () => {
 		try {
 			const response = await fetch("http://localhost:8000/activities");
@@ -65,16 +73,22 @@ function NavComponent({fetchFilteredAdventures}) {
 		console.log(activityValue, intensityRating, priceRating)
     fetchFilteredAdventures(activityValue, intensityRating, priceRating);
  	};
+
+	const handleLogin = () => {
+		setLoggedIn(true);
+		handleCloseLoginModal();
+		localStorage.setItem("loggedIn", "true");
+	};
+
 	const handleLogout = () => {
-		// Perform the delete request when the button is clicked
 		fetch("http://localhost:8000/token", {
 			method: "DELETE",
 		})
 			.then((response) => {
-				// Handle the response from the server (e.g., redirect to login page)
 				if (response.ok) {
-					// Perform any necessary actions, e.g., redirect to login page
-					window.location.href = "/"; // Replace "/login" with your login page URL
+					window.location.href = "/";
+					setLoggedIn(false);
+					localStorage.removeItem("loggedIn");
 				} else {
 					console.log("Failed to logout.");
 				}
@@ -83,6 +97,13 @@ function NavComponent({fetchFilteredAdventures}) {
 				console.error("Error occurred during logout:", error);
 			});
 	};
+
+	useEffect(() => {
+		const storedLoggedInStatus = localStorage.getItem("loggedIn");
+		if (storedLoggedInStatus === "true") {
+		setLoggedIn(true);
+		}
+	}, []);
 
 
 
@@ -98,7 +119,6 @@ function NavComponent({fetchFilteredAdventures}) {
 						<Row className="unit1">
 							<Col md={12}>
 								<Row>
-									{/* Add custom classes for columns */}
 									<Col md={3} className="location-col text-center">
 										<h3 style={{ fontSize: "1em" }}>Location</h3>
 										<input
@@ -153,7 +173,6 @@ function NavComponent({fetchFilteredAdventures}) {
 										</div>
 									</Col>
 									<Col md={3} className="search-col text-center">
-									{/* Replace the input with the search button */}
 									<button className="search-button" onClick={handleSearchClick}>
 									<img src={searchIcon} alt="Search" />
 									</button>
@@ -161,29 +180,42 @@ function NavComponent({fetchFilteredAdventures}) {
 							</Row>
 							</Col>
 						</Row>
-					</Container>
-					<Nav className="ms-auto">
-						<NavDropdown title="Account" id="dropdownMenuButton1">
-							<NavDropdown.Item as={NavLink} to="/account">
-								Account
-							</NavDropdown.Item>
-							<NavDropdown.Item onClick={handleShowLoginModal}>Login</NavDropdown.Item>
-							<NavDropdown.Item onClick={handleShowSignupModal}>Signup</NavDropdown.Item>
-							<button className="dropdown-item" onClick={handleLogout}>
-								Logout
-							</button>
-						</NavDropdown>
-					</Nav>
+						</Container>
+						<Nav className="ms-auto">
+							{loggedIn ? (
+								<>
+								<NavDropdown title="Account" id="dropdownMenuButton1">
+									<NavDropdown.Item as={NavLink} to="/account">
+									Account
+									</NavDropdown.Item>
+									<NavDropdown.Item onClick={handleShowCreateAdventureModal}>
+										Create an Adventure
+									</NavDropdown.Item>
+									<NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+								</NavDropdown>
+								</>
+							) : (
+								<>
+								<Nav.Link onClick={handleShowLoginModal}>Login</Nav.Link>
+								<Nav.Link onClick={handleShowSignupModal}>Signup</Nav.Link>
+								</>
+							)}
+						</Nav>
 				</Navbar.Collapse>
 			</Navbar>
 			<Modal show={showLoginModal} onHide={handleCloseLoginModal} centered>
 				<Modal.Body>
-					<LoginForm />
+				<LoginForm handleLogin={handleLogin} handleCloseLoginModal={handleCloseLoginModal} />
 				</Modal.Body>
 			</Modal>
 			<Modal show={showSignupModal} onHide={handleCloseSignupModal} centered>
 				<Modal.Body>
-				<SignupForm />
+					<SignupForm />
+				</Modal.Body>
+			</Modal>
+			<Modal show={showCreateAdventureModal} onHide={handleCloseCreateAdventureModal} centered>
+				<Modal.Body>
+					<CreateAdventure />
 				</Modal.Body>
 			</Modal>
 		</>

@@ -8,7 +8,6 @@ from fastapi import (
 )
 from jwtdown_fastapi.authentication import Token
 from authenticator import authenticator
-from typing import List
 
 from pydantic import BaseModel
 
@@ -17,6 +16,8 @@ from queries.accounts import (
     AccountOut,
     AccountQueries,
     DuplicateAccountError,
+    AccountUpdate,
+    AccountAllInfo
 )
 
 
@@ -32,6 +33,7 @@ class AccountToken(Token):
 
 class HttpError(BaseModel):
     detail: str
+
 
 
 router = APIRouter()
@@ -58,18 +60,6 @@ async def create_account(
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
 
-
-@router.get("/accounts", response_model=List[AccountOut])
-async def get_accounts(
-    accounts: AccountQueries = Depends(),
-):
-    # Retrieve the list of accounts using the AccountQueries instance
-    account_list = accounts.get_all_accounts()
-
-    # Return the list of accounts as the response
-    return account_list
-
-
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
@@ -81,3 +71,22 @@ async def get_token(
             "type": "Bearer",
             "account": account,
         }
+
+@router.post("/accountinfo", response_model=AccountUpdate | HttpError)
+async def add_info(
+    account: AccountAllInfo,
+    request: Request,
+    response: Response,
+    accounts: AccountQueries = Depends(),
+    account_data: dict = Depends(authenticator.get_current_account_data),
+):
+    account_id = account_data["id"]
+    print(account_id)
+    try:
+        account = accounts.add_info(account, account_id)
+        return account
+    except DuplicateAccountError:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot add biography or profile picture",
+        )

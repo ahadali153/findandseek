@@ -2,7 +2,7 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useState } from "react";
 import "./LoginSignup.css";
 
-const LoginForm = () => {
+const LoginForm = ({ handleLogin }) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const { login } = useToken();
@@ -10,7 +10,13 @@ const LoginForm = () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		console.log({ username }, { password });
-		login(username, password);
+		login(username, password)
+		.then(() => {
+			handleLogin();
+		})
+		.catch((error) => {
+			console.error("Error occurred during login:", error);
+		});
 		e.target.reset();
 	};
 

@@ -1,4 +1,4 @@
-.custom-background {
+body {
 	background: linear-gradient(
 		180deg,
 		rgba(0, 140, 200, 0.37) 0%,
@@ -9,8 +9,4 @@
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
 		monospace;
-}
-
-.h1-background {
-	background-color: rgba(128, 128, 128, 0.4);
 }

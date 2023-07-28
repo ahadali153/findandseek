@@ -1,336 +1,54 @@
-## Project Documentation
+# Find & Seek
 
-Please put any and all documentation for your project in this folder. Other than the documents that are required at the end of week 13, feel free to organize this however your group sees fit.
+- Ahad Ali
+- Jasmine Gilson
+- Artemis Liu
+- Eli Spicer
 
-### Log in
+## Slogans:
 
-- Endpoint path: /token
-- Endpoint method: POST
+Discover. Share. Adventure.
 
-- Request shape (form):
+Embrace the Journey, Share the Thrill.
 
-- username: string
-- password: string
-
-- Response: Account information and a token
-- Response shape (JSON):
-  ```json
-  {
-  	"account": {
-  		"«key»": "type»"
-  	},
-  	"token": "string"
-  }
-  ```
-
-### Log out
-
-- Endpoint path: /token
-- Endpoint method: DELETE
-
-- Headers:
-
-  - Authorization: Bearer token
-
-- Response: Always true
-- Response shape (JSON):
-  ```json
-  true
-  ```
+Embrace the Unknown, Inspire the World.
 
-# GET request for all adventures in the database
+## Design
 
-- Endpoint path: /adventures
-- Endpoint method: GET
-- Query parameters:
+- [Wireframe] (docs/find-and-seek-wireframe.png)
+- [Web-Design] (docs/figma-web-design.png)
+- [APIs] (docs/apis)
+- [Data-Model] (docs/data-model)
+- [GHI] (docs/ghi)
 
-  - «name»: «purpose»
+## Intended market
 
-- Headers:
-
-  - Authorization: Bearer token
-
-- Request shape (JSON):
-
-  ```json
-
-  ```
-
-- Response: A list of all the adventures
-- Response shape (JSON):
-  ```json
-  {
-  	"posts": [
-  		{
-  			"username": "string",
-  			"title": "string",
-  			"description": "string",
-  			"location": "string",
-  			"activity": "string",
-  			"intensity": "string",
-  			"price": "number",
-  			"date_posted": "string",
-  			"comment": "string"
-  		}
-  	]
-  }
-  ```
+We are targeting general consumers in the exploration and adventuring market who are looking for unique and hidden experiences.
+Consumers of social media, travel, and darers who can find a wide variety of adventures and experiences to fill their soul.
 
-## POST a new adventure in the database
+## Functionality
 
-- Endpoint path: /adventures
-- Endpoint method: POST
-- Query parameters:
+- Visitors to the site can search and view posts that other users have made.
+- Users can click interact with the google map and find posts in their area.
+- Users can click on specific posts and view detailed information about the adventure.
+- Users can comment on adventure posts and leave their feedback or opinion.
+- Users can create adventure posts of their own, detailing their own adventures they have been on.
+- Each user has their own account page where there can view all of their own posts, as well as
+  uploading a profile picture and bio.
 
-  - «name»: «purpose»
+## Future
 
-- Headers:
+We hope for the future of this app to become as well renowned as social media apps such as Facebook in regards to gaining a large user database that is always looking for their next adventure, whether it is something extreme as skydiving, to wanting a fun spot to bring friends and family along. We have taken inspiration from AirBnb, Facebook, and TripAdvisor to help the user be involved in their community. We hope to develop a place for travelers to find new destinations to explore as well as share their discoveries with the world.
 
-  - Authorization: Bearer token
+## Project Initialization
 
-- Request shape (JSON):
+To fully enjoy this application on your local machine, please make sure to follow these steps:
 
-  ```json
-  {
-  	"username": "username",
-  	"title": "string",
-  	"description": "string",
-  	"location": "string",
-  	"activity": "string",
-  	"intensity": "string",
-  	"price": "number",
-  	"date_posted": "string",
-  	"comment": "string"
-  }
-  ```
-
-- Response: Newly created resource
-- Response shape (JSON):
-  ```json
-  {
-  	"username": "username",
-  	"title": "string",
-  	"description": "string",
-  	"location": "string",
-  	"activity": "string",
-  	"intensity": "string",
-  	"price": "number",
-  	"date_posted": "string",
-  	"comment": "string"
-  }
-  ```
-
-## GET request for a adventure
-
-- Endpoint path: /adventure/id
-- Endpoint method: GET
-- Query parameters:
-
-  - «name»: «purpose»
-
-- Headers:
-
-  - Authorization: Bearer token
-
-- Request shape (JSON):
-
-  ```json
-
-  ```
-
-- Response: A list of all the adventures
-- Response shape (JSON):
-  ```json
-  {
-  	"username": "string",
-  	"title": "string",
-  	"description": "string",
-  	"location": "string",
-  	"activity": "string",
-  	"intensity": "string",
-  	"price": "number",
-  	"date_posted": "string",
-  	"comment": "string"
-  }
-  ```
-
-# DELETE request for a adventures
-
-- Endpoint path: /adventures/id
-- Endpoint method: DELETE
-- Query parameters:
-
-  - «name»: «purpose»
-
-- Headers:
-
-  - Authorization: Bearer token
-
-- Request shape (JSON):
-
-  ```json
-
-  ```
-
-- Response: An indication of success or failure
-- Response shape (JSON):
-  ```json
-  {
-  	"success": "boolean",
-  	"message": "string"
-  }
-  ```
-
-# UPDATE request for a adventure
-
-- Endpoint path: /adventures/id
-- Endpoint method: UPDATE
-- Query parameters:
-
-  - «name»: «purpose»
-
-- Headers:
-
-  - Authorization: Bearer token
-
-- Request shape (JSON):
-
-  ```json
-  {
-  	"title": "string",
-  	"description": "string",
-  	"location": "string",
-  	"activity": "string",
-  	"intensity": "string",
-  	"price": "number",
-  	"comment": "string"
-  }
-  ```
-
-- Response: An indication of success or failure
-- Response shape (JSON):
-  ```json
-  {
-  	"success": "boolean",
-  	"message": "string"
-  }
-  ```
-
-# GET request for all comments of an adventure
-
-- Endpoint path: /adventure/id/comments
-- Endpoint method: GET
-- Query parameters:
-
-- Headers:
-
-  - Authorization: Bearer token
-
-- Request shape (JSON):
-
-  ```json
-
-  ```
-
-- Response: A list of all the adventures
-- Response shape (JSON):
-  ```json
-  {
-  	"comments": [
-  		{
-  			"content": "string",
-  			"date_commented": "string",
-  			"username": "string"
-  		}
-  	]
-  }
-  ```
-
-## POST a new comment in the database
-
-- Endpoint path: /adventure/id/comments
-- Endpoint method: POST
-- Query parameters:
-
-  - «name»: «purpose»
-
-- Headers:
-
-  - Authorization: Bearer token
-
-- Request shape (JSON):
-
-  ```json
-  {
-  	"content": "string"
-  }
-  ```
-
-- Response: An indication of success or failure
-- Response shape (JSON):
-  ```json
-  {
-  	"success": "boolean",
-  	"message": "string"
-  }
-  ```
-
-# DELETE request for a adventures
-
-- Endpoint path: /adventures/id/comments/id
-- Endpoint method: DELETE
-- Query parameters:
-
-  - «name»: «purpose»
-
-- Headers:
-
-  - Authorization: Bearer token
-
-- Request shape (JSON):
-
-  ```json
-
-  ```
-
-- Response: An indication of success or failure
-- Response shape (JSON):
-  ```json
-  {
-  	"success": "boolean",
-  	"message": "string"
-  }
-  ```
-
-# UPDATE request for a comment
-
-- Endpoint path: /adventures/id/comments/id
-- Endpoint method: UPDATE
-- Query parameters:
-
-  - «name»: «purpose»
-
-- Headers:
-
-  - Authorization: Bearer token
-
-- Request shape (JSON):
-
-  ```json
-  {
-  	"content": "string"
-  }
-  ```
-
-- Response: An indication of success or failure
-- Response shape (JSON):
-  ```json
-  {
-  	"success": "boolean",
-  	"message": "string"
-  }
-  ```
-
-```
-
-```
+1. Clone the repository down to your local machine
+2. CD into the new project directory
+3. Run `docker volume create safari-db`
+4. Run `docker compose build`
+5. Run `docker compose up`
+6. Run `docker exec -it [insert here ex: smelli-belli-inventory-api-1] bash`
+7. Run `python manage.py loaddata products.json`
+8. Exit the container's CLI, and enjoy Find & Seek to its fullest!
