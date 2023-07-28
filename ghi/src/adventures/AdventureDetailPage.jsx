@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import AdventureDetail from "./AdventureDetail";
 import CommentsList from "./CommentsList";
 import CommentForm from "./CommentForm";
+import NavComponent from "../DefaultNav";
+import { Container, Row } from "react-bootstrap";
 
 const AdventureDetailPage = () => {
 	const { adventureid } = useParams();
@@ -29,17 +31,22 @@ const AdventureDetailPage = () => {
 	}, [adventureid]);
 
 	return (
-		<body className="custom-background">
-			{adventure ? (
-				<>
-					<AdventureDetail adventure={adventure} />
-					<CommentsList adventure={adventure} />
-				</>
-			) : (
-				<div>Loading...</div>
-			)}
-			<CommentForm adventureid={adventureid} />
-		</body>
+		<>
+			<Row>
+				<NavComponent />
+			</Row>
+			<body className="custom-background">
+				{adventure ? (
+					<>
+						<AdventureDetail adventure={adventure} />
+						<CommentsList adventure={adventure} />
+					</>
+				) : (
+					<div>Loading...</div>
+				)}
+				<CommentForm adventureid={adventureid} />
+			</body>
+		</>
 	);
 };
 

@@ -43,7 +43,11 @@ input[type="text"] {
 .logo-col {
   display: flex;
   align-items: center;
-  padding: 0 10px;
+}
+
+.logo-col img {
+  max-width: 120px;
+  margin-right: 50px;
 }
 
 .search-account-col {
@@ -96,10 +100,14 @@ input[type="text"] {
 }
 
 .logo {
-  max-width: 120px;
+  max-width: 180px;
 }
 
 .search-button img {
   width: 50px;
   fill: rgb(14, 220, 14);
+}
+
+.right {
+  margin-left: 70px !important;
 }

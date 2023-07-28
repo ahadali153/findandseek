@@ -30,7 +30,7 @@ class AccountUpdate(BaseModel):
     biography: str
 
 
-class AccountAllInfo(AccountOut):
+class AccountAllInfo(BaseModel):
     profile_picture: str
     biography: str
 
