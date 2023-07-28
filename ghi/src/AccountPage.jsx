@@ -19,7 +19,6 @@ const UserAccountPage = () => {
             const response = await axios.get('http://localhost:8000/token', {
                 withCredentials: true,
             });
-            console.log(response.data.account);
             setUserData(response.data.account);
         } catch (error) {
         console.error('Error fetching user data:', error);
