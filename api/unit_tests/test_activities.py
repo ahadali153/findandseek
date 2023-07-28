@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from queries.activities import ActivitiesRepository
 from main import app
-.
+
 
 client = TestClient(app)
 
