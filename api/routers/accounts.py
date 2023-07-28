@@ -17,7 +17,8 @@ from queries.accounts import (
     AccountQueries,
     DuplicateAccountError,
     AccountUpdate,
-    AccountAddBioPic
+    AccountAddBioPic,
+    UserInfo,
 )
 
 
@@ -72,7 +73,7 @@ async def get_token(
         }
 
 
-@router.put("/accountinfo", response_model=str | str)
+@router.put("/accountinfo", response_model=str | HttpError)
 async def add_info(
     account: AccountAddBioPic,
     request: Request,
@@ -94,7 +95,7 @@ async def add_info(
         if account.biography:
             accounts.update_biography(account.biography, account_id)
         # return accounts.get_account(username)
-        return "string"
+        return "successful"
     except DuplicateAccountError:
         # raise HTTPException(
         #     status_code=status.HTTP_400_BAD_REQUEST,
@@ -103,3 +104,15 @@ async def add_info(
         return "Cannot add biography or profile picture"
     except Exception as e:
         return str(e)
+
+
+@router.get("/userinfo", response_model=UserInfo)
+def get_user_info(
+    request: Request,
+    account: AccountQueries = Depends(),    
+    account_data: dict = Depends(authenticator.get_current_account_data),
+) -> UserInfo:
+    account_info = account.get_info(account_data["id"])
+    
+    return account_info
+    

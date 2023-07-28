@@ -8,7 +8,7 @@ AWS.config.update({
 	signatureVersion: "v4",
 	maxRetries: 3,
 });
-export default function UploadBioPic() {
+export default function UploadBioPic({updateUrl}) {
 	const [selectedImage, setSelectedImage] = useState(null);
 	const [picture, setPicture] = useState(null);
 	const { uploadImage } = useImageUploader();

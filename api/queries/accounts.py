@@ -34,6 +34,12 @@ class AccountAddBioPic(BaseModel):
     biography: Optional[str] = None
 
 
+class UserInfo(BaseModel):
+    email: str
+    biography: str
+    profile_picture: str
+
+
 class AccountQueries:
     def get_account(self, username) -> AccountOutWithPassword:
         # connect the database
@@ -136,3 +142,33 @@ class AccountQueries:
                     [biography, account_id],
                 )
                 conn.commit()
+
+    def get_info(self, account_id: int) -> UserInfo:
+        try:
+            # connect the database
+            with pool.connection() as conn:
+                # get a cursor (something to run SQL with)
+                with conn.cursor() as db:
+                    # Run our SELECT statement
+                    result = db.execute(
+                        """
+                        SELECT email
+                            , profile_picture
+                            , biography
+                        FROM accounts
+                        WHERE id = %s
+                        """,
+                        [account_id],
+                    )
+                    record = result.fetchone()
+                    if record is None:
+                        return None
+                    return UserInfo(
+                        email=record[0],
+                        profile_picture=record[1],
+                        biography=record[2]
+                    )
+        except Exception as e:
+            print(e)
+            return {"message": "Could not get that activity"}
+

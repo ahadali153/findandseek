@@ -10,13 +10,13 @@ const UserAccountPage = () => {
 	const [userData, setUserData] = useState(null);
 	const [userAdventures, setUserAdventures] = useState([]);
 	const [activityMap, setActivityMap] = useState({});
-
+    console.log(userData)
 	const fetchUserData = async () => {
 		try {
-			const response = await axios.get("http://localhost:8000/token", {
+			const response = await axios.get("http://localhost:8000/userinfo", {
 				withCredentials: true,
 			});
-			setUserData(response.data.account);
+			setUserData(response.data);
 		} catch (error) {
 			console.error("Error fetching user data:", error);
 		}
@@ -50,6 +50,8 @@ const UserAccountPage = () => {
 			return [];
 		}
 	};
+
+    
 
 	// Helper function to fetch activity name based on activity ID
 	const getActivityName = (activityId) => {
@@ -121,7 +123,7 @@ const UserAccountPage = () => {
 											Upload Profile Picture
 										</Card.Title>
 										<div className="text-center">
-											<UploadBioPic />
+											<UploadBioPic updateUrl={} />
 										</div>
 									</Card.Body>
 								</Card>
