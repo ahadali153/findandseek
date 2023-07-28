@@ -14,10 +14,9 @@ class AccountIn(BaseModel):
 
 
 class AccountOut(BaseModel):
-    id: str
+    id: int
     email: str
     username: str
-    hashed_password: str
 
 
 class AccountOutWithPassword(AccountOut):
@@ -46,8 +45,7 @@ class AccountQueries:
                     """
                     SELECT id
                         , username
-                        , email
-                        , hashed_password
+                        , email                      
                     FROM accounts
                     WHERE username = %s;
                     """,
@@ -57,10 +55,9 @@ class AccountQueries:
                 if record is None:
                     return None
                 return AccountOut(
-                    id=record[0],
+                    id=int(record[0]),
                     email=record[1],
-                    username=record[2],
-                    hashed_password=record[3],
+                    username=record[2],               
                 )
 
     def create(

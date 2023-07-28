@@ -71,7 +71,8 @@ async def get_token(
             "account": account,
         }
 
-@router.post("/accountinfo", response_model=AccountUpdate | HttpError)
+
+@router.put("/accountinfo", response_model=AccountOut | str)
 async def add_info(
     account: AccountAddBioPic,
     request: Request,
@@ -79,7 +80,9 @@ async def add_info(
     accounts: AccountQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
+    username = account_data["username"]
     account_id = account_data["id"]
+
     print(account_id)
     try:
         # Check if the profile_picture field is provided and update it if available
@@ -88,9 +91,12 @@ async def add_info(
         # Check if the biography field is provided and update it if available
         if account.biography:
             accounts.update_biography(account.biography, account_id)
-        return accounts.get_account(account_id)
+        return accounts.get_account(username)
     except DuplicateAccountError:
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Cannot add biography or profile picture",
-        )
+        # raise HTTPException(
+        #     status_code=status.HTTP_400_BAD_REQUEST,
+        #     detail="Cannot add biography or profile picture",
+        # )
+        return "Cannot add biography or profile picture"
+    except Exception as e:
+        return str(e)
