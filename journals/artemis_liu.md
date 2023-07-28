@@ -36,6 +36,8 @@ Discussion on who are going to be working on what in our group. Eli will be work
 
 ## June 29th, 2023
 
+Started working on the backend functionality with our group
+
 ## June 30th, 2023
 
 Creating the functionality of our backend in our accounts files within queries/routers directory and stumbled upon a few issues with the hash_password and missing data fields on specific classes within our get method.
@@ -96,3 +98,7 @@ Worked on front end on account page to have user's be able to see their account 
 ## July 26th, 2023
 
 Continued working on the account page as i had some trouble debugging and figuring out why my image wasnt rendering when a data was updated when loading the image on the aws s3 bucket for amazon api.
+
+
+## July 27th, 2023
+Worked on getting the image and bio to render once a change has been made
