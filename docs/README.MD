@@ -15,11 +15,11 @@ Embrace the Unknown, Inspire the World.
 
 ## Design
 
-- [Wireframe] (docs/find-and-seek-wireframe.png)
-- [Web-Design] (docs/figma-web-design.png)
-- [APIs] (docs/apis)
-- [Data-Model] (docs/data-model)
-- [GHI] (docs/ghi)
+- [Wireframe](./find-and-seek-wireframe.png)
+- [Web-Design](./figma-web-design.png)
+- [APIs](./apis)
+- [Data-Model](./data-model)
+- [GHI](./ghi)
 
 ## Intended market
 
@@ -46,9 +46,9 @@ To fully enjoy this application on your local machine, please make sure to follo
 
 1. Clone the repository down to your local machine
 2. CD into the new project directory
-3. Run `docker volume create safari-db`
+3. Run `docker volume create postgres-data`
 4. Run `docker compose build`
 5. Run `docker compose up`
-6. Run `docker exec -it [insert here ex: smelli-belli-inventory-api-1] bash`
-7. Run `python manage.py loaddata products.json`
-8. Exit the container's CLI, and enjoy Find & Seek to its fullest!
+6. Head to docker and go into the postgres-data container
+7. Follow the steps inside [Activities List](./activities_list.md) to access all of the activity options
+8. Exit the container's interface, load up localhost:3000, and enjoy!!
