@@ -22,6 +22,8 @@ fastapi-unit-tests-job:
     - cd api
     - pip install -r requirements.txt
     - python -m pytest
+    - EXPORT DATABASE_URL='postgresql://safari:safari@postgres/safari_db'
+    - export SIGNING_KEY='JPd7fGaWMK7FoZG9fpKrzFB8BubS8KpP2yd10SFf++k='
 
 # Build API Image:
 build-fastapi-image:
