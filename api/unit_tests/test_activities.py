@@ -1,8 +1,7 @@
 from fastapi.testclient import TestClient
 from queries.activities import ActivitiesRepository
 from main import app
-export SIGNING_KEY=JPd7fGaWMK7FoZG9fpKrzFB8BubS8KpP2yd10SFf++k=
-
+.
 
 client = TestClient(app)
 
