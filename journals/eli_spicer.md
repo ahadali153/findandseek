@@ -260,3 +260,25 @@ well put-together and neat it makes everything look!
 ## July 27th, 2023
 
 Today, I worked on:
+
+Unit tests, navbar, readme file, cleaning up code.
+
+I worked on getting one more unit tests done, adding the functionality
+for logged-in/logged-out users in the navbar, adding the readme files
+as well as working on them, and cleaned up unneeded pseudo-code.
+
+Today I realized how important patience is when handling issues and also
+how much can get done when you time manage appropriately.
+
+## July 28th, 2023
+
+Today, I worked on:
+
+Documentation and CSS
+
+I worked on getting the documentation ready for submission as well as
+fixing various CSS for the Nav Bar and Account Page.
+
+Today I realized how far we have come, not just our app, but our team
+as well. From concept to development, we have done a lot and I am proud
+of us!

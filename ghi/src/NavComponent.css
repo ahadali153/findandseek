@@ -1,11 +1,9 @@
-/* Custom styles for columns */
 .location-col,
 .activities-col,
 .intensity-col {
   border-right: 1px solid #ccc;
 }
 
-/* Custom styles for input fields */
 input[type="text"] {
   background: transparent;
   border: none;
@@ -16,18 +14,18 @@ input[type="text"] {
 }
 
 .dollar-signs {
-  font-size: 30px; /* Adjust the font size as needed */
+  font-size: 30px;
 }
 
 .dollar,
 .intensity {
   cursor: pointer;
-  font-size: 18px; /* Adjust the font size as needed */
+  font-size: 18px;
 }
 
 .dollar.active,
 .dollar:hover {
-  color: rgb(14, 220, 14); /* Set the active dollar sign color */
+  color: rgb(14, 220, 14);
 }
 
 .intensity-ratings {
@@ -38,61 +36,59 @@ input[type="text"] {
 
 .intensity.active,
 .intensity:hover {
-  color: rgb(14, 220, 14); /* Set the active intensity rating color */
+  color: rgb(14, 220, 14);
 }
 
-/* Add custom styles for the logo and account dropdown */
+
 .logo-col {
   display: flex;
   align-items: center;
-  padding: 0 10px; /* Add horizontal padding */
+}
+
+.logo-col img {
+  max-width: 120px;
+  margin-right: 50px;
 }
 
 .search-account-col {
   display: flex;
   align-items: center;
-  padding: 0 10px; /* Add horizontal padding */
+  padding: 0 10px;
 }
 
-/* Add space between the logo and account dropdown on large screens */
 @media (min-width: 768px) {
   .logo-col {
-    padding-right: 20px; /* Add right padding to the logo */
+    padding-right: 20px;
   }
 
   .search-account-col {
-    padding-left: 20px; /* Add left padding to the account dropdown */
+    padding-left: 20px;
   }
 }
 
-/* Adjust the layout on small screens */
 @media (max-width: 767px) {
   .logo-col,
   .search-account-col {
-    padding: 10px 5px; /* Add vertical padding on small screens */
+    padding: 10px 5px;
   }
 
-  /* Center the search button on small screens */
   .search-account-col .navbar-collapse {
     margin: 10px 0;
   }
 
-  /* Move the account dropdown to the bottom on small screens */
   .search-account-col .navbar-nav {
     flex-direction: column;
   }
 
-  /* Adjust the logo size on small screens */
   .logo {
     max-width: 120px;
   }
 }
 
-/* Add custom styles for the search button */
 .search-col {
   display: flex;
   align-items: center;
-  padding: 0 10px; /* Add horizontal padding */
+  padding: 0 10px;
 }
 
 .search-button {
@@ -103,13 +99,15 @@ input[type="text"] {
   padding: 5px;
 }
 
-/* Adjust the logo size on small screens */
 .logo {
-  max-width: 120px;
+  max-width: 180px;
 }
 
-/* Custom styles for the green search icon */
 .search-button img {
-  width: 50px; /* Set the width of the search icon */
-  fill: rgb(14, 220, 14); /* Set the green color for the search icon */
+  width: 50px;
+  fill: rgb(14, 220, 14);
+}
+
+.right {
+  margin-left: 70px !important;
 }

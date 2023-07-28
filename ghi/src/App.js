@@ -11,7 +11,6 @@ import AdventureDetail from "./adventures/AdventureDetail";
 import CommentForm from "./adventures/CommentForm";
 import AdventureDetailPage from "./adventures/AdventureDetailPage";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavComponent from "./Nav";
 
 function App() {
 	const domain = /https:\/\/[^/]+/;

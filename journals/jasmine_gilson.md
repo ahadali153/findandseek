@@ -75,8 +75,11 @@ Today we worked on trying to get the CI/CD pipeline to work. We struggled with g
 ## July 27, 2023
 
 Today we continued with CI/CD deployment and made some progress but it was proven to be very challenging for us. We decided to hold off on deployment and revisiting this after we focus on other aspects of our project. Ahad and Artemis worked on fixing the account page while Eli worked on some more CSS today as well as collaborating with me on getting another unit test to run. We also worked together to get some documentation written and cleaned up any unnecessary code.
+<<<<<<< HEAD
 
 
 ## July 28, 2023
 
 Today we continued with CI/CD deployment but we were still having some issues. I finished up some more Nav bar CSS and fixed the logo. We just have to fix the account page uploading images and fixing the biography and we will be set. We made some stretch goals for CSS and more features.
+=======
+>>>>>>> b01fdde53637644bbf19a8aec5975806bb081ecb

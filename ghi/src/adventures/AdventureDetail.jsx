@@ -7,6 +7,34 @@ import "./AdventureDetail.css";
 const AdventureDetail = () => {
   const [adventure, setAdventure] = useState(null);
   const { adventureid } = useParams();
+  const [activityMap, setActivityMap] = useState({});
+
+  const fetchAllActivities = async () => {
+		try {
+		const response = await fetch("http://localhost:8000/activities");
+		const data = await response.json();
+		return data;
+		} catch (error) {
+		console.log("Error fetching activities:", error);
+		return [];
+		}
+	};
+
+	// Helper function to fetch activity name based on activity ID
+	const getActivityName = (activityId) => {
+		return activityMap[activityId] || "Unknown Activity";
+	};
+
+	useEffect(() => {
+		// Fetch all activities and map them to their IDs
+		fetchAllActivities().then((activities) => {
+		const mappedActivities = activities.reduce((acc, activity) => {
+			acc[activity.id] = activity.name;
+			return acc;
+		}, {});
+		setActivityMap(mappedActivities);
+		});
+	}, []);
 
   useEffect(() => {
     const fetchAdventureDetails = async () => {
@@ -63,7 +91,7 @@ const AdventureDetail = () => {
             <Card.Body>
               <Card.Title className="text-center">Activity</Card.Title>
               <Card.Text className="text-center">
-                {adventure.activity_id}
+                {getActivityName(adventure.activity_id)}
               </Card.Text>
             </Card.Body>
           </Card>
