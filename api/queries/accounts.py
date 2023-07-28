@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from typing import List, Optional
+from typing import List
 
 
 class DuplicateAccountError(ValueError):

@@ -35,7 +35,6 @@ class HttpError(BaseModel):
     detail: str
 
 
-
 router = APIRouter()
 
 
@@ -60,6 +59,7 @@ async def create_account(
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
 
+
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
@@ -71,6 +71,7 @@ async def get_token(
             "type": "Bearer",
             "account": account,
         }
+
 
 @router.post("/accountinfo", response_model=AccountUpdate | HttpError)
 async def add_info(
