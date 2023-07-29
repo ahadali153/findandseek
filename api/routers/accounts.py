@@ -16,7 +16,6 @@ from queries.accounts import (
     AccountOut,
     AccountQueries,
     DuplicateAccountError,
-    AccountUpdate,
     AccountAddBioPic,
     UserInfo,
 )
@@ -60,6 +59,7 @@ async def create_account(
     token = await authenticator.login(response, request, form, accounts)
     return AccountToken(account=account, **token.dict())
 
+
 @router.get("/token", response_model=AccountToken | None)
 async def get_token(
     request: Request,
@@ -81,7 +81,7 @@ async def add_info(
     accounts: AccountQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    username = account_data["username"]
+
     account_id = account_data["id"]
     try:
         # Check if the prof_pic field is provided and update it if available

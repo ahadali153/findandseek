@@ -49,17 +49,17 @@ def test_create_activity():
 
 
 def test_delete_activity():
-    ## Arrange
+    # Arrange
     app.dependency_overrides[ActivitiesRepository] = TestActivitiesRepository
     json = {"name": "swimming"}
     expected = True
     activity_id = 10
-    ## ACT
+    # ACT
     client.post("/activities", json=json)
 
     delete_response = client.delete(f"/activities/{activity_id}")
 
-    ## Cleanup
+    # Cleanup
     app.dependency_overrides = {}
 
     assert delete_response.status_code == 200
