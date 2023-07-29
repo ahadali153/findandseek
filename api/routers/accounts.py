@@ -84,9 +84,9 @@ async def add_info(
     username = account_data["username"]
     account_id = account_data["id"]
     try:
-        # Check if the profile_picture field is provided and update it if available
-        if account.profile_picture:
-            accounts.update_profile_picture(account.profile_picture, account_id)
+        # Check if the prof_pic field is provided and update it if available
+        if account.prof_pic:
+            accounts.update_prof_pic(account.prof_pic, account_id)
         # Check if the biography field is provided and update it if available
         if account.biography:
             accounts.update_biography(account.biography, account_id)

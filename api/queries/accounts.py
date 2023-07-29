@@ -25,19 +25,19 @@ class AccountOutWithPassword(AccountOut):
 
 class AccountUpdate(BaseModel):
     account_id: int
-    profile_picture: str
+    prof_pic: str
     biography: str
 
 
 class AccountAddBioPic(BaseModel):
-    profile_picture: Optional[str] = None
+    prof_pic: Optional[str] = None
     biography: Optional[str] = None
 
 
 class UserInfo(BaseModel):
     email: str
     biography: str
-    profile_picture: str
+    prof_pic: str
 
 
 class AccountQueries:
@@ -117,19 +117,19 @@ class AccountQueries:
                 ]
         return account_list
 
-    def update_profile_picture(self, profile_picture: str, account_id: int) -> None:
+    def update_prof_pic(self, prof_pic: str, account_id: int) -> None:
         with pool.connection() as conn:
             with conn.cursor() as db:
                 db.execute(
                     """
                     UPDATE accounts
-                    SET profile_picture = %s
+                    SET prof_pic = %s
                     WHERE id = %s;
                     """,
-                    [profile_picture, account_id],
+                    [prof_pic, account_id],
                 )
                 conn.commit()
-                return profile_picture
+                return prof_pic
 
     def update_biography(self, biography: str, account_id: int) -> None:
         with pool.connection() as conn:
@@ -154,7 +154,7 @@ class AccountQueries:
                     result = db.execute(
                         """
                         SELECT email
-                            , profile_picture
+                            , prof_pic
                             , biography
                         FROM accounts
                         WHERE id = %s
@@ -166,7 +166,7 @@ class AccountQueries:
                         return None
                     return UserInfo(
                         email=record[0],
-                        profile_picture=record[1],
+                        prof_pic=record[1],
                         biography=record[2]
                     )
         except Exception as e:

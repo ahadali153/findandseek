@@ -103,7 +103,7 @@
 ```json
 {
   "biography": "string",
-  "profile_picture": "string"
+  "prof_pic": "string"
 }
 ```
 
@@ -117,7 +117,7 @@
   "email": "string",
   "username": "string",
   "biography": "string",
-  "profile_picture": "string"
+  "prof_pic": "string"
 }
 ```
 
