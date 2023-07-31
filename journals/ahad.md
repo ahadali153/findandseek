@@ -113,3 +113,7 @@ Today, I worked on biography and profile picture upload. I created the profile p
 ## July 28th, 2023:
 
 Today, I reviewed the main branch code and removed unnecessary print and log statements for code cleanliness. I also got profile pic and biography upload to work.
+
+## July 31st, 2023:
+
+Today, I worked on fixing up the background gradient to better match the theme of our app. I also fixed up backend errors that were being caused by inconsistent variable names.

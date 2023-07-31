@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from queries.pool import pool
-from typing import List, Optional
+from typing import Optional
 
 
 class DuplicateAccountError(ValueError):
@@ -21,12 +21,6 @@ class AccountOut(BaseModel):
 
 class AccountOutWithPassword(AccountOut):
     hashed_password: str
-
-
-class AccountUpdate(BaseModel):
-    account_id: int
-    prof_pic: str
-    biography: str
 
 
 class AccountAddBioPic(BaseModel):
