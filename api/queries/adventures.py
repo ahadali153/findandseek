@@ -80,7 +80,6 @@ class AdventureRepository:
                         [adventure_id],
                     )
                     record = result.fetchone()
-                    print(record)
                     if record is None:
                         return None
                     return self.record_to_adventure_out(record)
@@ -209,13 +208,12 @@ class AdventureRepository:
                         """,
                         [account_id],
                     )
-                    print("result:", result)
                     return [
                         self.record_to_adventure_out(record)
                         for record in result
                     ]
         except Exception as e:
-            print("e:", e)
+            print(e)
             return {"message": "Could not get all adventures for account"}
 
     def create(

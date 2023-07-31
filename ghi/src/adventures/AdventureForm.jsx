@@ -62,8 +62,6 @@ export default function CreateAdventure() {
 					image_url: uploadedImageUrl,
 				};
 
-				console.log("Data to be sent:", data);
-
 				try {
 					const adventuresURL = "http://localhost:8000/adventures/";
 					const fetchConfig = {
@@ -78,7 +76,6 @@ export default function CreateAdventure() {
 					const response = await fetch(adventuresURL, fetchConfig);
 					if (response.ok) {
 						const createdAdventure = await response.json();
-						console.log("Created Adventure:", createdAdventure);
 						setFormData({
 							title: "",
 							description: "",

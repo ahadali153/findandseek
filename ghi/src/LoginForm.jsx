@@ -9,7 +9,6 @@ const LoginForm = ({ handleLogin }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log({ username }, { password });
 		login(username, password)
 			.then(() => {
 				handleLogin();

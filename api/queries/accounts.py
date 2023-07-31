@@ -35,9 +35,9 @@ class AccountAddBioPic(BaseModel):
 
 
 class UserInfo(BaseModel):
-    email: str
-    biography: str
-    prof_pic: str
+    username: str
+    biography: Optional[str] = None
+    prof_pic: Optional[str] = None
 
 
 class AccountQueries:
@@ -92,31 +92,6 @@ class AccountQueries:
                     username=account.username,
                 )
 
-    def get_all_accounts(self) -> List[AccountOut]:
-        # connect to the database.
-        with pool.connection() as conn:
-            # get a cursor (something to run SQL with)
-            with conn.cursor() as db:
-                # Run the SELECT statement to fetch all accounts
-                db.execute(
-                    """
-                    SELECT id, username, email
-                    FROM accounts;
-                    """
-                )
-                records = db.fetchall()
-
-                # Create a list of AccountOut objects from the fetched records
-                account_list = [
-                    AccountOut(
-                        id=record[0],
-                        email=record[1],
-                        username=record[2],
-                    )
-                    for record in records
-                ]
-        return account_list
-
     def update_prof_pic(self, prof_pic: str, account_id: int) -> None:
         with pool.connection() as conn:
             with conn.cursor() as db:
@@ -153,7 +128,7 @@ class AccountQueries:
                     # Run our SELECT statement
                     result = db.execute(
                         """
-                        SELECT email
+                        SELECT username
                             , prof_pic
                             , biography
                         FROM accounts
@@ -165,10 +140,10 @@ class AccountQueries:
                     if record is None:
                         return None
                     return UserInfo(
-                        email=record[0],
+                        username=record[0],
                         prof_pic=record[1],
                         biography=record[2]
                     )
         except Exception as e:
             print(e)
-            return {"message": "Could not get that activity"}
+            return {"message": "Could not get account information"}

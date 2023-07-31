@@ -3,23 +3,33 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
 
-const SignupForm = () => {
+const SignupForm = ({ handleLogin }) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
+	const [reenterPassword, setReenterPassword] = useState("");
 	const { register } = useToken();
 	const navigate = useNavigate();
 
-	const handleRegistration = (e) => {
+	const handleRegistration = async (e) => {
 		e.preventDefault();
+		if (password !== reenterPassword) {
+			alert("Password and Re-entered Password must match!");
+			return;
+		}
 		const accountData = {
 			username: username,
 			password: password,
 			email: email,
 		};
-		register(accountData, `${process.env.REACT_APP_API_HOST}/accounts`);
-		e.target.reset();
-		navigate("/");
+		try {
+			await register(accountData, `${process.env.REACT_APP_API_HOST}/accounts`);
+			e.target.reset();
+			handleLogin();
+			// navigate("/");
+		} catch (error) {
+			console.error("Error during registration:", error);
+		}
 	};
 
 	return (
@@ -57,6 +67,17 @@ const SignupForm = () => {
 							className="form-control"
 							onChange={(e) => {
 								setPassword(e.target.value);
+							}}
+						/>
+					</div>
+					<div className="mb-3">
+						<label className="form-label">Re-enter Password:</label>
+						<input
+							name="reenterPassword"
+							type="password"
+							className="form-control"
+							onChange={(e) => {
+								setReenterPassword(e.target.value);
 							}}
 						/>
 					</div>

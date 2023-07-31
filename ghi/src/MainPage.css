@@ -1,24 +1,25 @@
 .google-map {
-    margin-top: 60px !important;
-    margin-bottom: 40px !important;
+	margin-top: 60px !important;
+	margin-bottom: 40px !important;
 }
 
 .card {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
-    transition: transform 0.3s ease-in-out;
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
+	transition: transform 0.3s ease-in-out;
+	background-color: white !important;
 }
 
 .card:hover {
-  transform: translate(0, -2px);
-  transition: transform 0.2s;
+	transform: translate(0, -10px);
+	transition: transform 0.2s;
 }
 
 .card-body {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .card-center {
-    align-items: center !important;
-    text-align: center !important;
+	align-items: center !important;
+	text-align: center !important;
 }

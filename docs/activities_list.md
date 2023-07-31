@@ -3,19 +3,20 @@
 # step 1: go to postgres terminal and type this: psql -h localhost -U safari safari_db
 
 # step 2:
+
 -- Insert activities 1-10
 INSERT INTO activities (name)
 VALUES
 ('Skydiving'),
 ('Bowling'),
-('Soccer'),
 ('Running'),
 ('Swimming'),
 ('Cycling'),
 ('Hiking'),
 ('Basketball'),
 ('Tennis'),
-('Golf');
+('Golf'),
+('Soccer'),;
 
 -- Insert activities 11-20
 INSERT INTO activities (name)
