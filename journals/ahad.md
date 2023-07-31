@@ -105,3 +105,11 @@ Today I got the account page to render adventures pertaining that individual acc
 ## July 26th, 2023:
 
 Today I worked with Jasmine on continuous integration and continuous deployment.
+
+## July 27th, 2023:
+
+Today, I worked on biography and profile picture upload. I created the profile page layout for profile picture and biography upload options and created UseEffect to rerender the page upon uploading bio and pic.
+
+## July 28th, 2023:
+
+Today, I reviewed the main branch code and removed unnecessary print and log statements for code cleanliness. I also got profile pic and biography upload to work.
