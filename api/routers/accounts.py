@@ -16,7 +16,6 @@ from queries.accounts import (
     AccountOut,
     AccountQueries,
     DuplicateAccountError,
-    AccountUpdate,
     AccountAddBioPic,
     UserInfo,
 )
