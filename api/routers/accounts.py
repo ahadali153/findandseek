@@ -81,22 +81,15 @@ async def add_info(
     accounts: AccountQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-
     account_id = account_data["id"]
     try:
-        # Check if the prof_pic field is provided and update it if available
+
         if account.prof_pic:
             accounts.update_prof_pic(account.prof_pic, account_id)
-        # Check if the biography field is provided and update it if available
         if account.biography:
             accounts.update_biography(account.biography, account_id)
-        # return accounts.get_account(username)
-        return "successful"
+
     except DuplicateAccountError:
-        # raise HTTPException(
-        #     status_code=status.HTTP_400_BAD_REQUEST,
-        #     detail="Cannot add biography or profile picture",
-        # )
         return "Cannot add biography or profile picture"
     except Exception as e:
         return str(e)
@@ -109,5 +102,6 @@ def get_user_info(
     account_data: dict = Depends(authenticator.get_current_account_data),
 ) -> UserInfo:
     account_info = account.get_info(account_data["id"])
+    print(account_info)
 
     return account_info
