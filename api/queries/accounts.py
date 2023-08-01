@@ -29,6 +29,7 @@ class AccountAddBioPic(BaseModel):
 
 
 class UserInfo(BaseModel):
+    id: int
     username: str
     biography: Optional[str] = None
     prof_pic: Optional[str] = None
@@ -136,7 +137,8 @@ class AccountQueries:
                     return UserInfo(
                         username=record[0],
                         prof_pic=record[1],
-                        biography=record[2]
+                        biography=record[2],
+                        id=account_id
                     )
         except Exception as e:
             print(e)

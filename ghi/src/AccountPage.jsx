@@ -28,6 +28,7 @@ const UserAccountPage = () => {
 				withCredentials: true,
 			});
 			// Filter the adventures based on userData.id
+			console.log(response);
 			const filteredAdventures = response.data.filter(
 				(item) => item.account_id == userData.id
 			);
@@ -71,6 +72,7 @@ const UserAccountPage = () => {
 
 	useEffect(() => {
 		if (userData) {
+			console.log(userData);
 			fetchUserAdventures();
 		}
 	}, [userData]);
