@@ -85,6 +85,12 @@ function NavComponent({ fetchFilteredAdventures }) {
 		localStorage.setItem("loggedIn", "true");
 	};
 
+	const handleSignup = () => {
+		setLoggedIn(true);
+		handleCloseSignupModal();
+		localStorage.setItem("loggedIn", "true");
+	};
+
 	const handleLogout = () => {
 		fetch("http://localhost:8000/token", {
 			method: "DELETE",
@@ -203,15 +209,12 @@ function NavComponent({ fetchFilteredAdventures }) {
 			</Navbar>
 			<Modal show={showLoginModal} onHide={handleCloseLoginModal} centered>
 				<Modal.Body>
-					<LoginForm
-						handleLogin={handleLogin}
-						handleCloseLoginModal={handleCloseLoginModal}
-					/>
+					<LoginForm handleLogin={handleLogin} />
 				</Modal.Body>
 			</Modal>
 			<Modal show={showSignupModal} onHide={handleCloseSignupModal} centered>
 				<Modal.Body>
-					<SignupForm handleCloseSignupModal={handleLogin} />
+					<SignupForm handleSignup={handleSignup} />
 				</Modal.Body>
 			</Modal>
 			<Modal

@@ -19,7 +19,7 @@ export default function MainPage() {
 			const shuffledData = shuffleArray(data);
 
 			// Slice the first 10 items
-			const randomAdventures = shuffledData.slice(0, 10);
+			const randomAdventures = shuffledData.slice(0, 12);
 
 			setAdventures(randomAdventures);
 		} catch (error) {

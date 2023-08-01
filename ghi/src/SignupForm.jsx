@@ -3,13 +3,26 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import { useNavigate } from "react-router-dom";
 import "./LoginSignup.css";
 
-const SignupForm = ({ handleLogin }) => {
+const SignupForm = ({ handleSignup }) => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [email, setEmail] = useState("");
 	const [reenterPassword, setReenterPassword] = useState("");
 	const { register } = useToken();
 	const navigate = useNavigate();
+	const { login } = useToken();
+
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	login(username, password)
+	// 		.then(() => {
+	// 			handleLogin();
+	// 		})
+	// 		.catch((error) => {
+	// 			console.error("Error occurred during login:", error);
+	// 		});
+	// 	e.target.reset();
+	// };
 
 	const handleRegistration = async (e) => {
 		e.preventDefault();
@@ -24,8 +37,10 @@ const SignupForm = ({ handleLogin }) => {
 		};
 		try {
 			await register(accountData, `${process.env.REACT_APP_API_HOST}/accounts`);
+			login(username, password).then(() => {
+				handleSignup();
+			});
 			e.target.reset();
-			handleLogin();
 			// navigate("/");
 		} catch (error) {
 			console.error("Error during registration:", error);

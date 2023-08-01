@@ -3,6 +3,12 @@
 	margin-bottom: 40px !important;
 }
 
+/* .card {
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
+	transition: transform 0.3s ease-in-out;
+	background-color: white !important;
+} */
+
 .card {
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
 	transition: transform 0.3s ease-in-out;
