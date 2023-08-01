@@ -5,6 +5,7 @@ import MapComponent from "./GoogleMap";
 import "./MainPage.css";
 import NavComponent from "./SearchNav";
 import { getRatingIcon, getPriceIcon, getIntensityIcon } from "./GoogleMap";
+import refresh from "./refreshadventures.png";
 
 export default function MainPage() {
 	const [adventures, setAdventures] = useState([]);
