@@ -24,7 +24,7 @@ export default function CreateAdventure() {
   };
 
   const fetchData = async () => {
-    const activitiesURL = `${REACT_APP_API_HOST}/activities`;
+    const activitiesURL = `${process.env.REACT_APP_API_HOST}/activities`;
     const response = await fetch(activitiesURL);
     if (response.ok) {
       const data = await response.json();
@@ -63,7 +63,7 @@ export default function CreateAdventure() {
         };
 
         try {
-          const adventuresURL = `${REACT_APP_API_HOST}/adventures/`;
+          const adventuresURL = `${process.env.REACT_APP_API_HOST}/adventures/`;
           const fetchConfig = {
             credentials: "include",
             method: "post",

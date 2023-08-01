@@ -50,7 +50,9 @@ function NavComponent() {
 
   const fetchActivities = async () => {
     try {
-      const response = await fetch(`${REACT_APP_API_HOST}/activities`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_HOST}/activities`
+      );
       const data = await response.json();
       const fetchedActivities = data.map((activity) => activity.name);
       setActivities(fetchedActivities);
@@ -70,7 +72,7 @@ function NavComponent() {
   };
 
   const handleLogout = () => {
-    fetch(`${REACT_APP_API_HOST}/token`, {
+    fetch(`${process.env.REACT_APP_API_HOST}/token`, {
       method: "DELETE",
     })
       .then((response) => {

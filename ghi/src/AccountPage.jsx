@@ -13,9 +13,12 @@ const UserAccountPage = () => {
 
   const fetchUserData = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_API_HOST}/userinfo`, {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_HOST}/userinfo`,
+        {
+          withCredentials: true,
+        }
+      );
       setUserData(response.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
@@ -24,9 +27,12 @@ const UserAccountPage = () => {
 
   const fetchUserAdventures = async () => {
     try {
-      const response = await axios.get(`${REACT_APP_API_HOST}/adventures`, {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_API_HOST}/adventures`,
+        {
+          withCredentials: true,
+        }
+      );
       // Filter the adventures based on userData.id
       console.log(response);
       const filteredAdventures = response.data.filter(
@@ -40,7 +46,9 @@ const UserAccountPage = () => {
 
   const fetchAllActivities = async () => {
     try {
-      const response = await fetch(`${REACT_APP_API_HOST}/activities`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_HOST}/activities`
+      );
       const data = await response.json();
       return data;
     } catch (error) {

@@ -13,7 +13,9 @@ export default function MainPage() {
 
   const fetchAdventures = async () => {
     try {
-      const response = await fetch(`${REACT_APP_API_HOST}/adventures`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_HOST}/adventures`
+      );
       const data = await response.json();
 
       // Shuffle the data to get random items
@@ -46,7 +48,9 @@ export default function MainPage() {
     price = null
   ) => {
     try {
-      const response = await fetch(`${REACT_APP_API_HOST}/adventures`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_HOST}/adventures`
+      );
       const data = await response.json();
       const filteredAdventures = data.filter((adventure) => {
         const activityFilter =
@@ -65,7 +69,9 @@ export default function MainPage() {
 
   const fetchAllActivities = async () => {
     try {
-      const response = await fetch(`${REACT_APP_API_HOST}/activities`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_HOST}/activities`
+      );
       const data = await response.json();
       return data;
     } catch (error) {

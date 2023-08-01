@@ -22,7 +22,7 @@ const CreateCommentForm = ({ adventureid }) => {
       adventure_id: adventureid,
     };
 
-    const commentsURL = `${REACT_APP_API_HOST}/adventures/${adventureid}/comments`;
+    const commentsURL = `${process.env.REACT_APP_API_HOST}/adventures/${adventureid}/comments`;
     const fetchConfig = {
       credentials: "include",
       method: "post",

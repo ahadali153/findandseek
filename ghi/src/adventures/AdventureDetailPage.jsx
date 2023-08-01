@@ -15,7 +15,7 @@ const AdventureDetailPage = () => {
     const fetchAdventure = async () => {
       try {
         const response = await fetch(
-          `${REACT_APP_API_HOST}/adventures/${adventureid}`
+          `${process.env.REACT_APP_API_HOST}/adventures/${adventureid}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch adventure.");

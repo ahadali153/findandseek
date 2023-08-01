@@ -33,7 +33,7 @@ export default function UploadBioPic({ update }) {
 
     if (accountInfo2 !== "{}") {
       try {
-        const updateBioPicURL = `${REACT_APP_API_HOST}/accountinfo/`;
+        const updateBioPicURL = `${process.env.REACT_APP_API_HOST}/accountinfo/`;
         const fetchConfig = {
           credentials: "include",
           method: "put",

@@ -179,7 +179,9 @@ export default function MapComponent({ adventures }) {
   // Helper function to fetch all activities from the backend
   const fetchAllActivities = async () => {
     try {
-      const response = await fetch(`${REACT_APP_API_HOST}/activities`);
+      const response = await fetch(
+        `${process.env.REACT_APP_API_HOST}/activities`
+      );
       const data = await response.json();
       return data;
     } catch (error) {

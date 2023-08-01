@@ -12,7 +12,7 @@ const CommentList = ({ adventure }) => {
   const fetchComments = async (page) => {
     try {
       const response = await fetch(
-        `${REACT_APP_API_HOST}/adventures/${adventure.id}/comments?page=${page}&limit=${COMMENTS_PER_PAGE}`
+        `${process.env.REACT_APP_API_HOST}/adventures/${adventure.id}/comments?page=${page}&limit=${COMMENTS_PER_PAGE}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch comments.");
