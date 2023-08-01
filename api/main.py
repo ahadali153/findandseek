@@ -25,6 +25,13 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+def route():
+    return {
+        "message": "Welcome to Find&Seek"
+    }
+
+
 @app.get("/api/launch-details")
 def launch_details():
     return {
