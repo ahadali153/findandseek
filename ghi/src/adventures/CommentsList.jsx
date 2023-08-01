@@ -12,7 +12,7 @@ const CommentList = ({ adventure }) => {
   const fetchComments = async (page) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/adventures/${adventure.id}/comments?page=${page}&limit=${COMMENTS_PER_PAGE}`
+        `${REACT_APP_API_HOST}/adventures/${adventure.id}/comments?page=${page}&limit=${COMMENTS_PER_PAGE}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch comments.");
@@ -24,9 +24,9 @@ const CommentList = ({ adventure }) => {
     }
   };
 
-	const handleNextPage = () => {
-		setCurrentPage((prevPage) => prevPage + 1);
-	};
+  const handleNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
 
   const handlePrevPage = () => {
     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));

@@ -17,22 +17,22 @@ import Intensity4 from "./images/Intensity4.png";
 import Intensity5 from "./images/Intensity5.png";
 import "./GoogleMap.css";
 
-  const getRatingIcon = (rating) => {
-    switch (rating) {
-      case 1:
-        return Rating1;
-      case 2:
-        return Rating2;
-      case 3:
-        return Rating3;
-      case 4:
-        return Rating4;
-      case 5:
-        return Rating5;
-      default:
-        return null;
-    }
-  };
+const getRatingIcon = (rating) => {
+  switch (rating) {
+    case 1:
+      return Rating1;
+    case 2:
+      return Rating2;
+    case 3:
+      return Rating3;
+    case 4:
+      return Rating4;
+    case 5:
+      return Rating5;
+    default:
+      return null;
+  }
+};
 
 const getPriceIcon = (price) => {
   switch (price) {
@@ -109,7 +109,7 @@ export default function MapComponent({ adventures }) {
         const marker = new window.google.maps.Marker({
           position: { lat: adventure.latitude, lng: adventure.longitude },
           map,
-          title: getActivityName(adventure.activity_id)
+          title: getActivityName(adventure.activity_id),
         });
 
         // Add click event listener to the marker
@@ -140,11 +140,21 @@ export default function MapComponent({ adventures }) {
                   .map(
                     (adventure) => `
                       <li>
-                        <strong><a href="/adventures/${adventure.id}">${adventure.title}</a></strong><br />
-                        Activity: ${getActivityName(adventure.activity_id)}<br />
-                        User Rating: <img class="adventure-image" src="${getRatingIcon(adventure.user_rating)}" alt="Rating" /><br />
-                        Price: <img src="${getPriceIcon(adventure.price)}" alt="Price" /><br />
-                        Intensity: <img src="${getIntensityIcon(adventure.intensity)}" alt="Intensity" /><br />
+                        <strong><a href="/adventures/${adventure.id}">${
+                      adventure.title
+                    }</a></strong><br />
+                        Activity: ${getActivityName(
+                          adventure.activity_id
+                        )}<br />
+                        User Rating: <img class="adventure-image" src="${getRatingIcon(
+                          adventure.user_rating
+                        )}" alt="Rating" /><br />
+                        Price: <img src="${getPriceIcon(
+                          adventure.price
+                        )}" alt="Price" /><br />
+                        Intensity: <img src="${getIntensityIcon(
+                          adventure.intensity
+                        )}" alt="Intensity" /><br />
                       </li>
                     `
                   )
@@ -169,7 +179,7 @@ export default function MapComponent({ adventures }) {
   // Helper function to fetch all activities from the backend
   const fetchAllActivities = async () => {
     try {
-      const response = await fetch("http://localhost:8000/activities");
+      const response = await fetch(`${REACT_APP_API_HOST}/activities`);
       const data = await response.json();
       return data;
     } catch (error) {
@@ -198,7 +208,7 @@ export default function MapComponent({ adventures }) {
     };
     const newMap = new window.google.maps.Map(
       document.getElementById("map"),
-      mapOptions,
+      mapOptions
     );
 
     // Set the map to state
@@ -209,7 +219,13 @@ export default function MapComponent({ adventures }) {
     mapElement.style.boxShadow = "rgba(149, 157, 165, 0.2) 0px 8px 24px;";
   };
 
-  return <div className="google-map-container" id="map" style={{ width: "100%", height: "400px" }}></div>;
+  return (
+    <div
+      className="google-map-container"
+      id="map"
+      style={{ width: "100%", height: "400px" }}
+    ></div>
+  );
 }
 
 export { getRatingIcon, getPriceIcon, getIntensityIcon };
