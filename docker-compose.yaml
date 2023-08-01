@@ -21,7 +21,7 @@ services:
       WAIT_HOSTS: postgres:5432
       WAIT_BEFORE: 5
       WAIT_TIMEOUT: 60
-      CORS_HOST: http://localhost:3000
+      CORS_HOST: https://team-safari.gitlab.io/FindAndSeek
       DATABASE_URL: postgresql://safari:safari@postgres/safari_db
 
     build:
