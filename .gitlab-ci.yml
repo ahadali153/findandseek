@@ -23,7 +23,7 @@ fastapi-unit-tests-job:
     - pip install -r requirements.txt
     - python -m pytest
 
-# Build API Image:
+## Build API Image:
 build-fastapi-image:
   stage: build
   image: docker:git
