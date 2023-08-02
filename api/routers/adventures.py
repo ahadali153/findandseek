@@ -13,7 +13,7 @@ from queries.adventures import (
 
 load_dotenv()
 
-GOOGLE_MAPS_API_KEY = os.environ["GOOGLE_MAPS_API_KEY"]
+GOOGLE_MAPS_API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY")
 BUCKET_NAME = "findandseek"
 
 router = APIRouter()
