@@ -65,52 +65,7 @@ const AdventureDetail = () => {
     <Container className="body-background">
       <Row className="mt-4">
         <Col md={{ span: 12 }}>
-          <Card className="card-background">
-            <Card.Body>
-              <h1 className="text-center h1-background">{adventure.title}</h1>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-      <Row className="mt-4">
-        <Col md={{ span: 4 }}>
-          <Card className="card-background">
-            <Card.Body>
-              <Card.Title className="text-center">Rating</Card.Title>
-              <Card.Text className="text-center">
-                <img
-                  src={getRatingIcon(adventure.user_rating)}
-                  alt={`Rating ${adventure.user_rating}`}
-                />
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={{ span: 4 }}>
-          <Card className="card-background">
-            <Card.Body>
-              <Card.Title className="text-center">Price</Card.Title>
-              <Card.Text className="text-center">
-                <img
-                  src={getPriceIcon(adventure.price)}
-                  alt={`Price ${adventure.price}`}
-                />
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={{ span: 4 }}>
-          <Card className="card-background">
-            <Card.Body>
-              <Card.Title className="text-center">Intensity</Card.Title>
-              <Card.Text className="text-center">
-                <img
-                  src={getIntensityIcon(adventure.intensity)}
-                  alt={`Intensity ${adventure.intensity}`}
-                />
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <h1 className="text-center h1-background">{adventure.title}</h1>
         </Col>
       </Row>
       <Row className="mt-4">
@@ -120,42 +75,62 @@ const AdventureDetail = () => {
               src={adventure.image_url}
               alt="Adventure Thumbnail"
               className="img-fluid rounded"
+              style={{ width: "1000px", height: "500px" }}
             />
           </div>
         </Col>
       </Row>
-
       <Row className="mt-4">
-        <Col md={{ span: 6 }}>
-          <Card className="card-background">
-            <Card.Body>
-              <Card.Title className="text-center">Activity</Card.Title>
-              <Card.Text className="text-center">
-                {getActivityName(adventure.activity_id)}
-              </Card.Text>
-            </Card.Body>
-          </Card>
+        <Col md={{ span: 4 }}>
+          <div className="text-center shadow-lg p-3 mb-5 rounded">
+            <h2>Rating</h2>
+            <img
+              src={getRatingIcon(adventure.user_rating)}
+              alt={`Rating ${adventure.user_rating}`}
+              style={{ width: "100px", height: "30px" }}
+            />
+          </div>
         </Col>
-        <Col md={{ span: 6 }}>
-          <Card className="card-background">
-            <Card.Body>
-              <Card.Title className="text-center">Address</Card.Title>
-              <Card.Text className="text-center">{adventure.address}</Card.Text>
-            </Card.Body>
-          </Card>
+        <Col md={{ span: 4 }}>
+          <div className="text-center shadow p-3 mb-5 rounded">
+            <h2>Price</h2>
+            <img
+              src={getPriceIcon(adventure.price)}
+              alt={`Price ${adventure.price}`}
+              style={{ width: "100px", height: "30px" }}
+            />
+          </div>
+        </Col>
+        <Col md={{ span: 4 }}>
+          <div className="text-center">
+            <h2>Intensity</h2>
+            <img
+              src={getIntensityIcon(adventure.intensity)}
+              alt={`Intensity ${adventure.intensity}`}
+            />
+          </div>
         </Col>
       </Row>
-
+      <Row className="mt-4">
+        <Col md={{ span: 6 }}>
+          <div className="text-center">
+            <h2>Activity</h2>
+            {getActivityName(adventure.activity_id)}
+          </div>
+        </Col>
+        <Col md={{ span: 6 }}>
+          <div className="text-center">
+            <h2>Address</h2>
+            <h3>{adventure.address}</h3>
+          </div>
+        </Col>
+      </Row>
       <Row className="mt-4">
         <Col md={{ span: 12 }}>
-          <Card className="card-background">
-            <Card.Body>
-              <Card.Title className="text-center">Description</Card.Title>
-              <Card.Text className="text-center">
-                {adventure.description}
-              </Card.Text>
-            </Card.Body>
-          </Card>
+          <div className="text-center">
+            <h2>Description</h2>
+            <h3>{adventure.description}</h3>
+          </div>
         </Col>
       </Row>
     </Container>
