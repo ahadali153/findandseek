@@ -127,10 +127,11 @@ function NavComponent({ fetchFilteredAdventures }) {
 						<img className="logo" src={logo} alt="Logo" />
 					</Navbar.Brand>
 					<Row className="align-items-center w-100">
-						<Col md={3} className="location-col text-center right">
+						{/* <Col md={3} className="location-col text-center right">
 							<h3 style={{ fontSize: "1em" }}>Location</h3>
 							<input type="text" placeholder="Where are you going?" />
-						</Col>
+						</Col> */}
+						<Col md={3}></Col>
 						<Col md={2} className="activities-col text-center">
 							<h3 style={{ fontSize: "1em" }}>Activities</h3>
 							<div className="activities">
