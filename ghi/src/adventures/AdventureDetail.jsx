@@ -72,40 +72,6 @@ const AdventureDetail = () => {
           </Card>
         </Col>
       </Row>
-
-      <Row className="mt-4">
-        <Col md={{ span: 12 }} className="text-center">
-          <div className="img-container fixed-image-container">
-            <img
-              src={adventure.image_url}
-              alt="Adventure Thumbnail"
-              className="img-fluid rounded"
-            />
-          </div>
-        </Col>
-      </Row>
-
-      <Row className="mt-4">
-        <Col md={{ span: 6 }}>
-          <Card className="card-background">
-            <Card.Body>
-              <Card.Title className="text-center">Activity</Card.Title>
-              <Card.Text className="text-center">
-                {getActivityName(adventure.activity_id)}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={{ span: 6 }}>
-          <Card className="card-background">
-            <Card.Body>
-              <Card.Title className="text-center">Address</Card.Title>
-              <Card.Text className="text-center">{adventure.address}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-
       <Row className="mt-4">
         <Col md={{ span: 4 }}>
           <Card className="card-background">
@@ -143,6 +109,38 @@ const AdventureDetail = () => {
                   alt={`Intensity ${adventure.intensity}`}
                 />
               </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col md={{ span: 12 }} className="text-center">
+          <div className="img-container fixed-image-container">
+            <img
+              src={adventure.image_url}
+              alt="Adventure Thumbnail"
+              className="img-fluid rounded"
+            />
+          </div>
+        </Col>
+      </Row>
+
+      <Row className="mt-4">
+        <Col md={{ span: 6 }}>
+          <Card className="card-background">
+            <Card.Body>
+              <Card.Title className="text-center">Activity</Card.Title>
+              <Card.Text className="text-center">
+                {getActivityName(adventure.activity_id)}
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col md={{ span: 6 }}>
+          <Card className="card-background">
+            <Card.Body>
+              <Card.Title className="text-center">Address</Card.Title>
+              <Card.Text className="text-center">{adventure.address}</Card.Text>
             </Card.Body>
           </Card>
         </Col>
