@@ -1,4 +1,4 @@
-## SQL STATEMENTS TO GET ACTIVITIES IN THE DATABASE
+## SQL STATEMENTS TO GET ACTIVITIES IN THE DATABASE!
 
 # step 1: go to postgres terminal and type this: psql -h localhost -U safari safari_db
 
