@@ -3,11 +3,9 @@
 	margin-bottom: 40px !important;
 }
 
-/* .card {
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
-	transition: transform 0.3s ease-in-out;
-	background-color: white !important;
-} */
+.card-container {
+	margin-top: 40px !important;
+}
 
 .card {
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
@@ -28,4 +26,16 @@
 .card-center {
 	align-items: center !important;
 	text-align: center !important;
+}
+
+.refresh-button {
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+}
+
+.refresh-icon {
+	width: 50px; /* Adjust the width to your preferred size */
+	height: 50px; /* Adjust the height to your preferred size */
 }
