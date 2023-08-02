@@ -12,18 +12,6 @@ const SignupForm = ({ handleSignup }) => {
 	const navigate = useNavigate();
 	const { login } = useToken();
 
-	// const handleSubmit = (e) => {
-	// 	e.preventDefault();
-	// 	login(username, password)
-	// 		.then(() => {
-	// 			handleLogin();
-	// 		})
-	// 		.catch((error) => {
-	// 			console.error("Error occurred during login:", error);
-	// 		});
-	// 	e.target.reset();
-	// };
-
 	const handleRegistration = async (e) => {
 		e.preventDefault();
 		if (password !== reenterPassword) {
