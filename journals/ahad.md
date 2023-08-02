@@ -117,3 +117,7 @@ Today, I reviewed the main branch code and removed unnecessary print and log sta
 ## July 31st, 2023:
 
 Today, I worked on fixing up the background gradient to better match the theme of our app. I also fixed up backend errors that were being caused by inconsistent variable names.
+
+## July 1st, 2023:
+
+Today, I worked on getting posts to render on account page. The endpoint used to fetch account details had changed and a little bit of tweaking was required to the pydantic model for the query method of that endpoint to get adventure posts to render.
