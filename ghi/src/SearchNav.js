@@ -15,7 +15,6 @@ import "./NavComponent.css";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
 import CreateAdventure from "./adventures/AdventureForm";
-// import CarouselPics from "./CarouselPics";
 
 function NavComponent({ fetchFilteredAdventures }) {
 	const [showLoginModal, setShowLoginModal] = useState(false);
@@ -100,7 +99,7 @@ function NavComponent({ fetchFilteredAdventures }) {
 		})
 			.then((response) => {
 				if (response.ok) {
-					window.location.href = "/";
+					window.location.href = "/FindAndSeek";
 					setLoggedIn(false);
 					localStorage.removeItem("loggedIn");
 				} else {
