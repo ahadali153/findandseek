@@ -59,7 +59,7 @@ build-front-end-job:
   script:
     - cd ghi
     - npm install
-    - npm run build
+    - CI=false npm run build
     - cp build/index.html build/404.html
   artifacts:
     paths:
